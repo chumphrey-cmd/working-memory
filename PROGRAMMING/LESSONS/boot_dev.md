@@ -3180,6 +3180,33 @@ function fixUserMap(brokenMap) {
 }
 ```
 
+## Promises
+
+### Synchronous vs. Asynchronous
+
+<img src="./images/synchronous_vs_asynchronous.png">
+
+* **Synchronous**: means it runs in sequence. Each line of code executes in order, one after the next (e.g., TCP handshake via `SYN` `SYN-ACK` `ACK`)
+* **Asynchronous (async)**: runs concurrently. While the main thread continues running subsequent code, `async` tasks are handled outside the main execution flow and run as system resources allow
+  * For example: the `setTimeout()` function accepts a function and a number of milliseconds as inputs. It sets aside the function to be run after the number of milliseconds has passed, at which point it gets queued for execution when the main thread is available. 
+
+```javascript
+console.log("I print first");
+setTimeout(
+        () => console.log("I print third because I'm waiting 100 milliseconds"),
+        100,
+);
+console.log("I print second");
+
+// Output:
+// I print first
+// I print second
+// I print third because I'm waiting 100 milliseconds
+```
+
+> ![NOTE]
+> In general, you should aim to write synchronous code whenever possible because it's easier to keep track of, and therefore leads to fewer bugs. But sometimes we need our code to be asynchronous. For example, whenever you update your user settings on a website, your browser needs to communicate those new settings to the server.
+
 # TypeScript
 
 * [TypeScript](https://www.typescriptlang.org/) is a typed superset of JavaScript that transpiles to plain JavaScript.
