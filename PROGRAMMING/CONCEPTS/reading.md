@@ -166,7 +166,40 @@ Instability is a measure of how well the software deployments go. When deploymen
 
 # The Bitter Lesson
 
-* [Bitter Lesson](https://www.cs.utexas.edu/~eunsol/courses/data/bitter_lesson.pdf)
+Ref: [Bitter Lesson](https://www.cs.utexas.edu/~eunsol/courses/data/bitter_lesson.pdf)
+
+* Seeking an improvement that makes a difference in the shorter term, researchers seek to leverage their human knowledge of the domain, but **the only thing that matters in the long run is the leveraging of computation**. These two need not run counter to each other, but in practice they tend to. Time spent on one is time not spent on the other.
+  
+> [!NOTE]
+> *The investment and **moat** of a company should be spent on computation rather than comprehensive know-how...*
+
+* And the human-knowledge approach tends to complicate methods in ways that make them less suited to taking advantage of general methods leveraging computation.
+  
+> [!NOTE]
+> *The information that you know and are exposed to tends to blind you information that is obvious, what Rich Sutton explains as "belated learning" or the curse of knowledge where you are so familiar with a concept that you miss the obvious in-efficiencies*
+> *There's also the idea of **DOMAIN DEPENDENCE** whereby you're expertise blinds you to seeing alternative solutions*
+
+* Entrants included a host of special methods that took advantage of human knowledge - knowledge of words, of phonemes, of the human vocal tract, etc. On the other side were newer methods that were more statistical in nature and did much more computation, based on hidden Markov models (HMMs). 
+  
+> [!NOTE]
+> *Statistical methods won over the human-knowledge-based methods. This led to a major change in all of natural language processing, gradually over decades, where statistics and computation came to dominate the field.*
+> *The power of statistics and raw computation over tactic human knowledge...*
+
+* To see this, and to effectively resist it, we have to understand **the appeal of these mistakes**. We have to learn the bitter lesson **that building in how we think we think does not work in the long run**. The bitter lesson is based on the historical observations that:
+  1) AI researchers have often tried to build knowledge into their agents
+  2) This always helps in the short term, and is personally satisfying to the researcher
+  3) In the long run it plateaus and even inhibits further progress
+  4) Breakthrough progress eventually arrives by an opposing approach based on scaling computation by search and learning.
+
+* The lessons that should be taken from the bitter lesson: 
+  1) The power of general purpose methods that continue to scale with increased computation even as the available computation becomes very great. The two methods that seem to scale arbitrarily in this way are *search&* and *learning*.
+  2) Our minds are complex and difficult to replicate, we need to simplify how we represent the contents of our minds. We should build in only the meta-methods that can capture arbitrary complexity. We want AI agents that can discover like we can, not which contain what we have discovered. Building in our discoveries only makes it harder to see how the discovering process can be done.
+
+> [!NOTE]
+> *Don't underestimate the power of brute-force techniques even if they are computationally expensive*
+> *The advantage to companies and people the leverage and have a monopoly on electricity/electrons is Pareto distributed and makes it difficult for other companies to duplicate*
+> *We want AI agents that can discover like we can, not which contain what we have discovered. Building in our discoveries only makes it harder to see how the discovering process can be done.*
+
 
 # Extreme Programming 
 
@@ -175,3 +208,8 @@ Instability is a measure of how well the software deployments go. When deploymen
 * I used to believe that the engineers' sole job was only focusing on building the highest quality thing. But I've learned that it's a much more collaborative process to ensure that you don't waste time building what the customer doesn't want. 
 * For example, if the user story for a local quiz tool states that the user wants a feature to modify the settings of their current quiz session so that, when using a quiz tool, they can adjust configurations of the quiz in real time. The developer, PM, designer, and PE need to accommodate that concern and make a focused and concerted effort to bring that setting feature to life (assuming that this feature would add significant value for that customer).
 * The developer can then receive #Feedback both in the initial feature addition that they create and while discussing with the customer and rest of the #BalancedTeam on feasibility of what they want to ship to ensure that the customer vision aligns with what will be built.
+
+# Eisenhower Matrix
+
+* https://sps.columbia.edu/sites/default/files/2023-08/Eisenhower%20Matrix.pdf
+* [OWASP Risk Rating Methodology](https://owasp.org/www-community/OWASP_Risk_Rating_Methodology)
