@@ -3182,6 +3182,8 @@ function fixUserMap(brokenMap) {
 
 ## Promises
 
+* [Promise Objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise): Represents the eventual fulfillment or rejection of a promise. In the meantime, while we're waiting for the promise to be fulfilled, our code continues executing. Promises are the most popular modern way to write asynchronous code in JavaScript.
+
 ### Synchronous vs. Asynchronous
 
 <img src="./images/synchronous_vs_asynchronous.png">
@@ -3206,6 +3208,45 @@ console.log("I print second");
 
 > ![NOTE]
 > In general, you should aim to write synchronous code whenever possible because it's easier to keep track of, and therefore leads to fewer bugs. But sometimes we need our code to be asynchronous. For example, whenever you update your user settings on a website, your browser needs to communicate those new settings to the server.
+
+### Async Await 
+
+```javascript
+try {
+  // The 'try' block contains the code we HOPE will work.
+  // Execution "pauses" at await.
+  const message = await updateMessageStatus("M123", "Sending", true);
+
+  // If the promise resolves, this next line runs:
+  console.log("Success:", message);
+} catch (error) {
+  // If the promise is REJECTED (e.g., isDelivered was false), 
+  // execution immediately jumps here. 
+  // The 'error' variable contains the string passed into reject().
+  console.error("Caught an error:", error);
+} finally {
+  // Optional: The 'finally' block runs regardless of success or failure.
+  // Great for cleaning up UI states like "Loading..." spinners.
+  console.log("Operation attempt finished.");
+}
+
+function updateMessageStatus(messageId, currentStatus, isDelivered) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (currentStatus === "Sending") {
+        if (isDelivered) {
+          resolve(`Textio Message ${messageId} has been delivered successfully.`);
+        } else {
+          // Awaiting this will trigger the 'catch' block above!
+          reject(`Textio Message ${messageId} is still sending and cannot be marked as delivered.`);
+        }
+      } else {
+        resolve(`Textio Message ${messageId} status updated to ${currentStatus}.`);
+      }
+    }, 1000);
+  });
+}
+```
 
 # TypeScript
 
