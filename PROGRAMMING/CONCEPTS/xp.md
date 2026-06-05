@@ -145,19 +145,116 @@ Currently, I'm reading *XP Explained* by Kent Beck. The basic tenets are as foll
 * How to extract the essence and basics of implementation.
 * Identify the need for more technical research.
 
-# Standup Basic Elements
+## Standup Basic Elements
 
-## "3" Qs
+### "3" Qs
 * What did I do yesterday?
 * What am I doing today?
 * What blockers do I have?
 
-## Reviewing as Pairs
+### Reviewing as Pairs
 * What did the pair accomplish yesterday?
 * What blockers did the pair have?
 * What is the pair planning to do today?
 
+## Iteration Planning Meeting (IPM)
+
+Yesterday I also learned about iterative planning meetings (IPMs) and how they influence #Prioritization or what needs to be worked on and how proper prioritization contributes to higher quality #Metrics like time it takes to deliver of features.
+
+* The goal of pre-IPMs and IPM as they relate to the balanced team is to bring the entire balanced team together to identify, prioritize, approximate complexity, and ultimately rank order how work should be completed. 
+* Pre-IPM and IPM is set during team norming and each typically happens at least once per week (**NOTE:** this can be modified to as development after inception takes place) but at a bare minimum it should occur at least once per week so that work can be prioritized and accounted for.
+* My initial thought when norming on this idea was, "oh great, another meeting that gets in the way of actually learning and building...", but after some discussion I realized that it's essential and non-negotiable for an efficient balanced team.
+* The idea that comes to mind is "measure twice and cut once". If engineering and building time is valuable, and you want to extract the most value out of each team without overworking the team, YOU HAVE TO PRIORITIZE AND IDENTIFY THE MOST VALUABLE USE OF THE TEAMS TIME. 
+* From what I currently know about how a balance team operates, this is one of the best ways bring all parties and opinions to the table. In more traditional work environments, engineers are brought into the planning process after what management and other members determine what is important and simply give engineers that work to be done. The builders of the product are not taken into account and complexity of what's being built is not identified by the managers of the team leading to unrealistic product timelines and #Metrics related to estimations of project/feature completion great skewed and inaccurate.
+
+# Facilitating Retrospectives (Retros)
+
+1) Make your work visible - meaning that during team norming you provide space for your team to see/hear about the work that you've completed (e.g., the previous 24 hours). To me, this ensures that each individual is held accountable for the work that they are doing.
+2) Ensure that you have retrospectives - from what I've heard, this is part of the norming process whereby the team gets together to decide what the consistent patterns they will follow (e.g., morning and evening standup times, tempo of retros, determining success criteria for the retro that's agreed upon, etc.). It's essentially a ritual gathering at the end of a project to review events and learn from actions taken... 
+
+* Warm-up Games
+* Essentially a reflection (at regular intervals) that you take with your team to reflect on how the team is doing (e.g., once per week or at the end of a project...)
+* It serves to **fix the thing when it breaks**, you want to take it apart and do it again. Basically the idea of an internal teams [andon cord](https://en.wikipedia.org/wiki/Andon_(manufacturing)).
+
+**Question** During a retro, how do you avoid the dilemma of having learning as a goal when you fail?
+
+* It's okay if "**learning**" is the goal here, the retros are incremental and should enable you to learn incrementally.
+
+## Feedback and Retrospectives
+
+1) Set the Stage
+2) Gather Data
+__**START HERE**__
+3) Generate Insights
+4) Decide What To Do
+5) Close the Retro
+
+### Set the Stage
+* Use some form of mantra or shared agreement of radical open-ness about the purpose of this project
+* Determine success criteria for the retro that's agreed upon
+
+### Gather Data
+* Starfish
+* Future-spective: where you position yourself as if you are in the future and looking back on the items that you want to learn...
+* Before you start discussing your ideas, gather then silently (silent writing)
+
+### Generate Insights
+* Draw a picture of the last iteration (used to create an image of how the previous project worked).
+* What is your understanding of what X is saying?
+* How do you understand the situation?
+* Root-cause analysis
+
+> [!NOTE]
+> Don't blame the end user, it's difficult to diagnose a single systematic cause due to the complexity)
+
+* Are you willing ot support the proposal?
+* What concerns, if any, do you have about supporting the decision?
+* Is this a decision you can support and implement
+* Close with appreciations (what did people in the group get right)
+
+
+**__START_HERE__**
+
+#### Truth Seeking Methodologies
+
+(#Facilitation, #BalancedTeam)
+
+* **Truth over Consensus**: When objective facts are knowable, you should never compromise. For example, if you think a ceiling is 11 feet and a colleague thinks it is 12 feet, compromising at 11.5 feet is incorrect. Using a tape measure to find the absolute truth is the only acceptable method.
+* **Disagree and Commit**: If a definitive truth cannot be measured—such as a subjective strategy choice—and a colleague disagrees with you, Bezos championed the "disagree and commit" strategy. Instead of watering the idea down through compromise, the dissenting party acknowledges the opposing view, fully commits their energy to executing the decision, and allows the company to move forward.
+* **Embrace Exhausting Debate**: Bezos believes that you should not compromise for the sake of "social cohesion". He actively encourages lengthy, passionate, and sometimes exhausting arguments. He demands that teams hash out every angle of a problem until the strongest evidence-based path becomes clear.
+
+#### Preparation Checklist for Facilitation
+
+* Validate your selection as facilitator (am I the right one for the job??)
+* Check in with the team (is there any context that I'm missing??)
+* Ensure time and date
+* Make a lightweight plan
+
+## Retrospective Extended Learning
+* Project Retrospectives
+* Agile Retrospectives
+* Retrospective Antipatterns
+
 # Estimating 
+
+(#Metrics, #Prioritization)
+
+* Estimating is quite difficult in product development and management. Some common ways to get around this issue is to use a **Flow Efficiency** calculation which is the ratio of the total time spent in value-added work activities **`Active Time`** divided by the total flow time **`Total Lead Time`**.
+
+* Active Time: The actual time spent actively working on or adding value to the item (e.g., coding, testing, designing).
+* Total Lead Time: The entire elapsed calendar time from the moment work begins to the point of delivery. This includes active **work time**, **wait time**, **blocked time**, and **time spent in queues**.
+  * Wait Time: The invisible downtime where the work is idle (e.g., waiting for code reviews, approvals, environment provisioning, or dependency handoffs).
+  * Essentially all the time spent not working on adding value.
+
+## Volatility, Uncertainty, Complexity, and Ambiguity (VUCA)
+
+* Ref: https://www.pmi.org/disciplined-agile/vuca-volatility-uncertainty-complexity-and-ambiguity
+
+* Another aspect seen in estimation is VUCA which is a selection of variables that surrounds the knowledge work that is performed. 
+* **Volatility**: is the dynamic rate of change. As the pace of our world increases, what we need to do to be effective in it is constantly changing. 
+* **Uncertainty**: is the lack of predictability and information. It is the “fog of war” we face. While it would be nice to have clarity on what to do, we rarely know what our customers want and what our competitors are doing and how they will respond. 
+* **Complexity**: describes interdependent systems that do not have apparent cause and effect. Your company, your clients, and even your competitors comprise a system that interacts with each other, but for which many of the relationships can’t be seen or well understood. 
+* **Ambiguity**: acknowledges the challenge we have in understanding and assessing reality. It is hard to know what is going on and what we need to do to improve it.
 
 # Discovery and Framing
 
@@ -165,3 +262,14 @@ Currently, I'm reading *XP Explained* by Kent Beck. The basic tenets are as foll
 2. Prioritize
 3. Solutions
 4. Prioritize
+
+
+**__START HERE__**
+
+## How Might We (HMW) / How Might We Not (HMWN)
+
+(#BalancedTeam, #Facilitation)
+
+* We recently discussed this idea of HMW and HMWN as it relates to DNF, identifying the next steps forward for development after midpoint, and general problem-solving/brainstorming of ideas in general.
+* The main advantage of this technique is that it enables the entire team to contribute any and all broad ideas (e.g., idea storming) towards a single goal.
+* It seems to be the most helpful at beginning points before a new development sprint or general initiative begins and benefits the most from divergent thinking.
