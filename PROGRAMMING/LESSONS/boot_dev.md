@@ -3184,6 +3184,17 @@ function fixUserMap(brokenMap) {
 
 * [Promise Objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise): Represents the eventual fulfillment or rejection of a promise. In the meantime, while we're waiting for the promise to be fulfilled, our code continues executing. Promises are the most popular modern way to write asynchronous code in JavaScript.
 
+* Promises are the cleanest (but not the only) way to handle the common scenario where we need to make requests to a server, which is typically done via an HTTP request.
+* Almost every time you use a promise it will be to handle some form of I/O (refers to when our code needs to interact with systems outside local variables and functions). 
+* Common examples of I/O include:
+  * HTTP requests 
+  * Reading files from the hard drive 
+  * Interacting with a Bluetooth device 
+  * Sending data to a database 
+
+> [!NOTE]
+> Promises help us perform I/O without forcing our entire program to freeze up while we wait for a response.
+
 ### Synchronous vs. Asynchronous
 
 <img src="./images/synchronous_vs_asynchronous.png">
