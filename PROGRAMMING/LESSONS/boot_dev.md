@@ -3259,6 +3259,24 @@ function updateMessageStatus(messageId, currentStatus, isDelivered) {
 }
 ```
 
+## Event Loop
+
+### Single Threaded
+
+* JavaScript is single-threaded meaning that each processes executes one instruction at a time (this is normally inefficient, however JS handles this via **asynchronous** programming and because it's **non-blocking**).
+
+<img src="./images/multi_vs_single_threading.png" alt="Multi Threaded vs Single Threading">
+
+* JavaScript can only execute one instruction at a time, but it can continue processing other stuff while it's waiting for something external (like a network request) to complete. If the "many things" you're doing are I/O bound, like:
+  * Network requests 
+  * File system operations 
+  * Timers 
+  * Database queries
+
+> [!NOTE]
+> If your task is CPU bound (like heavy calculations), JavaScript will struggle. A `Node.js` server will often far outperform a multi-threaded Python, Ruby, or PHP server because of its ability to handle many concurrent connections without much overhead. 
+> On the other hand, it will usually be outperformed by a multi-threaded Java, Go, C++, or Rust server when it comes to heavy computation.
+
 # TypeScript
 
 * [TypeScript](https://www.typescriptlang.org/) is a typed superset of JavaScript that transpiles to plain JavaScript.
