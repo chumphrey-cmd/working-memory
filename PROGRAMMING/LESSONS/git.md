@@ -222,7 +222,7 @@ git pull origin <branch>
 git push origin <branch>
 ```
 
-### Pull Blocked — Unstaged Changes (Not Ready to Commit)
+### Pull Blocked - Unstaged Changes (Not Ready to Commit)
 Stash your work, pull, then restore.
 ```bash
 git stash
@@ -310,3 +310,64 @@ git push --force-with-lease origin HEAD
 **Step 5: Verify Contributions**
 
 Check your GitHub repository/profile page. Commits should now show as "**Verified**" and appear on your contribution graph.
+
+## Fixing a Bad Commit (Wrong Author/Email)
+
+### Check Which Commits Need Fixing
+```bash
+git log --format="%h %ae %s"
+```
+* Count how many commits show the wrong email - you'll need that number below.
+
+### Resetting the Most Recent Commit
+The simplest one-liner:
+```bash
+git commit --amend --reset-author --no-edit
+```
+
+### If It's a Specific Older Commit (by ID)
+Target it directly using its commit hash:
+```bash
+git rebase -i d2d0ef5^
+```
+The `^` means "start just before that commit." In the editor that opens:
+1. Change `pick` to `edit` on the target commit line
+2. Save and close the editor
+
+Git will pause on that commit - then run:
+
+```bash
+git commit --amend --reset-author --no-edit
+git rebase --continue
+```
+
+### If Multiple Commits Are Bad
+Replace `4` with however many bad commits you counted:
+```bash
+git rebase -i HEAD~4
+```
+Change `pick` to `edit` on every bad commit line, save, then for each paused commit:
+```bash
+git commit --amend --reset-author --no-edit
+git rebase --continue
+```
+
+### Sanity Check
+Confirm all commits now show the correct email before pushing:
+```bash
+git log --format="%h %ae %s"
+```
+
+### Push the Rewritten History
+
+```bash
+git push --force-with-lease origin main
+```
+> [!NOTE]
+> `--force-with-lease` is safer than `--force` - it aborts if someone else pushed to the branch since your last fetch, preventing accidental overwrites.
+
+* In the event that you are unable to `--force-push` due to repository permissions, simply run `git push` to send changes.
+
+```bash
+git push
+```
