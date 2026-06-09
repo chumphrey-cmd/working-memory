@@ -171,7 +171,161 @@ git config --global gpg.format ssh
 git config --global user.signingkey /PATH/TO/.SSH/KEY.PUB
 ```
 
-# IntelliJ Troubleshooting
+# Setting Up Multiple Git Identities
+
+Ref: https://medium.com/@matteopampana/one-pc-multiple-git-configs-this-will-save-you-time-f702880744f7
+
+## Step 1: Configure SSH Keys (Per Provider)
+
+Generate separate SSH keys for each git account and add the public keys to each provider. Then wire them up in `~/.ssh/config`:
+
+```bash
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/github_personal_key
+  IdentitiesOnly yes
+
+Host github-work
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/github_work_key
+  IdentitiesOnly yes
+```
+
+## Step 2: Set Up Your Root `~/.gitconfig`
+
+* Remove the current `.gitconfig` and replace with the information below. 
+* Here we are specifying the specific path and directories that the `.gitconfig` will apply to.
+
+> [!NOTE]
+> The `.gitconfig` is a global staging area, everything here will be populated across all profiles.
+
+```bash
+
+[includeIf "gitdir:~/Desktop/personal/"]
+    path = ~/.gitconfig-personal
+
+[includeIf "gitdir:~/Desktop/work/"]
+    path = ~/.gitconfig-professional
+```
+
+## Step 3: Create `~/.gitconfig-personal`
+
+* Here we are specifying the public created signing key and the location of where it is stored.
+
+```bash
+[user]
+    email = personal-email@gmail.com
+    name = Chuma Humphrey
+    signingkey = /Users/chuma/.ssh/id_ed25519.pub
+```
+
+## Step 4: Add GPG Commit Signing
+
+### Step 4.1: Install DoD Root Certificates
+
+1. Go to **cyber.mil**
+2. Search **"PKCS"** and download **"PKI CA Certificate Bundles: PKCS#7 for DoD PKI Only - Version 5.14"**
+3. Unzip the downloaded file
+4. Open **Keychain Access** on macOS
+5. Double-click each **DoD Root Cert** and add it to Keychain Access (there should be **4**)
+6. Double-click each Root Cert in Keychain Access and expand the **Trust** section
+7. Change **"When using this certificate"** to **Always Trust**
+8. Repeat for all 4 Root Certs
+
+### Install `smimesign`
+
+```bash
+brew install smimesign
+```
+
+### Identify Your Signing Key
+
+Insert your CAC and run:
+
+```bash
+smimesign --list-keys
+```
+
+Select the cert with:
+- Your work email address in the **Emails** field
+- The **highest CA-##** number in the Issuer field (e.g. `DOD EMAIL CA-80`)
+
+### Configure `~/.gitconfig-professional`
+
+```bash
+[user]
+    email = work-email@gmail.com
+    name = Chuma Humphrey
+    signingkey = YOUR_SIGNING_KEY
+
+[gpg]
+    format = x509
+
+[gpg "x509"]
+    program = smimesign
+
+[commit]
+    gpgsign = true
+
+[tag]
+    gpgsign = true
+```
+
+## Step 5: Create `~/.gitconfig-professional`
+
+* This set up is specific for CAC or hardware signing.
+
+```bash
+[user]
+	email = work-email@gmail.com
+  	name = Chuma Humphrey
+	sigingkey = YOUR_SIGNING_KEY
+
+[gpg]
+	format = x509
+
+[gpg "x509"]
+	program = smimesign
+
+[commit]
+	gpgsign = true
+
+[tag]
+	gpgsign = true
+```
+
+## Step 6: Sanity Check
+
+> [!NOTE]
+> Navigate into a repo inside each directory and confirm the right identity loads. **The folder must be an initialized git repo** (`git init`) — `includeIf` silently does nothing in plain folders.
+
+```bash
+# Test personal identity
+cd ~/Desktop/personal/<any-repo>
+git config --get user.email      # should return personal email
+git config --get user.name       # should return your name
+
+# Test professional identity
+cd ~/Desktop/swf/<any-repo>
+git config --get user.email      # should return work email
+git config --get user.name       # should return your name
+```
+
+* To check which config file is being used and confirm no silent failures:
+
+```bash
+git config --list --show-origin | grep email
+```
+
+* To audit your full global config at any time:
+
+```bash
+git config --list --global
+```
+
+# Springboot Troubleshooting
 
 * I ran into a problem where I was trying to coordinate the dependencies within the front and backend `pom.xml` files so that whenever you migrate to a new workspace, you can initiate a new project.
 * Whenever I opened or cloned a new project, none of files were being recognized due to maven dependencies not initializing.
