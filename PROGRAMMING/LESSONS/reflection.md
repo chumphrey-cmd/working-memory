@@ -491,17 +491,17 @@ class Crossbowman(Archer):
 * **`self.use_arrows(3)`**: Here we don't need to rewrite the math for subtracting arrows inside of `use_arrows`. It just reuses the method meant for Archers.
 * **`target.get_name()`**: Since `target` is another object that is also a `Human`, the Crossbowman can use the public method `get_name()` to identify the victim.
 
-## Data Structures and Algorithms
+# Data Structures and Algorithms
 
-### Circular Buffers in Java + Digital Forensics
+## Circular Buffers in Java + Digital Forensics
 
-#### What is a Circular Buffer?
+### What is a Circular Buffer?
 A fixed-size buffer where the end connects back to the beginning. When the buffer is full, new data overwrites the oldest entry. The rear pointer wraps back to index 0 using modulo arithmetic instead of stopping.
 
 > [!NOTE]
 > This is the same pattern your Java circular queue implements. The only difference is the layer of abstraction it operates at.
 
-#### Why it Matters Algorithmically
+### Why it Matters Algorithmically
 
 | Queue Type | Dequeue Behavior | Time Complexity |
 |---|---|---|
@@ -525,7 +525,7 @@ A fixed-size buffer where the end connects back to the beginning. When the buffe
     }
 ```
 
-#### The Forensic Connection
+### The Forensic Connection
 The circular buffer is not just an academic concept — it is deployed at every layer of a Windows system. Understanding it gives you a **predictive model for evidence survivability**.
 
 The three questions to always ask at any data source:
@@ -533,7 +533,7 @@ The three questions to always ask at any data source:
 2. **How fast does it fill?** — determines how quickly old evidence gets overwritten
 3. **How much time elapsed before acquisition?** — determines what is actually still recoverable
 
-#### Where Circular Buffers Appear as Forensic Artifacts
+### Where Circular Buffers Appear as Forensic Artifacts
 
 | Layer | Implementation | Forensic Artifact | Evidence Risk |
 |---|---|---|---|
@@ -543,7 +543,7 @@ The three questions to always ask at any data source:
 | User activity | MRU registry keys | Registry hive analysis | Newest entries push oldest off the rolling window |
 | Network monitoring | Packet ring buffer | PCAP / network TAP | Evidence window defined by buffer size and traffic volume |
 
-#### Anti-Forensics Awareness
+### Anti-Forensics Awareness
 Threat actors actively exploit circular overwrite behavior:
 - **Log flooding** — generating high event volume to push older Security log entries off the buffer
 - **Prefetch saturation** — launching many short-lived processes rapidly to overwrite older execution evidence
@@ -552,5 +552,111 @@ Threat actors actively exploit circular overwrite behavior:
 > [!NOTE]
 > Any data source with a fixed maximum size, a rolling history window, or evidence that disappears past a certain point is almost certainly a circular buffer underneath. The algorithm is the same — only the layer changes.
 
-#### The Mental Model in One Line
+### The Mental Model in One Line
 > A **Node** holds data. A **Linked List** chains nodes. A **Stack** and **Queue** add behavioral rules. A **Circular Buffer** adds a fixed window and wrap-around overwrite — and that pattern runs from your Java homework all the way down to the kernel.
+
+# Dynamic LLM API Routing & Fallback Logic
+
+I recently received a pull request to introduce some dynamic routing for dynamic URL generation. After I made some headway on wrapping my head around the pull request, I worked on implementing the solution.
+
+To begin, the `config.yaml` serves as the "configuration" plane and central location for all customizations for the tool that I'm currently building. Specifically, for the dynamic generation of the `api_url`, we're focusing on the `llm` section of my `config.yaml` which contains providers, `max_retries`, `retry_delay`, etc.
+
+The advantage of this is that you don't have to hardcode any credentials or specific URLs, API keys, or other content that may change. You only focus on modifying one location (e.g., the `config.yaml`). Within the `config.yaml` we have the `base_url`, `endpoint`, `temperature`, `top_p`, `num_ctx`, etc., which are all sectioned in tab-separated indentations.
+
+Within `summarize.py` inside of the `TranscriptSummarizer` class, we have a constructor created with the following logic:
+
+## 0. config.yaml
+
+```yaml
+llm:
+  # Active Provider: Options are "ollama", "openai", or "lm_studio"
+  provider: "ollama"
+  model_name: "llama3.1:8b" # CUSTOMIZE (select from available models)
+  max_retries: 5
+  retry_delay: 3
+
+  # --- Provider Specific Settings ---
+  ollama:
+    base_url: "http://localhost:11434"
+    endpoint: "/api/generate"
+  
+  lm_studio:
+    base_url: "http://localhost:12349"
+    endpoint: "/v1/chat/completions"
+
+  openai:
+    base_url: "https://api.openai.com"
+    endpoint: "/v1/chat/completions"
+    api_key: "your-api-key-here"
+    
+  options:
+    temperature: 0.3
+    top_p: 0.5
+    num_ctx: 16384 # CUSTOMIZE (options include 4096, 8192, 16384, 32768, 65536 depending on RAM)
+    num_predict: 1024
+    top_k: 40
+    repeat_penalty: 1.15
+    num_gpu: 50
+```
+
+## 1. The Setup & Defaults
+
+```python
+def __init__(self, config):
+    """Initialize with configuration and safe provider fallbacks."""
+
+    # Here we are instantiating and accessing the config.yaml which is set to self.config. Next we actually access the config.yaml via `llm_config` which is set to config.get which gives access to the llm section within the config.yaml.
+    self.config = config
+    llm_config = config.get("llm", {})
+    
+    # Here are the standard defaults that are created by default unless otherwise specified (this ensures that there is backwards compatibility with my current working system if a user deletes a line).
+    self.model_name = llm_config.get("model_name", "llama3.1:8b")
+    self.max_retries = llm_config.get("max_retries", 5)
+    self.retry_delay = llm_config.get("retry_delay", 3)
+    self.llm_options = llm_config.get("options", {})
+```
+
+## 2. Determining the Provider (Defensive Programming)
+
+```python
+    # 1. Determine the provider
+
+    # Here we are determining the provider using the predefined llm_config assigned earlier and extracting the specific provider from the modern config.yaml.
+    if "provider" in llm_config:
+        self.provider = llm_config["provider"].lower()
+
+    # LEGACY FALLBACKS: Support older config.yaml files that haven't been updated
+    # Initially I was confused because "api_mode" and "api_url" are not in my current config. I learned this is Defensive Programming. If a returning user updates the Python script but keeps their old config file, these `elif` statements catch their legacy layout so the program doesn't crash. I made sure to include a comment as to why we're keeping that programming logic in tact...
+    elif "api_mode" in llm_config:
+        self.provider = llm_config["api_mode"].lower()
+    elif "api_url" in llm_config and "/v1/" in llm_config["api_url"]:
+        self.provider = "lm_studio"
+    
+    # If the logic passes through this stage, we'll just pass through to "ollama" as the default provider.
+    else:
+        self.provider = "ollama"
+```
+
+## 3. Building the API URL Dynamically
+
+```python
+    # 2. Build the API URL dynamically
+    
+    # LEGACY FALLBACK: If a user's old config strictly defines api_url (and none of the new providers are listed), use it.
+    if "api_url" in llm_config and not any(p in llm_config for p in ["ollama", "lm_studio", "openai"]):
+        self.api_url = llm_config["api_url"]
+
+    # Here we access the modern path. We access the provider settings, and if the base_url is not present, we default to http://localhost:11434; the same applies for the endpoint variable. 
+    # Then, we use Python string concatenation to glue the base_url (stripping any accidental trailing slashes) directly to the endpoint to dynamically build our final API URL in memory!
+    else:
+        provider_settings = llm_config.get(self.provider, {})
+        base_url = provider_settings.get("base_url", "http://localhost:11434")
+        endpoint = provider_settings.get("endpoint", "/api/generate")
+        self.api_url = f"{base_url.rstrip('/')}{endpoint}"
+
+    # 3. Pull optional API keys
+    # Finally we set the api_key equal to llm_config.get(…), which explicitly accesses the openai provider and safely extracts the API key present inside of config.yaml, defaulting to None if left blank to prevent a KeyError.
+    self.api_key = llm_config.get("openai", {}).get("api_key", None)
+
+    logging.info(f"TranscriptSummarizer initialized. Provider: {self.provider} | URL: {self.api_url}")
+```
