@@ -3277,7 +3277,7 @@ function updateMessageStatus(messageId, currentStatus, isDelivered) {
 > If your task is CPU bound (like heavy calculations), JavaScript will struggle. A `Node.js` server will often far outperform a multi-threaded Python, Ruby, or PHP server because of its ability to handle many concurrent connections without much overhead. 
 > On the other hand, it will usually be outperformed by a multi-threaded Java, Go, C++, or Rust server when it comes to heavy computation.
 
-### Task Queue
+### Task Queue ("Macro" task)
 
 * The task queue (also known as the "message queue") is where asynchronous tasks are queued up to be processed. **HOWEVER,** JS is non-blocking, so the tasks in the queue can't be handled immediately.
 
@@ -3375,9 +3375,70 @@ function finalizeJob(success, messages) {
 
 ### Microtask Queue
 
-* The microtask queue is a **mechanism for scheduling tasks to be executed later**.
+* The **microtask queue** is a **mechanism for scheduling tasks to be executed later**.
 * It operates under different rules and is used for different purposes. The nature of microtasks is that **they represent smaller, shorter-lived operations** compared to tasks in the task queue.
 * Lastly and importantly, **promises use the microtask queue** to schedule their `.then()` and `.catch()` callbacks.
+
+There are two important differences between the **task queue ("macro" task")** and the **microtask queue**:
+* **Order of Execution:** All microtasks are executed before the next task in the task queue. 
+* **Addition of Microtasks:** Microtasks can add more microtasks to the queue, and those will still execute before the next "macro" task.
+
+> [!NOTE]
+> The differentiation between each isn't something to immediately worry about. 
+> You can think about promises and callbacks as just "asynchronous operations that will run later". **You typically won't (and it's often a bad sign if you do) care about the exact order** that their callbacks will run.
+
+```javascript
+function main() {
+  console.log("main start");
+
+  setTimeout(() => {
+    console.log("macrotask 1 finished");
+  }, 0);
+
+  Promise.resolve()
+    .then(() => {
+      console.log("microtask 1 finished");
+    })
+    .then(() => {
+      console.log("microtask 2 finished");
+    });
+
+  console.log("main end");
+}
+
+main();
+
+// Prints the following...
+// main start
+// main end
+// microtask 1 finished
+// microtask 2 finished
+// macrotask 1 finished
+```
+
+> [!NOTE]
+> A useful heuristic is as follows: 
+> All the microtasks run before the next task in the task queue.
+
+### Concurrency
+
+Concurrency means the following:
+
+* There's only one thread in the runtime 
+* The main thread can't be blocked by asynchronous tasks 
+* The results of asynchronous tasks are pushed into the task queue
+
+**HOWEVER** during an event loop or "macro" task, what happens and what holds off the logic for 1000 ms?
+
+```javascript
+setTimeout(() => {
+  console.log("Hi I'm async!");
+}, 1000);
+```
+
+**External APIs** come into play - things like `setTimeout`, `fetch`, and `addEventListener` are all examples of external APIs that the browser or `Node.js`, `Deno`, or `Bun` provide – they are not part of the core JavaScript language.
+
+The JavaScript runtime (your code and the JS engine) is single-threaded, but these external APIs are not. The host environment can run them in the background (often on separate threads or system-level services), and when they're done, the host environment pushes their results into the task queue for the event loop to handle.
 
 # TypeScript
 
