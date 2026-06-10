@@ -3277,6 +3277,108 @@ function updateMessageStatus(messageId, currentStatus, isDelivered) {
 > If your task is CPU bound (like heavy calculations), JavaScript will struggle. A `Node.js` server will often far outperform a multi-threaded Python, Ruby, or PHP server because of its ability to handle many concurrent connections without much overhead. 
 > On the other hand, it will usually be outperformed by a multi-threaded Java, Go, C++, or Rust server when it comes to heavy computation.
 
+### Task Queue
+
+* The task queue (also known as the "message queue") is where asynchronous tasks are queued up to be processed. **HOWEVER,** JS is non-blocking, so the tasks in the queue can't be handled immediately.
+
+#### Purposes of a Task Queue
+
+1. **Not blocking the main thread (responsiveness)** 
+JS is single-threaded. If you run a giant loop synchronously, the whole UI freezes - no clicks, no scrolling, nothing renders. Breaking heavy work into chunks via `setTimeout` lets the browser slip in rendering and input handling between chunks.
+
+```javascript
+function processHugeList(items, i = 0) {
+  const chunk = items.slice(i, i + 1000);
+  doWork(chunk);
+  if (i + 1000 < items.length) {
+    setTimeout(() => processHugeList(items, i + 1000), 0); // yield, then continue
+  }
+}
+```
+
+2. **Letting current work finish first (ordering)**
+Exactly what you did in this lesson. Defer something so it runs after all the synchronous state changes settle. Common when you need a value to be "final" before acting on it.
+
+3. **I/O and waiting without blocking**
+This is the big one in the backend world. Network requests, file reads, timers - these don't sit and block. Their callbacks get queued and run when the data is ready and the stack is clear. It's how a Node server handles thousands of connections on one thread.
+
+4. **Breaking up "too much recursion" / deep call stacks**
+Deferring a recursive step to the queue resets the call stack, sidestepping stack-overflow limits for very deep async chains.
+
+> [!TIP]
+> **Rule of Thumb:** When the call stack is empty, the event loop (managed by the JS runtime) checks the task queue. If there are tasks in the queue, it pushes the first one onto the call stack to be executed.
+
+```javascript
+function startJob() {
+    
+  setTimeout(() => {
+    console.log("Hi I'm async!");
+  }, 0);
+  console.log("Job started");
+  workOnJob();
+}
+
+function workOnJob() {
+  console.log("Working on job");
+  finishJob();
+}
+
+function finishJob() {
+  console.log("Job finished");
+}
+
+startJob();
+
+// Outputs:
+// Job started
+// Working on job
+// Job finished
+// Hi I'm async!
+```
+* Here we are pushing into the task queue to be executed **after** the call stack is empty, and **it's not empty until the final nested function `finishJob` returns**.
+
+#### Task Queue With Parameters Passed within Function
+
+```javascript
+function processMessages(messages) {
+  let success = true;
+  
+  // This callback will run 
+  setTimeout(() => {
+    finalizeJob(success, messages);
+  }, 0);
+  
+  console.log(`Processing messages: ${messages}`);
+  if (messages < 0) {
+    console.log("invalid data: how do we have negative messages??");
+    success = false;
+    return;
+  }
+  if (messages > 100) {
+    console.log("invalid data: way too many messages");
+    success = false;
+    return;
+  }
+  
+  console.log("Doing more stuff...");
+}
+
+function finalizeJob(success, messages) {
+  const msg = success
+    ? `Processed ${messages} successfully!`
+    : `Failed to process messages!`;
+  console.log(msg);
+}
+
+// ...
+```
+
+### Microtask Queue
+
+* The microtask queue is a **mechanism for scheduling tasks to be executed later**.
+* It operates under different rules and is used for different purposes. The nature of microtasks is that **they represent smaller, shorter-lived operations** compared to tasks in the task queue.
+* Lastly and importantly, **promises use the microtask queue** to schedule their `.then()` and `.catch()` callbacks.
+
 # TypeScript
 
 * [TypeScript](https://www.typescriptlang.org/) is a typed superset of JavaScript that transpiles to plain JavaScript.
