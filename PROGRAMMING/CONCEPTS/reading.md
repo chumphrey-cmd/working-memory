@@ -192,7 +192,7 @@ Ref: [Bitter Lesson](https://www.cs.utexas.edu/~eunsol/courses/data/bitter_lesso
   4) Breakthrough progress eventually arrives by an opposing approach based on scaling computation by search and learning.
 
 * The lessons that should be taken from the bitter lesson: 
-  1) The power of general purpose methods that continue to scale with increased computation even as the available computation becomes very great. The two methods that seem to scale arbitrarily in this way are *search&* and *learning*.
+  1) The power of general purpose methods that continue to scale with increased computation even as the available computation becomes very great. The two methods that seem to scale arbitrarily in this way are *search* and *learning*.
   2) Our minds are complex and difficult to replicate, we need to simplify how we represent the contents of our minds. We should build in only the meta-methods that can capture arbitrary complexity. We want AI agents that can discover like we can, not which contain what we have discovered. Building in our discoveries only makes it harder to see how the discovering process can be done.
 
 > [!NOTE]
@@ -209,7 +209,58 @@ Ref: [Bitter Lesson](https://www.cs.utexas.edu/~eunsol/courses/data/bitter_lesso
 * For example, if the user story for a local quiz tool states that the user wants a feature to modify the settings of their current quiz session so that, when using a quiz tool, they can adjust configurations of the quiz in real time. The developer, PM, designer, and PE need to accommodate that concern and make a focused and concerted effort to bring that setting feature to life (assuming that this feature would add significant value for that customer).
 * The developer can then receive #Feedback both in the initial feature addition that they create and while discussing with the customer and rest of the #BalancedTeam on feasibility of what they want to ship to ensure that the customer vision aligns with what will be built.
 
-# Eisenhower Matrix
+## Splitting Business and Technical Responsibility
 
+* In Extreme Programming, this idea of splitting the responsibility between business (PM/PDs) and development (SWE/Platform) came up. The specific section covering this was that "...a project must be driven by business decisions, but business decisions must be informed by technical decisions about cost and risk." If either one gains too much power the project suffers hitting on the fundamental importance of a #BalancedTeam.
+* The result of the business side of things beings in charge, the project takes on too much effort and way too much risk for too little return. Here, the business specifies too much, some of the items are essential and some are not); the criteria for success is unclear and risky. 
+* If development is in charge there is too much effort and way too much risk for too little return. Here, the engineers swing for the fences, install the latest tooling and technologies because they are cutting edge, but don't consider if it's actually adding the most amount of value.
+
+* This makes sense to me, both the teams work in tandem, each not overpowering one another and is why #Pairing between different disciplines is so essential. You get to avoid the drawback of siloing context and drawbacks that come from under/over estimating risk, cost, and benefit. 
+* This got me thinking about how to properly estimate and make good decisions for #Prioritization and how to accurately assess and measure the #Metrics of the success of a project. The author, Kent Beck states the following for how business and development should handle this. For business, the following should be chosen:
+  * The scope or timing of releases.
+  * The priorities of the features.
+  * The exact scope of the proposal features.
+* To the decisions the development organization should contribute:
+  * Estimates of the time required
+  * Estimates of the consequences of technical alternatives.
+  * The set of practices that will be used and the process they will review the effects of those practices and experiment with changes (e.g., #Pairing frequency, coding style, etc.)
+* Another interesting idea that I came across was the idea of "cost". Initially I view cost as primarily monetary, what was insightful is that cost for the latest and greatest also include costs in maintenance, learning curve for the team, and cost of time it takes individuals to migrate and begin to adopt the new technology. 
+
+
+**__START_HERE__**
+# Eisenhower Matrix
 * https://sps.columbia.edu/sites/default/files/2023-08/Eisenhower%20Matrix.pdf
+
+# OWASP Risk Rating Methodology
 * [OWASP Risk Rating Methodology](https://owasp.org/www-community/OWASP_Risk_Rating_Methodology)
+
+# Kent Beck on the Genie (AI) and SWE 
+* The forest and the desert; the cathedral and the bazaar.
+* Forest : Bazaar: https://tidyfirst.substack.com/p/forest-and-desert
+* Desert : Cathedral: https://nakamotoinstitute.org/library/the-cathedral-and-the-bazaar/
+
+# Continue Integration/Continuous Deployment (CI/CD) Vulnerabilities
+
+* There have recently been a slew of CI/CD bugs and vulnerabilities. This is a quick crash course on what has been occuring and how I believe it impacts software development in general...
+* From what I've read this falls into the category of Initial Access, Code Execution, Credential Access, and Lateral Movement within the MITRE ATT&CK framework.
+* Misconfigured GitHub Actions workflow in Aqua Security's Trivy repository.
+* An attacker exploited a `pull_request_target` trigger to extract a privileged Personal Access Token (PAT) from the CI environment.  
+
+* The two main vulnerabilities exploited were 1) `pull_request_target` and 2) Mutable Git Tagging:
+
+## 1) pull_request_target
+
+Ref: https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#pull_request_target
+* Runs your workflow when activity on a pull request in the workflow's repository occurs. For example, if no activity types are specified, the workflow runs when a pull request is opened or reopened or when the head branch of the pull request is updated.
+* This event runs in the context of the default branch of the base repository, rather than in the context of the merge commit, as the `pull_request` event does. **This prevents execution of unsafe code from the head of the pull request that could alter your repository or steal any secrets you use in your workflow**. This event allows your workflow to do things like label or comment on pull requests from forks. Avoid using this event if you need to build or run code from the pull request. 
+* To ensure repository security, branches with names that match certain patterns (such as those which look similar to SHAs) may not trigger workflows with the pull_request_target event.
+
+> [!NOTE]
+> Normally, code SHOULD NOT be executed with this GitHub action is created. In the event of Trivy's CI/CD repo the misconfiguration existed in Trivy's repo from October 2025, was publicly flagged by a static analysis tool on November 29, 2025, and sat unpatched for 3+ months before being exploited.
+
+## 2) Mutable Git Tagging
+
+* We as developers are normally told to pin dependencies to latest (e.g., @v0.12.3) however, Git tags are mutable and anyone with write access to the upstream repo can force-push a tag to point to a completely different (malicious) commit, and your workflow file looks completely unchanged . **The only truly immutable reference is a full commit SHA** (e.g., `trivy-action@a1b2c3d4e5f6...`)
+* Some mitigations are as follows:
+  * Monitor outbound network connections from CI runners to suspicious domains.
+  * Pin GitHub Actions to **full commit SHAs** instead of version strings.

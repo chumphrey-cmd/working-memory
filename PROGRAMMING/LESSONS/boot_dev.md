@@ -4184,7 +4184,7 @@ CREATE INDEX first_name_last_name_age_idx
 ON users (first_name, last_name, age);
 ```
 
-# Data Structures and Algorithms (DSA)
+# Data Structures and Algorithms (DSA) - Python
 
 > [!NOTE]
 > When looking for efficiency, and optimization **LOOK AT THE LOOPS**... this is where increases in inefficiency can be found.
@@ -4374,3 +4374,7 @@ def get_val(my_dict, key):
 > EAFP is faster if the "happy path" (the key existing) happens most of the time, as it only does one lookup. LBYL does two lookups (one to check, one to retrieve).
 >
 > EAFP is safer in multithreaded environments where a value might be deleted between the "check" and the "access."
+
+
+## Bubble Sort
+
