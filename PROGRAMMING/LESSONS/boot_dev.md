@@ -1401,6 +1401,84 @@ except IndexError:
 
 * Here the more general `Exception` error will be thrown, not acknowledging the more specific root cause of an `IndexError` first.
 
+## Type Hints
+
+* Type hints are a way to assist humans and code editors determine what specific **types** of values should be expected and returned from within a function.  
+* It's similar to what TypeScript is for JavaScript and what Java does natrually. It enforces guardrails and an explcit framework that you should follow when building programs.
+* Type hints are for:
+  * Making code easier to read 
+  * Helping your editor autocomplete and warn you about mistakes 
+  * Making bugs easier to spot before running your code
+
+
+### Basic Type Hints
+
+```python
+character_name: str = "Sir Galahad"
+character_level: int = 7
+character_health: float = 72.5
+has_magic: bool = True
+```
+
+### Type Hints with Function Parameters
+
+* Example of type hints within function parameters...
+
+```python
+def get_character_status(name: str, level: int, health: float, has_magic: bool = True):
+  ...
+```
+
+### Type Hints with Returns
+
+```python
+def add_gold(current_gold: int, found_gold: int) -> int:
+    return current_gold + found_gold
+```
+
+### Type Hints for List and Sets
+
+* Effectively specifying the data type of container and the contents within it: 
+  * `list`: mutable sequence of values 
+  * `set`: unordered collection of unique values 
+  * `dict`: collection of key-value pairs 
+  * `tuple`: immutable sequence of values
+
+```python
+inventory: list[str] = ["item_1", "item_2"]
+```
+
+```python
+unique_items: set[str] = {"item_1", "item_2"}
+```
+
+### Type Hints for Containers
+
+* Here we are specifying the specific data type that should be held inside a container. That being said, specifying the type of just the container isn't wrong - it's just not as explicit as it should be!
+
+```python
+# Not very explcit...
+items: list = ["Black Firebomb", "Titanite Chunk"]
+```
+
+```python
+# Much more explicit!
+items: list[str] = ["Black Firebomb", "Titanite Chunk"]
+```
+
+### Optional Values
+
+* Another neat TypeScript-esq feature where you explicity state the expected data types that should be expected. 
+* This is kind of like "truthy" statements where either option will be `True`
+
+```python
+def get_prepared_spell(has_spell: bool) -> str | None:
+    if has_spell:
+        return "Fireball"
+
+    return None
+```
+
 # Python - Object-Oriented Programming (OOP)
 
 * **[Object-Oriented Programming](https://en.wikipedia.org/wiki/Object-oriented_programming)**: Programming paradigm based on objects  (software entities that encapsulate data and function(s)). An OOP computer program consists of objects that interact with objects.
@@ -3439,6 +3517,14 @@ setTimeout(() => {
 **External APIs** come into play - things like `setTimeout`, `fetch`, and `addEventListener` are all examples of external APIs that the browser or `Node.js`, `Deno`, or `Bun` provide – they are not part of the core JavaScript language.
 
 The JavaScript runtime (your code and the JS engine) is single-threaded, but these external APIs are not. The host environment can run them in the background (often on separate threads or system-level services), and when they're done, the host environment pushes their results into the task queue for the event loop to handle.
+
+## Runtimes
+
+### Polyfill and Transpiler
+
+* A **polyfill** is an extra bit of code you include to add functionality that some browsers might not support. For example, maybe Chrome allows you to use the fancy new `Array.prototype.flat()` method, but Internet Explorer 11 doesn't. You can include a polyfill (just some extra JavaScript code) that adds that method to the `Array` prototype so that your code works in both browsers.
+
+* A **transpiler** (in the context of adding new JavaScript features) is basically a polyfill on steroids. Instead of just adding a method here or a property there, **a transpiler will take your entire JavaScript file and convert it into an older version of JavaScript that is known to work in all browsers**. For example, it might take your fancy `async` and `await` keywords and convert them into a bunch of `Promise` objects and `.then()` calls. Babel is the most popular transpiler for JavaScript.
 
 # TypeScript
 
