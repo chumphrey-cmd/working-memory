@@ -3526,6 +3526,13 @@ The JavaScript runtime (your code and the JS engine) is single-threaded, but the
 
 * A **transpiler** (in the context of adding new JavaScript features) is basically a polyfill on steroids. Instead of just adding a method here or a property there, **a transpiler will take your entire JavaScript file and convert it into an older version of JavaScript that is known to work in all browsers**. For example, it might take your fancy `async` and `await` keywords and convert them into a bunch of `Promise` objects and `.then()` calls. Babel is the most popular transpiler for JavaScript.
 
+## Bundlers
+
+* Bundlers are tools that allow you to write code in a modular and easy-to-manage way, and then bundle it in a way that's optimized for production. For example, you probably want a giant front-end application to exist in your codebase as many hundreds of files, but you want to serve it to your visitors as a single file or one file per page.
+
+> [!NOTE]
+> Basically the equivalent of running `yarn run build` at the root of your project that allows your application to be rolled up and deployed. 
+
 # TypeScript
 
 * [TypeScript](https://www.typescriptlang.org/) is a typed superset of JavaScript that transpiles to plain JavaScript.
