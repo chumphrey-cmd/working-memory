@@ -3553,17 +3553,59 @@ The JavaScript runtime (your code and the JS engine) is single-threaded, but the
 
 ### Inferred vs Explicit Return Types
 
+**Inferred (Implicit) Return Type:**
+
+* Here we don't explicitly state what the return type should be due to both the parameter types being numbers. 
+* It's implied that the return type will obviously be a number.
+
 ```typescript
 function divide(a: number, b: number) {
   return a / b;
 }
 ```
-**Inferred:**
 
-* If elements within your function have a definitive data type used, the element that's returned with return that specific data type.
-* Typically, referred return types are more narrow and explicit and prevent you from creating to broad of data types as your programming.
+**Referred (Explicit) Return Type:**
 
-**Explicit:**
+* Here we explicitly state what the return type should be so that there is not confusion on what should be returned. Similar to how Python has return type-hints:
+```python
+def some_func(a: int, b: int) -> int:
+    return a + b
+```
+* Typically, referred (explicit) return types are **more narrow and explicit** and prevent you from creating to broad of data types as your programming.
+
+```typescript
+function divide(a: number, b: number): number {
+  return a / b;
+}
+```
+
+> [!NOTE]
+> A nice rule of thumb for is as follows:
+> **Inferred (Implicit)** = code used by myself
+> **Referred (Explicit)** = code used by others
+
+### Type Alias
+
+* This is an introduction into interfaces and the utility of **shaped-based matching** in TS. This means that so long as the "shape" of the function/data matches. TS doesn't care about the naming of the function named **dynamic flexibility**
+
+```typescript
+
+// Here we are exporting the "shape" of SupportResponse, which expects a parameter of type string to be passed
+// It doesn't matter what the function is named, so long as it abides by the "shape" of SupportResponse
+export type SupportResponse = (name: string) => string;
+
+export function greetCustomer(name: string) {
+  return `Hello ${name}, welcome to Support.ai! How can I assist you today?`;
+}
+
+export function farewellCustomer(name: string) {
+  return `Goodbye ${name}, have a great day!`;
+}
+
+export function curseAtCustomer(name: string) {
+    return `You *&!@!, get out of my store ${name}!`
+}
+```
 
 # SQL Basics
 
