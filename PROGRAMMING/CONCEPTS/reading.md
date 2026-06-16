@@ -236,15 +236,19 @@ Ref: [Bitter Lesson](https://www.cs.utexas.edu/~eunsol/courses/data/bitter_lesso
 
 # Kent Beck on the Genie (AI) and SWE 
 * The forest and the desert; the cathedral and the bazaar.
-* Forest : Bazaar: https://tidyfirst.substack.com/p/forest-and-desert
-* Desert : Cathedral: https://nakamotoinstitute.org/library/the-cathedral-and-the-bazaar/
+* Forest : Bazaar - https://tidyfirst.substack.com/p/forest-and-desert
+* Desert : Cathedral - https://nakamotoinstitute.org/library/the-cathedral-and-the-bazaar/
 
 # Continue Integration/Continuous Deployment (CI/CD) Vulnerabilities
 
 * There have recently been a slew of CI/CD bugs and vulnerabilities. This is a quick crash course on what has been occuring and how I believe it impacts software development in general...
 * From what I've read this falls into the category of Initial Access, Code Execution, Credential Access, and Lateral Movement within the MITRE ATT&CK framework.
 * Misconfigured GitHub Actions workflow in Aqua Security's Trivy repository.
-* An attacker exploited a `pull_request_target` trigger to extract a privileged Personal Access Token (PAT) from the CI environment.  
+* An attacker exploited a `pull_request_target` trigger to extract a privileged Personal Access Tokens (PAT) from the CI environment.
+* The overall attack chain is as follows:
+  *  A single PAT was stolen and was used to weaponize Trivy as an info-stealer into GitHub Actions. Every time a workflow is triggered (on a pull request, a merge, or a scheduled scan), the malicious code is executed silently alongside the legitimate Trivy scan.
+  * Trivy is seen as a highly reputable and widely used security scanner that's typically give broad access by design.
+  * TeamPCP then used this credibility of Trivy to extract every credential it could find within the CI/CD runner environment to extract private SSH keys, environment variables, CI/CD tokens, etc.
 
 * The two main vulnerabilities exploited were 1) `pull_request_target` and 2) Mutable Git Tagging:
 
@@ -263,4 +267,4 @@ Ref: https://docs.github.com/en/actions/reference/workflows-and-actions/events-t
 * We as developers are normally told to pin dependencies to latest (e.g., @v0.12.3) however, Git tags are mutable and anyone with write access to the upstream repo can force-push a tag to point to a completely different (malicious) commit, and your workflow file looks completely unchanged . **The only truly immutable reference is a full commit SHA** (e.g., `trivy-action@a1b2c3d4e5f6...`)
 * Some mitigations are as follows:
   * Monitor outbound network connections from CI runners to suspicious domains.
-  * Pin GitHub Actions to **full commit SHAs** instead of version strings.
+  * Pin GitHub Actions to **full commit SHAs** instead of version strings which can be modified.
