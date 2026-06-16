@@ -3607,6 +3607,46 @@ export function curseAtCustomer(name: string) {
 }
 ```
 
+## Unions
+
+* Union types use the pipe symbol (`|`) and allow you to specify that a value can be one of several types. Basically a dynamic way to have the flexibility to chose between a variety of data types (e.g., number, string, bool, etc.) if you anticipate there being a variety of types.
+
+```typescript
+// userId is a string OR a number
+let userId: string | number;
+userId = "user_42";
+userId = 42;
+```
+
+* Here we are using TypeScript for **type narrowing** where we state the range of potential types that the data we are recieving may be.
+* What's also interesting here is the destructuring that taking place, rather than discard the rest of our string and traverse by index (we might want other parts of our string later), we destructure and store the other parts of the string inside the `_prefix` variable.
+
+> [!NOTE]
+> Destructuring really shines over parsed[0], parsed[1], parsed[2]. Named variables are self-documenting in a way indices aren't. 
+> So both approaches are valid - destructuring just tends to scale better as the number of parts grows.
+
+```typescript
+export function getTicketInfo(id: string | number) {
+    
+    // Example string: "USER-123"
+  if (typeof id === "string") {
+      
+      // _prefix: USER; idNum: 123
+    const [_prefix, idNum] = id.split("-");
+    return `Processing ticket: ${idNum}`;
+  }
+  return `Processing ticket: ${id}`;
+}
+```
+
+```typescript
+// "ERROR-404-/api/users"
+// level: ERROR
+// code: 404
+// path: /api/users
+const [level, code, path] = log.split("-");
+```
+
 # SQL Basics
 
 ## NoSQL vs. SQL Databases
