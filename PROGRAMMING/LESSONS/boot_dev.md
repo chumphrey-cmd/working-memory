@@ -3647,6 +3647,44 @@ export function getTicketInfo(id: string | number) {
 const [level, code, path] = log.split("-");
 ```
 
+### Optional Parameters
+
+* You can specify function parameters as optional with a **question mark (`?`) after the name**:
+
+```typescript
+function greet(name: string, title?: string): string {
+  if (title) {
+    return `Hello, ${title} ${name}!`;
+  }
+  return `Hello, ${name}!`;
+}
+
+greet("Gandalf");           // "Hello, Gandalf!"
+greet("Gandalf", "Wizard"); // "Hello, Wizard Gandalf!"
+```
+
+### Default Parameters
+
+* Quick example of default parameters, with a few things to note: 
+  * You don't need to specify the return type when using default parameters because TypeScript will infer the return types based off of what the parameter type is set to.
+  * Just because you've set the default parameters, this doesn't prevent you from overriding the parameters that are currently being passed. 
+
+```typescript
+export function estimateResponseTime(promptLength: number = 100, modelType: string = "text") {
+  
+  if (modelType === "text") {
+    return Math.round(2 + (0.01 * promptLength))
+  }
+  if (modelType === "image") {
+    return Math.round(5 + (0.02 * promptLength))
+  }
+  if (modelType === "code") {
+    return Math.round(3 + (0.05 * promptLength))
+  }
+  return 0.0;
+}
+```
+
 # SQL Basics
 
 ## NoSQL vs. SQL Databases
