@@ -3096,12 +3096,6 @@ let count = 0;
 export { maxMessagesWithinBudget };
 ```
 
-### For...of vs. For...in Loops
-
-```javascript
-
-```
-
 ### Slicing Arrays
 
 ```javascript
@@ -3684,6 +3678,54 @@ export function estimateResponseTime(promptLength: number = 100, modelType: stri
   return 0.0;
 }
 ```
+
+## Arrays
+
+### Rest Parameters
+
+* Allow an **indefinite number of final arguments**, and brings them into the function body as an array. They're denoted by three dots (`...`) before the parameter name.
+```typescript
+function multiply(n: number, ...m: number[]) {
+  return m.map((x) => n * x);
+}
+// 'a' gets value [10, 20, 30, 40]
+const a = multiply(10, 1, 2, 3, 4);
+```
+
+```typescript
+function gatherParty(partyName: string, ...adventurers: string[]): string {
+  return `${partyName} consists of: ${adventurers.join(", ")}`;
+}
+
+const msg = gatherParty("The Fellowship", "Frodo", "Sam", "Gandalf");
+console.log(msg);
+// "The Fellowship consists of: Frodo, Sam, Gandalf"
+```
+
+### Spread Operator
+
+* spread (`...`) syntax allows an iterable, such as an array or string, to be expanded in places where zero or more arguments. 
+* Basically, it's an easy way to iterate through an array or list of objects without needing to do a for loop to access those elements via key-value pairs.
+
+```javascript
+const array = [1, 2, 3];
+const obj = { ...array }; // { 0: 1, 1: 2, 2: 3 }
+```
+
+```javascript
+function sum(x, y, z) {
+  return x + y + z;
+}
+
+const numbers = [1, 2, 3];
+
+console.log(sum(...numbers));
+// Expected output: 6
+
+console.log(sum.apply(null, numbers));
+// Expected output: 6
+```
+
 
 # SQL Basics
 
