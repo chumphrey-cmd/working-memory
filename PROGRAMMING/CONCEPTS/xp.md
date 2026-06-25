@@ -76,6 +76,14 @@ Currently, I'm reading *XP Explained* by Kent Beck. The basic tenets are as foll
 > The best process is the process that works for your team!
 > The best technique is the one that works for you and your pair. Communicate early and often about what is and isn't working.
 
+__**START HERE**__
+
+## Pairing with Design
+
+* Pairing with Design to create a mid-fi mock up in Figma
+* Simply using gray-scale to avoid over-complicating the mock-up
+* Only including features that have actually been user-tested
+
 # User Stories
 
 > [!NOTE]
@@ -184,7 +192,6 @@ Yesterday I also learned about iterative planning meetings (IPMs) and how they i
 
 1) Set the Stage
 2) Gather Data
-__**START HERE**__
 3) Generate Insights
 4) Decide What To Do
 5) Close the Retro
@@ -212,16 +219,14 @@ __**START HERE**__
 * Is this a decision you can support and implement
 * Close with appreciations (what did people in the group get right)
 
-
-**__START_HERE__**
-
 #### Truth Seeking Methodologies
 
-(#Facilitation, #BalancedTeam)
+I was recently doing some thinking about how some of the greatest entrepreneurs use #Facilitation, or at least extreme versions of it, to move forward with the product that they are buidling. Specifically I recall learning about Jeff Bezos' mentality when it comes to handling disagreement within groups aptly named, "Truth Seeking Methodologies". He goes into explaining his approach to this in the following ways:  
+1) **Truth over Consensus** - meaning that when objective facts are knowable, you should never compromise. For example, if you think a ceiling is 11 feet and a colleague thinks it is 12 feet, compromising at 11.5 feet is incorrect. Using a tape measure to find the absolute truth is the only acceptable method. An example that comes to mind is the process of #Prioritization during pre-IPM and IPM sessions. The purpose of each of the sessions is to identify, rank order, and ruthlessly organize the backlog of task to be done with all members of the balanced team. If there is some ambiguity with a specific deadline coming up for delivery of an MVP along with the complexity of what it takes to accomplish a feature, rather than guess about the deadline, we should identify the specific and agreed upon deadline along with using some User Story estimation using the ranking of 1 = Good to go, TFB = too freaking big, and NFC = no freaking clue.
 
-* **Truth over Consensus**: When objective facts are knowable, you should never compromise. For example, if you think a ceiling is 11 feet and a colleague thinks it is 12 feet, compromising at 11.5 feet is incorrect. Using a tape measure to find the absolute truth is the only acceptable method.
-* **Disagree and Commit**: If a definitive truth cannot be measured—such as a subjective strategy choice—and a colleague disagrees with you, Bezos championed the "disagree and commit" strategy. Instead of watering the idea down through compromise, the dissenting party acknowledges the opposing view, fully commits their energy to executing the decision, and allows the company to move forward.
-* **Embrace Exhausting Debate**: Bezos believes that you should not compromise for the sake of "social cohesion". He actively encourages lengthy, passionate, and sometimes exhausting arguments. He demands that teams hash out every angle of a problem until the strongest evidence-based path becomes clear.
+2) **Disagree and Commit** - in the event that a definitive truth cannot be measured, such as a subjective strategy choice or direction and path for an application, and a colleague disagrees with you, Bezos suggests the idea of "disagree and commit". Instead of watering the idea down through compromise, the dissenting party acknowledges the opposing view, fully commits their energy to executing the decision, and allows the team to move forward with 100% commitment. What's useful is: 1) the team is able to rapidly in one direction and 2) quickly pivot if the direction is incorrect. 
+
+3) **Embrace Exhausting Debate** - Lastly, Bezos believes that you should not compromise for the sake of "social cohesion". He actively encourages lengthy, passionate, and sometimes exhausting arguments (arguments here don't mean that someone is disrespectful). He demands that teams hash out every angle of a problem until the strongest evidence-based path becomes clear. Obviously, when working within a balanced team and your using #Facilitation to iron the performance, the mediator shouldn't be the one in heated discussion, but should work with the team to direct the conversation in a respectful manner.
 
 #### Preparation Checklist for Facilitation
 
@@ -243,8 +248,15 @@ __**START HERE**__
 
 * Active Time: The actual time spent actively working on or adding value to the item (e.g., coding, testing, designing).
 * Total Lead Time: The entire elapsed calendar time from the moment work begins to the point of delivery. This includes active **work time**, **wait time**, **blocked time**, and **time spent in queues**.
-  * Wait Time: The invisible downtime where the work is idle (e.g., waiting for code reviews, approvals, environment provisioning, or dependency handoffs).
-  * Essentially all the time spent not working on adding value.
+  * Wait Time: The invisible downtime where the work is idle (e.g., waiting for code reviews, approvals, environment provisioning, or dependency handoffs). Essentially all the time spent not working on adding value.
+
+There's also the idea of User Story estimation:
+**Use when in earlier into the development process, or you're with a new team...**
+* 1 = Good to go 
+* TFB = "too freakin' big" and the story can be split into leaner slices 
+* NFC = "no freakin' clue" and the story requires more research or a spike before it can be estimated or worked on
+
+**Fibonacci Estimation or T-shirt Estimation... use when you have worked with you team for a longer period of time, and you're accustomed to the velocity of the output and can better intuit what you and your team can produce.**
 
 ## Volatility, Uncertainty, Complexity, and Ambiguity (VUCA)
 
@@ -273,3 +285,25 @@ __**START HERE**__
 * We recently discussed this idea of HMW and HMWN as it relates to DNF, identifying the next steps forward for development after midpoint, and general problem-solving/brainstorming of ideas in general.
 * The main advantage of this technique is that it enables the entire team to contribute any and all broad ideas (e.g., idea storming) towards a single goal.
 * It seems to be the most helpful at beginning points before a new development sprint or general initiative begins and benefits the most from divergent thinking.
+
+## Usability Testing
+
+* Normally all you need is ~5 tests to fix ~70% of issues with a product...
+* When using usability tests you want to be less prescriptive and ensure that the task is more goal oriented that captures subtleties that the user may experience.
+
+### Findings and Synthesis
+
+* Normally, this form of synthesis is done during usability testing.
+
+* Red = Fail
+* Green = Pass
+* Blue = Insight
+* Violet = Feature Request
+
+* Qualitative vs. Quantitative Testing
+  * The riskiness dictates which form and level of testing is needed (e.g., high risk = quantitative; low-risk = qualitative)
+
+* Sacrificial Testing: the idea during the usability test where you introduce an idea not covered inside of the completed usability test that you can use to  introduce new ideas.
+
+> [!NOTE]
+> When doing testing, do not use the actual terminology used within your system to direct the user. The user will hunt for that key word rather than acting naturally... (e.g., use "how would you **access** the system vs how would you **log in** to the system.)
