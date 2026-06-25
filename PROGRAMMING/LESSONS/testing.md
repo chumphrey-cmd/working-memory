@@ -34,6 +34,18 @@
     * I need to determine how and when to conduct specific parts of testing through the MVC layers...
     * I'll go ahead and copy and provide each of Java Directories and create a pathway for testing...
 
+### Repository
+
+* JPA is a useful built-in that allows SQL commands to be accessed through less error-prone Java-like syntax (e.g., `getById` vs. `findById`) these commands are equivalent to the SQL command of: 
+
+```sql
+SELECT id FROM TABLE 
+```
+
+* A good rule of thumb is as follows:
+  * `getById`: use when you are certain that an id or specific information will be present.
+  * `findById`: use when you are unsure whether the id or specific information will be present. This is useful when you want to catch a scenario where a user attempts to access an ID that may not be present, and you want to throw an error.
+
 ## RestAPI Testing
 
 > [!NOTE]
