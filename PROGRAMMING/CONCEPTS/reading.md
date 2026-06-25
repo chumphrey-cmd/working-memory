@@ -227,34 +227,81 @@ Ref: [Bitter Lesson](https://www.cs.utexas.edu/~eunsol/courses/data/bitter_lesso
 * Another interesting idea that I came across was the idea of "cost". Initially I view cost as primarily monetary, what was insightful is that cost for the latest and greatest also include costs in maintenance, learning curve for the team, and cost of time it takes individuals to migrate and begin to adopt the new technology. 
 
 
-**__START_HERE__**
-# Eisenhower Matrix
+# Eisenhower Matrix - In Progress
 * https://sps.columbia.edu/sites/default/files/2023-08/Eisenhower%20Matrix.pdf
 
-# OWASP Risk Rating Methodology
+# OWASP Risk Rating Methodology - In Progress
 * [OWASP Risk Rating Methodology](https://owasp.org/www-community/OWASP_Risk_Rating_Methodology)
 
-# Kent Beck on the Genie (AI) and SWE 
-* The forest and the desert; the cathedral and the bazaar.
-* Forest : Bazaar - https://tidyfirst.substack.com/p/forest-and-desert
-* Desert : Cathedral - https://nakamotoinstitute.org/library/the-cathedral-and-the-bazaar/
+# Kent Beck
 
-# Continue Integration/Continuous Deployment (CI/CD) Vulnerabilities
+## Forest vs. Desert
 
-* There have recently been a slew of CI/CD bugs and vulnerabilities. This is a quick crash course on what has been occuring and how I believe it impacts software development in general...
-* From what I've read this falls into the category of Initial Access, Code Execution, Credential Access, and Lateral Movement within the MITRE ATT&CK framework.
+[1] https://medium.com/@csharpwriter/from-forests-to-deserts-kent-becks-powerful-metaphor-for-modern-software-teams-reflections-from-ab5f162b1579
+[2] https://tidyfirst.substack.com/p/forest-and-desert
+[3] https://nakamotoinstitute.org/library/the-cathedral-and-the-bazaar/
+
+* The "forest and the desert" is a useful heuristic to describe a place of work/work culture. Something to note is that it's agnostic to any discipline or domain. While Kent Beck doesn't explicitly state that one is superior to another, he provides useful analogies that characterize how one environment would handle specific circumstances and change compared to the other.
+
+### Purpose Between Environments
+* In the desert, management knows everything, and workers are paid to perform as instructed. In the forest, purpose flows from within. Teams are self-directed, driven not by blind obedience but by a shared mission. [1]
+
+### Development
+* Developing in the desert - a lack of resources, adventure and investment need to be thoroughly planned to ensure survival. Kent Beck explains that the desert implies that there is a lack of:
+  * Time, Skills, Learning, Purpose, Clarity, Relationships, Reflection, Improvement, Alignment
+
+### Profitability
+* "Despite all this hunger & thirst teams manage to deliver enough software that’s good enough to be insanely profitable." [2]
+* Bad software still makes money. The desert is profitable, no doubt. But we’re eating crumbs off the floor. In the forest, there’s a better way: personal development, skill growth, social intelligence, and accountability. That’s where you find the cake.
+
+### Predictability vs. Change
+* In the forest, change is embraced, it's expected, and welcomed. In the desert, teams cling to prediction as a survival tactic. If you don’t reach the waterfall on time, you die. Long-term roadmaps exist in both worlds, but only in the forest are they crafted with wisdom, not fear. [1]
+
+### Use of Metrics
+* In the forest, metrics are used as indicators—to reflect reality, help us learn, and guide better decisions. In the desert, metrics are turned into control systems. And the moment a metric becomes a goal, it stops being useful. [1]
+
+## Bazaar vs. Cathedral
+
+* This is a heuristic that describes the methodology and approach to building software. The former is indicative of open-source projects, releasing early and often, involve as many trusted contributors in a project as you can (effectively agile development). The latter is a legacy approach to building software (e.g., waterfall) where everything is carefully crafted, involves isolated artisans/mages that intend to release the final and completed product.
+
+* The author provides these examples for how to conceptualize each heuristic:
+  * **Cathedral**: "...the most important software (operating systems and really large tools like the Emacs programming editor) needed to be built like cathedrals, carefully crafted by individual wizards or small bands of mages working in splendid isolation, with no beta to be released before its time."
+  * **Bazaar**: "...release early and often, delegate everything you can, be open to the point of promiscuity—came as a surprise. No quiet, reverent cathedral-building here—rather, the Linux community seemed to resemble a great babbling bazaar of differing agendas and approaches (aptly symbolized by the Linux archive sites, who’d take submissions from anyone) out of which a coherent and stable system could seemingly emerge only by a succession of miracles."
+
+1. Every good work of software starts by scratching a developer’s personal itch.
+2. Good programmers know what to write. Great ones know what to rewrite (and reuse).
+3. If you have the right attitude, interesting problems will find you.
+4. Treating your users as co-developers is your least-hassle route to rapid code improvement and effective debugging.
+
+* "In fact, I think Linus’s cleverest and most consequential hack was not the construction of the Linux kernel itself, but rather his invention of the Linux development model. When I expressed this opinion in his presence once, he smiled and quietly repeated something he has often said: “**I’m basically a very lazy person who likes to get credit for things other people actually do.**” Lazy like a fox. Or, as Robert Heinlein famously wrote of one of his characters, too lazy to fail." [3]
+
+#  CI/CD - Trivy pull_request_target GitHub Actions Vuln
+
+[1] https://www.endorlabs.com/learn/github-actions-security-lessons-from-trivy
+[2] https://www.crowdstrike.com/en-us/blog/from-scanner-to-stealer-inside-the-trivy-action-supply-chain-compromise/
+
+* There have recently been a slew of Continuous Integration/Continuous Deployment (CI/CD) bugs and vulnerabilities. This is a quick crash course on what has been occuring and how I believe it impacts software development in general...
+* From what I've read this falls into the category of Initial Access, Code Execution, Credential Access, Lateral Movement, and Exfiltration within the MITRE ATT&CK framework.
 * Misconfigured GitHub Actions workflow in Aqua Security's Trivy repository.
+
+> [!NOTE]
+> `aquasecurity/trivy-action` is a GitHub Action published by Aqua Security that wraps its open-source vulnerability scanner, Trivy. It's widely adopted for scanning container images, file systems, and infrastructure-as-code for known vulnerabilities as part of CI/CD pipelines.
+> if an action's code is modified, whether by its maintainers or by someone who gained write access, every pipeline that references it will trust and execute the new code on its next run, all with full access to that pipeline's secrets, credentials, and infrastructure [2].
+
 * An attacker exploited a `pull_request_target` trigger to extract a privileged Personal Access Tokens (PAT) from the CI environment.
+* As explained by Endor Labs [1], the `pull_request_target` event lets workflows run in the context of the base repository when a pull request is opened, even if that PR comes from an external fork. This means the workflow has access to the base repository’s secrets, tokens, and write permissions.
+* The danger arises when such a workflow checks out code from the incoming pull request and then executes it. Untrusted code from any external contributor can run with full access to your repository’s secrets (this doesn't directly impact the ASWF since we don't host anything externally facing and out GitLab Repos are internally facing, however, it's a nuance that I'm taking into account as I create my own CI/CD pipeline's for my external projects).
 * The overall attack chain is as follows:
-  *  A single PAT was stolen and was used to weaponize Trivy as an info-stealer into GitHub Actions. Every time a workflow is triggered (on a pull request, a merge, or a scheduled scan), the malicious code is executed silently alongside the legitimate Trivy scan.
-  * Trivy is seen as a highly reputable and widely used security scanner that's typically give broad access by design.
-  * TeamPCP then used this credibility of Trivy to extract every credential it could find within the CI/CD runner environment to extract private SSH keys, environment variables, CI/CD tokens, etc.
+  * The attacker submits a pull request fork on the main Aqua Security Trivy Action repo
+  * The default `pull_request_target` workflow checks out the PR’s code 
+  * Attacker’s code executes with access to repository secrets
+  * Privileged Personal Access Token (PAT) is exfiltrated and can be used to push malicious code to replace the legitimate code that end users will use.
 
 * The two main vulnerabilities exploited were 1) `pull_request_target` and 2) Mutable Git Tagging:
 
 ## 1) pull_request_target
 
-Ref: https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#pull_request_target
+[3] https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#pull_request_target
 * Runs your workflow when activity on a pull request in the workflow's repository occurs. For example, if no activity types are specified, the workflow runs when a pull request is opened or reopened or when the head branch of the pull request is updated.
 * This event runs in the context of the default branch of the base repository, rather than in the context of the merge commit, as the `pull_request` event does. **This prevents execution of unsafe code from the head of the pull request that could alter your repository or steal any secrets you use in your workflow**. This event allows your workflow to do things like label or comment on pull requests from forks. Avoid using this event if you need to build or run code from the pull request. 
 * To ensure repository security, branches with names that match certain patterns (such as those which look similar to SHAs) may not trigger workflows with the pull_request_target event.
@@ -268,3 +315,8 @@ Ref: https://docs.github.com/en/actions/reference/workflows-and-actions/events-t
 * Some mitigations are as follows:
   * Monitor outbound network connections from CI runners to suspicious domains.
   * Pin GitHub Actions to **full commit SHAs** instead of version strings which can be modified.
+
+## Fixes and Considerations
+
+* CI/CD vulnerabilties are pretty new for me but Endor Labs [1] gave some suggestions on what to check for and mitigations against this type of credential exfiltration and unintentional vulnerabilities.
+* An interesting perspective that was mentioned was that GitHub actions should be considered dependencies and components given the same scrutiny as typically dependencies components brought installed for your application normally.
