@@ -3,10 +3,13 @@
 ## Functions
 
 ### None (NoneType)
+
 * **None** is the Type `NoneType`
-  * **Essentially**, No value / not set / doesn’t exist (but different than 0 since 0 can be technically an integer)...
-  * Useful in error handling, failing gracefully, optional function arguments, variables that will be filled later, items that are there, and items that potentially aren't there, etc.
-  * Used in situations where a user hasn't selected any option (e.g., limbo)
+    * **Essentially**, No value / not set / doesn’t exist (but different than 0 since 0 can be technically an
+      integer)...
+    * Useful in error handling, failing gracefully, optional function arguments, variables that will be filled later,
+      items that are there, and items that potentially aren't there, etc.
+    * Used in situations where a user hasn't selected any option (e.g., limbo)
 
 * In the case of print debugging, use `type`:
 
@@ -16,7 +19,8 @@ print(type(var_1))
 
 ### Multi-Variable Declaration
 
-> A way to save space and keep the code clean by specifying setting all of the variables on the same line, BUT they must all be related to one another for sanity's sake!
+> A way to save space and keep the code clean by specifying setting all of the variables on the same line, BUT they must
+> all be related to one another for sanity's sake!
 
 ```python
 # This example...
@@ -30,15 +34,18 @@ sword_length = 200
 
 ### `return`
 
-`return`: Makes the value available to the caller of the function 
+`return`: Makes the value available to the caller of the function
 
 > [!NOTE]
 >
-> `return` keeps the result just in case you want to use the result somewhere else within your program. Another way to think about it is that the `return` function is like an **output port** rather  than a storage area.
-> 
-> It's used inside a function to send a value back to the place where the function was called. Once the return is executed, the function stops running, and any code written after it is ignored.
+> `return` keeps the result just in case you want to use the result somewhere else within your program. Another way to
+> think about it is that the `return` function is like an **output port** rather than a storage area.
+>
+> It's used inside a function to send a value back to the place where the function was called. Once the return is
+> executed, the function stops running, and any code written after it is ignored.
 
-* A **function call** is like asking a helper: “Here are some inputs, please compute something and hand me back the result (via `return`)."
+* A **function call** is like asking a helper: “Here are some inputs, please compute something and hand me back the
+  result (via `return`)."
 * `return` is the moment the helper hands you the result and stops working.
 
 ```python
@@ -53,7 +60,8 @@ print(result)
 
 ### `f-strings` (Formatted Strings)
 
-> Basically, a really flexible way to create strings and complex statements that require the use of previously defined variables that change over time.
+> Basically, a really flexible way to create strings and complex statements that require the use of previously defined
+> variables that change over time.
 
 For example:
 
@@ -70,16 +78,20 @@ print(f_string("Jane"))
 # John for the f-string example
 # Jane for the f-string example
 ```
-* Here we can use f-strings to take the changing variable of `your_name` and append additional text to the desired name. 
+
+* Here we can use f-strings to take the changing variable of `your_name` and append additional text to the desired name.
 * Obviously, f-strings are far more powerful than the example provided, but this gives you the gist...
 
 ### Parameters vs. Arguments
 
 **Parameters**
-* Are the placeholders, names, or symbols that are used inside the function. They can be whatever you want them to be (`a`, `b`, `var`)
+
+* Are the placeholders, names, or symbols that are used inside the function. They can be whatever you want them to be (
+  `a`, `b`, `var`)
 * **P**arameter = **P**laceholder
 
 **Arguments**
+
 * Are the actual values that go into the function (`5`, `6`, `"some value"`)
 * **A**rguments = **A**ctual Value
 
@@ -94,7 +106,8 @@ sum = add(5, 6)
 
 ### Default Values
 
-> Allows you to specify the default output for the function parameter if the arguments are optional. Prevents the function or program from breaking.
+> Allows you to specify the default output for the function parameter if the arguments are optional. Prevents the
+> function or program from breaking.
 
 ```python
 def get_greeting(email, name="there"):
@@ -109,13 +122,14 @@ get_greeting("user1@example.com")
 
 ## Debugging Basics
 
-* Let's say you're looking at a lone function within a massive code base: 
+* Let's say you're looking at a lone function within a massive code base:
 
 ```python
 def some_function(foo, bar):
 ```
 
-* A good way to quickly determine what the function is supposed to do is to include a **`return None, None`** (basically like a "Debug Allow All" or Sanity Check to display the arguments that are required...)
+* A good way to quickly determine what the function is supposed to do is to include a **`return None, None`** (basically
+  like a "Debug Allow All" or Sanity Check to display the arguments that are required...)
 
 ```python
 def some_function(foo, bar):
@@ -126,7 +140,8 @@ def some_function(foo, bar):
 
 ### Floor Division
 
-> Like normal division except the result is **[floored](https://en.wikipedia.org/wiki/Floor_and_ceiling_functions)**, meaning the result is rounded down to the nearest integer using the **`//`** operator.
+> Like normal division except the result is **[floored](https://en.wikipedia.org/wiki/Floor_and_ceiling_functions)**,
+> meaning the result is rounded down to the nearest integer using the **`//`** operator.
 
 ```python
 7 // 3
@@ -166,6 +181,7 @@ def format_battery_status(current_mah, capacity_mah, drain_ma):
 ### Operators
 
 **`+=`**: Increment
+
 ```python
 star_rating = 4
 star_rating += 1
@@ -173,6 +189,7 @@ star_rating += 1
 ```
 
 **`-=`**: Decrease
+
 ```python
 star_rating = 4
 star_rating -= 1
@@ -180,6 +197,7 @@ star_rating -= 1
 ```
 
 **`*=`**: Multiply
+
 ```python
 star_rating = 4
 star_rating *= 2
@@ -187,6 +205,7 @@ star_rating *= 2
 ```
 
 **`/=`**: Divide
+
 ```python
 star_rating = 4
 star_rating /= 2
@@ -195,7 +214,7 @@ star_rating /= 2
 
 ### Scientific Notation
 
-> Represented by `e` or `E` followed by a positive or negative integer. 
+> Represented by `e` or `E` followed by a positive or negative integer.
 
 ```python
 print(16e3)
@@ -207,7 +226,8 @@ print(7.1e-2)
 
 ### Underscores
 
-> Python also allows you to represent large numbers in the decimal format using underscores as the delimiter instead of commas to make it easier to read.
+> Python also allows you to represent large numbers in the decimal format using underscores as the delimiter instead of
+> commas to make it easier to read.
 
 ```python
 num = 16_000
@@ -249,7 +269,8 @@ print(not False)
 
 ### Logic Puzzles
 
-* This problem primarily focused on separation and structure of logical operators, specificially "precedence" when it comes to the grouping specific logical operators...
+* This problem primarily focused on separation and structure of logical operators, specificially "precedence" when it
+  comes to the grouping specific logical operators...
 
 ```python
 def logic_gate(a, b, gate):
@@ -287,7 +308,7 @@ def logic_gate(a, b, gate):
         return 1
 ```
 
-### Binary 
+### Binary
 
 > Use the **`0b`** prefix to specify binary
 
@@ -318,7 +339,8 @@ binary_five & binary_seven
 
 ### Binary Conversion
 
-> You can use the `int()` function to convert a binary string to an integer. It takes the second argument that specifies the base of the number (e.g., binary = base 2).
+> You can use the `int()` function to convert a binary string to an integer. It takes the second argument that specifies
+> the base of the number (e.g., binary = base 2).
 
 ```python
 # this is a binary string
@@ -336,7 +358,8 @@ print(num)
 
 > [!NOTE]
 >
-> Within if statements, the **`return`** block is used as a sort of stop-gap/check within the function. IF the function successfully completes the comparison, DON'T continue any further and repeat the comparison until the end.
+> Within if statements, the **`return`** block is used as a sort of stop-gap/check within the function. IF the function
+> successfully completes the comparison, DON'T continue any further and repeat the comparison until the end.
 
 ```python
 def show_status(boss_health):
@@ -345,7 +368,8 @@ def show_status(boss_health):
         return
     print("Ganondorf is unalive!")
 ```
-If boss_health is greater than 0, then this will be printed: **`Ganondorf is alive!`** 
+
+If boss_health is greater than 0, then this will be printed: **`Ganondorf is alive!`**
 Otherwise, **`Ganondorf is unalive!`**
 
 ### if-elif-else
@@ -457,7 +481,8 @@ def meditate(mana, max_mana, num_potions):
 
 ### `continue` statements
 
-* **`continue`**: means "go directly to the next iteration of this loop." Whatever else was supposed to happen in the current iteration is skipped.
+* **`continue`**: means "go directly to the next iteration of this loop." Whatever else was supposed to happen in the
+  current iteration is skipped.
 
 ```python
 # Remember, `range` is inclusive of the start, but exclusive of the end
@@ -491,7 +516,8 @@ def award_enchantments(start, end, step):
         )
 ```
 
-* **`continue`** can also halt the current iteration and jump to the next one, which saves the program from doing unnecessary work.
+* **`continue`** can also halt the current iteration and jump to the next one, which saves the program from doing
+  unnecessary work.
 
 ```python
 numbers = [16, -4, 25, -9, 36, 0, 49]
@@ -562,7 +588,7 @@ cards.append("amd")
 
 ### Pop
 
-* **`.pop()`** is the opposite of **`.append()`**. Pop removes the last element from a list and returns it for use. 
+* **`.pop()`** is the opposite of **`.append()`**. Pop removes the last element from a list and returns it for use.
 
 ```python
 vegetables = ["broccoli", "cabbage", "kale", "tomato"]
@@ -614,7 +640,10 @@ for tree in trees: # MUCH CLEANER SYNTAX
 
 #### Finding Maximums
 
-* The built-in float() function can create a numeric floating point value of negative infinity. Instead of initializing a base value like 0 or -100000, we can use float("-inf") to represent negative infinity. Because every value will be greater than negative infinity, we can use it as a starting point to help us achieve our goal of finding the max value.
+* The built-in float() function can create a numeric floating point value of negative infinity. Instead of initializing
+  a base value like 0 or -100000, we can use float("-inf") to represent negative infinity. Because every value will be
+  greater than negative infinity, we can use it as a starting point to help us achieve our goal of finding the max
+  value.
 
 ```python
 negative_infinity = float("-inf")
@@ -677,10 +706,11 @@ def collatz_stats(n):
 
 > [!NOTE]
 >
-> An excellent way to determine if a number is even using the **`%`**. An odd number is a number that when divided by 2, the remainder is not 0. 
-> 
-> **`x % 2 = 0 (EVEN NUMBER)`** 
-> 
+> An excellent way to determine if a number is even using the **`%`**. An odd number is a number that when divided by 2,
+> the remainder is not 0.
+>
+> **`x % 2 = 0 (EVEN NUMBER)`**
+>
 > **`x % 2 != 0 (ODD NUMBER)`**
 
 ```python
@@ -701,8 +731,9 @@ def get_odd_numbers(num):
 my_list[ start : stop : step ]
 ```
 
-* Tricky example where we want to iterate through a dictionary, append a ",", and ensure that the last item in the dictionary doesn't have a comma. 
-* Normally we could just use the `.join()` built-in, but this is the manual solve for it. 
+* Tricky example where we want to iterate through a dictionary, append a ",", and ensure that the last item in the
+  dictionary doesn't have a comma.
+* Normally we could just use the `.join()` built-in, but this is the manual solve for it.
 
 ```python
 def join_strings(strings):
@@ -758,7 +789,8 @@ numbers[::2] # Gives [0, 2, 4, 6, 8]
 
 #### Negative Indices
 
-* Used to count from the end of the list. For example, `numbers[-1]` gives the last item in the list, `numbers[-2]` gives the second last item, and so on.
+* Used to count from the end of the list. For example, `numbers[-1]` gives the last item in the list, `numbers[-2]`
+  gives the second last item, and so on.
 
 ```python
 numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -847,7 +879,8 @@ def reverse_list(items):
 
 ### Tuples
 
-* **`tuples`**: data that are ordered and unchangeable. You can think of a tuple as a List with a fixed size. Tuples are created with round brackets. Often used to store very small groups (like 2 or 3 items) of data
+* **`tuples`**: data that are ordered and unchangeable. You can think of a tuple as a List with a fixed size. Tuples are
+  created with round brackets. Often used to store very small groups (like 2 or 3 items) of data
 
 ```python
 my_tuple = ("this is a tuple", 45, True)
@@ -860,6 +893,7 @@ print(my_tuple[2])
 ```
 
 * Special case if you want to store a single item inside of a tuple. You MUST use a **`,`**
+
 ```python
 dog = ("Fido",)
 ```
@@ -892,7 +926,8 @@ print(dog_age)
 
 #### Splitting
 
-*  **`.split()`** method in Python is called on a string and returns a list by splitting the string based on a given delimiter. If no delimiter is provided, it will split the string on whitespace.
+* **`.split()`** method in Python is called on a string and returns a list by splitting the string based on a given
+  delimiter. If no delimiter is provided, it will split the string on whitespace.
 
 ```python
 message = "hello there sam"
@@ -903,7 +938,8 @@ print(words)
 
 #### Joining
 
-*  **`.join()`** method is called on a delimiter (what goes between all the words in the list), and takes a list of strings as input.
+* **`.join()`** method is called on a delimiter (what goes between all the words in the list), and takes a list of
+  strings as input.
 
 ```python
 list_of_words = ["hello", "there", "sam"]
@@ -919,7 +955,9 @@ print(sentence)
 >   2. Append the word to a `dangs` list.
 >   3. Append and join the non-dang or "good words" into a complete list.
 >   4. Get the count of how often dang was used.
-> The trickiest part of the challenge was the nested for-loop within a for-loop. We needed to first create a for-loop to split the original message into strings and then create another for-loop that iterates on each word from the split words so that we could search for any instance of "dang". 
+       > The trickiest part of the challenge was the nested for-loop within a for-loop. We needed to first create a
+       for-loop to split the original message into strings and then create another for-loop that iterates on each word
+       from the split words so that we could search for any instance of "dang".
 
 ```python
 
@@ -948,11 +986,12 @@ def filter_messages(messages):
 
 ```
 
-### List Checking and Percentages 
+### List Checking and Percentages
 
-> A bit of an easier challenge compared to the previous one, here we are taking elements of iteration on a message and using it to compare against items in another list. 
-> My initial solve was very bulky and expensive, so I trimmed down the correct item checking function to just use a `correct_ingredients` counter that ONLY increments if a player’s item is within the recipe.
-
+> A bit of an easier challenge compared to the previous one, here we are taking elements of iteration on a message and
+> using it to compare against items in another list.
+> My initial solve was very bulky and expensive, so I trimmed down the correct item checking function to just use a
+`correct_ingredients` counter that ONLY increments if a player’s item is within the recipe.
 
 ```python
 def check_ingredient_match(recipe, inventory):
@@ -989,7 +1028,6 @@ def get_character_record(name, server, level, rank):
 
     return record
 ```
-
 
 ### Setting Dictionary Values
 
@@ -1077,7 +1115,8 @@ def count_enemies(enemy_names):
 ```
 
 ### Iterating Over a Dictionary
-* Neat way to iterate over a dictionary to identify the highest value assigned to the “key” within the dictionary. 
+
+* Neat way to iterate over a dictionary to identify the highest value assigned to the “key” within the dictionary.
 * Here we checked to determine if the list itself was empty, if so, the function or loop should end.
 
 ```python
@@ -1124,7 +1163,8 @@ outer_dictionary["outer_key"]["inner_key"]["inner_inner_key"]
 
 ### Merge Dictionaries
 
-* This took me quite some time to solve as I was getting hung up on the process of extracting the key-value pairs from a dictionary and then placing them into a new dictionary.
+* This took me quite some time to solve as I was getting hung up on the process of extracting the key-value pairs from a
+  dictionary and then placing them into a new dictionary.
 
 ```python
 
@@ -1168,13 +1208,15 @@ def merge(dict1, dict2):
     return merged_dict
 ```
 
-* `merged_dict[key] = dict1[key]`: This was missing piece for how to iteratively move through the dictionary and create key-value pairs using a for-loop.
+* `merged_dict[key] = dict1[key]`: This was missing piece for how to iteratively move through the dictionary and create
+  key-value pairs using a for-loop.
     * `merged_dict[key]`: Takes the key name (like "Frodo") from dict1.
     * `dict1[key]`: Retrieves the corresponding value (like 56) using `dict1[key]`
 
 ## Sets
 
-* Essentially like Lists, but they are **unordered** and they **guarantee uniqueness**. Only ONE of each value can be in a set
+* Essentially like Lists, but they are **unordered** and they **guarantee uniqueness**. Only ONE of each value can be in
+  a set
 
 ```python
 fruits = {"apple", "banana", "grape"}
@@ -1201,7 +1243,8 @@ print(fruits)
 
 ### An Empty Set
 
-* Because the empty bracket `{}` syntax creates an empty dictionary, to create an empty set, you need to use the `set()` function
+* Because the empty bracket `{}` syntax creates an empty dictionary, to create an empty set, you need to use the `set()`
+  function
 
 ```python
 fruits = set() # This assigns the variable as a set.
@@ -1241,7 +1284,8 @@ def remove_duplicates(spells):
 
 ### Iterating Using Sets
 
-* Here we are iterating over each of the characters inside of `text` to identify list of vowels both upper and lower case. 
+* Here we are iterating over each of the characters inside of `text` to identify list of vowels both upper and lower
+  case.
 
 ```python
     new_set = {"a", "A", "e", "E", "i", "I", "o", "O", "u", "U"} # Dictionary to store the unique values
@@ -1278,7 +1322,8 @@ def find_missing_ids(first_ids, second_ids):
 
 ## Dictionary + Set Practice
 
-* I solved this puzzle in a bit of an unconventional and a bit inefficient way if I'm being honest. Below is my initial solve...
+* I solved this puzzle in a bit of an unconventional and a bit inefficient way if I'm being honest. Below is my initial
+  solve...
 * The goal was to return a list of dictionaries each with specific outputs (e.g., unique terms, no duplicates, etc.)
 
 ```python
@@ -1341,9 +1386,10 @@ except Exception:
   print("can't divide by zero")
 ```
 
-* `try-except`: 
+* `try-except`:
     * `try` block is executed until an exception is raised or it completes, whichever happens first.
-    * `exception` is raised because division by zero is impossible. The `except` block is only executed if an exception is raised in the try block.
+    * `exception` is raised because division by zero is impossible. The `except` block is only executed if an exception
+      is raised in the try block.
 
 * If we want to access the data from the exception, we use the following syntax:
 
@@ -1357,7 +1403,7 @@ except Exception as e:
 ```
 
 > [!NOTE]
-> 
+>
 > You **DO NOT** want to catch exceptions you raise within the same function block!
 
 ```python
@@ -1387,7 +1433,8 @@ except Exception as e:
 ### Different Types of Python Errors
 
 > [!NOTE]
-> When handling exceptions, it’s important to **catch the most specific errors first**, because Python stops checking once it finds a matching exception handler.
+> When handling exceptions, it’s important to **catch the most specific errors first**, because Python stops checking
+> once it finds a matching exception handler.
 
 ```python
 try:
@@ -1399,17 +1446,19 @@ except IndexError:
     print("Index error")
 ```
 
-* Here the more general `Exception` error will be thrown, not acknowledging the more specific root cause of an `IndexError` first.
+* Here the more general `Exception` error will be thrown, not acknowledging the more specific root cause of an
+  `IndexError` first.
 
 ## Type Hints
 
-* Type hints are a way to assist humans and code editors determine what specific **types** of values should be expected and returned from within a function.  
-* It's similar to what TypeScript is for JavaScript and what Java does natrually. It enforces guardrails and an explcit framework that you should follow when building programs.
+* Type hints are a way to assist humans and code editors determine what specific **types** of values should be expected
+  and returned from within a function.
+* It's similar to what TypeScript is for JavaScript and what Java does natrually. It enforces guardrails and an explcit
+  framework that you should follow when building programs.
 * Type hints are for:
-  * Making code easier to read 
-  * Helping your editor autocomplete and warn you about mistakes 
-  * Making bugs easier to spot before running your code
-
+    * Making code easier to read
+    * Helping your editor autocomplete and warn you about mistakes
+    * Making bugs easier to spot before running your code
 
 ### Basic Type Hints
 
@@ -1438,11 +1487,11 @@ def add_gold(current_gold: int, found_gold: int) -> int:
 
 ### Type Hints for List and Sets
 
-* Effectively specifying the data type of container and the contents within it: 
-  * `list`: mutable sequence of values 
-  * `set`: unordered collection of unique values 
-  * `dict`: collection of key-value pairs 
-  * `tuple`: immutable sequence of values
+* Effectively specifying the data type of container and the contents within it:
+    * `list`: mutable sequence of values
+    * `set`: unordered collection of unique values
+    * `dict`: collection of key-value pairs
+    * `tuple`: immutable sequence of values
 
 ```python
 inventory: list[str] = ["item_1", "item_2"]
@@ -1454,7 +1503,8 @@ unique_items: set[str] = {"item_1", "item_2"}
 
 ### Type Hints for Containers
 
-* Here we are specifying the specific data type that should be held inside a container. That being said, specifying the type of just the container isn't wrong - it's just not as explicit as it should be!
+* Here we are specifying the specific data type that should be held inside a container. That being said, specifying the
+  type of just the container isn't wrong - it's just not as explicit as it should be!
 
 ```python
 # Not very explcit...
@@ -1468,7 +1518,7 @@ items: list[str] = ["Black Firebomb", "Titanite Chunk"]
 
 ### Optional Values
 
-* Another neat TypeScript-esq feature where you explicity state the expected data types that should be expected. 
+* Another neat TypeScript-esq feature where you explicity state the expected data types that should be expected.
 * This is kind of like "truthy" statements where either option will be `True`
 
 ```python
@@ -1481,21 +1531,27 @@ def get_prepared_spell(has_spell: bool) -> str | None:
 
 # Python - Object-Oriented Programming (OOP)
 
-* **[Object-Oriented Programming](https://en.wikipedia.org/wiki/Object-oriented_programming)**: Programming paradigm based on objects  (software entities that encapsulate data and function(s)). An OOP computer program consists of objects that interact with objects.
+* **[Object-Oriented Programming](https://en.wikipedia.org/wiki/Object-oriented_programming)**: Programming paradigm
+  based on objects  (software entities that encapsulate data and function(s)). An OOP computer program consists of
+  objects that interact with objects.
 
 ## Clean Code
 
-* The sole purpose of OOP is to simply write human-readable code that is elegant and easy to maintain and understand for HUMANS. 
+* The sole purpose of OOP is to simply write human-readable code that is elegant and easy to maintain and understand for
+  HUMANS.
 
 > [!NOTE]
-> This also plays into the information security POV... Code that is lean and easy to understand is easier to update and easier to secure throughout the life of a project. New developers are less likely and potentially unable to secure and update code that is challenging to understand...
+> This also plays into the information security POV... Code that is lean and easy to understand is easier to update and
+> easier to secure throughout the life of a project. New developers are less likely and potentially unable to secure and
+> update code that is challenging to understand...
 
 ### Don't Repeat Yourself (DRY)
 
-* "Rule of thumb" for writing maintainable code is **"Don't Repeat Yourself" (DRY)**. It means that, when possible, you should avoid writing the same code in multiple places because:
-  * A single update will need to be repeated in multiple places.
-  * If you forget it in one place, you'll have a bug
-  * It's more work to write it over and over again
+* "Rule of thumb" for writing maintainable code is **"Don't Repeat Yourself" (DRY)**. It means that, when possible, you
+  should avoid writing the same code in multiple places because:
+    * A single update will need to be repeated in multiple places.
+    * If you forget it in one place, you'll have a bug
+    * It's more work to write it over and over again
 
 ```python
 
@@ -1521,7 +1577,8 @@ def fight_soldiers(soldier_one, soldier_two):
 ## Classes
 
 * A `class` is a new custom type similar to dictionaries, but more customizable.
-* `classes` are used to define the properties and behavior of a category of things. E.g. A "Car" class might dictate that all cars be defined by their make, model, year, and mileage.
+* `classes` are used to define the properties and behavior of a category of things. E.g. A "Car" class might dictate
+  that all cars be defined by their make, model, year, and mileage.
 
 ```python 
 # Defines a new class called "Soldier"
@@ -1535,11 +1592,14 @@ class Soldier:
 ## Objects
 
 * An `object` is an **instance**, the "specifics of" OR "case of" that `class`.
-* But you can't provide specifics about a particular car (for example, that 1978 Chevy Impala with 205,000 miles on it that your uncle Mickey drives) until you create an `instance` of a Car.
+* But you can't provide specifics about a particular car (for example, that 1978 Chevy Impala with 205,000 miles on it
+  that your uncle Mickey drives) until you create an `instance` of a Car.
 * It's the `instance` that captures the detailed information about one particular `class`.
 
 ### Attributes
-* An `attribute` (or instance variable) belongs to each object. They are not new objects or instances of the class; **they are data stored on the instances**.
+
+* An `attribute` (or instance variable) belongs to each object. They are not new objects or instances of the class; *
+  *they are data stored on the instances**.
 
 ```python
 wall1 = Wall() # Class
@@ -1548,12 +1608,13 @@ wall1.armor = 10 # Object/instance of Wall() + attribute of object (10)
 
 wall1.fortify() # Method
 ```
+
 * `wall1 = Wall()`: Class
 * `wall1.armor`: Object/instance of `Wall()`
 * `.armor = 10`: Attribute of object
 * `wall1.fortify()`: Method
 
-## Methods 
+## Methods
 
 * A `method` is just a function that's tied directly to a `class` and has access to its properties.
 
@@ -1622,8 +1683,10 @@ print(adolin.health)
 
 ## Constructors
 
-* Are a specific method on a class called `__init__` that is called automatically when you create a new instance of a class. 
-* `constructors` make the objects’ state (their attributes) configurable and other methods then use that state. **ESSENTIALLY**: the set of local variables that other methods within the class-object access.
+* Are a specific method on a class called `__init__` that is called automatically when you create a new instance of a
+  class.
+* `constructors` make the objects’ state (their attributes) configurable and other methods then use that state. *
+  *ESSENTIALLY**: the set of local variables that other methods within the class-object access.
 
 ```python
 class Soldier: # Class
@@ -1651,7 +1714,8 @@ print(soldier_two.num_weapons)
 
 ### Constructor Practice
 
-* For me, the difficulty comes from getting the correct syntax when calling objects and methods within the `raise Exception` blocks.
+* For me, the difficulty comes from getting the correct syntax when calling objects and methods within the
+  `raise Exception` blocks.
 
 ```python
 '''
@@ -1704,7 +1768,8 @@ print(north_wall.height)
 
 #### Class Variables
 
-* Class variables are shared between instances of the same class and are declared at the top level of a class definition, **less common**.
+* Class variables are shared between instances of the same class and are declared at the top level of a class
+  definition, **less common**.
 * Like global variables and should be used with caution!
 
 ```python
@@ -1723,7 +1788,8 @@ print(south_wall.height)
 
 ### Tying it All Together
 
-* Very conceptually difficult lesson, the fundamentals of lists, loops, and conditionals are all there, but OOP syntax to access the specific instances from within methods from within classes gets a bit confusing. 
+* Very conceptually difficult lesson, the fundamentals of lists, loops, and conditionals are all there, but OOP syntax
+  to access the specific instances from within methods from within classes gets a bit confusing.
 * See examples below for more clarity:
 
 ```python
@@ -1764,7 +1830,9 @@ class Library:
 #### Classes Practice
 
 > [!NOTE]
-> The following examples are specific patterns that are commonly used for separate classes to call one another. The syntax and naming convention was a bit tricky so I wanted to provide some more examples for how a `class` can be referenced between a `method`. 
+> The following examples are specific patterns that are commonly used for separate classes to call one another. The
+> syntax and naming convention was a bit tricky so I wanted to provide some more examples for how a `class` can be
+> referenced between a `method`.
 
 ##### Pattern 1: Caller creates Book
 
@@ -1865,8 +1933,8 @@ class Library:
 **Pattern 3 Usage: Library accepts either a Book or raw data**
 
 * You want a flexible API for when:
-  * You already have a Book instance
-  * You only have title/author
+    * You already have a Book instance
+    * You only have title/author
 * Internally you always normalize to a Book instance before storing.
 
 ```python
@@ -1920,12 +1988,14 @@ b2 = library.make_book("The Hobbit", "J.R.R. Tolkien")
 # it calculates the acceleration correctly
 acceleration = calc_acceleration(initial_speed, final_speed, time)
 ```
+
 * Here we just need to know that the function `calc_acceleration` needs
-  * `initial_speed`, `final_speed`, and `time` to calculate and produce `acceleration`.
+    * `initial_speed`, `final_speed`, and `time` to calculate and produce `acceleration`.
 
 ### Public and Private
 
-* By default, all properties and methods in a class are **public**. That means that you can access them with the `.` operator
+* By default, all properties and methods in a class are **public**. That means that you can access them with the `.`
+  operator
 
 ```python
 # Accessing Pubic Property...
@@ -1935,7 +2005,8 @@ print(wall.height)
 # 10
 ```
 
-* **Private** data members  are a way to encapsulate logic and data within a class definition. To make a property or method private just prefix it with two underscores (`__`):
+* **Private** data members are a way to encapsulate logic and data within a class definition. To make a property or
+  method private just prefix it with two underscores (`__`):
 
 ```python
 class Wall:
@@ -1960,13 +2031,16 @@ print(front_wall.get_defense())
 
 > [!NOTE]
 > **PURPOPSE OF PRIVATE MEMBERS?**
-> * To abstract away any additional complexity **[black box](https://en.wikipedia.org/wiki/Black_box)** that is irrelevant to the function being called... 
-> * Simply call the public `get_defense()` method (which CAN access the private property) and know that the correct value will be returned.
+> * To abstract away any additional complexity **[black box](https://en.wikipedia.org/wiki/Black_box)** that is
+    irrelevant to the function being called...
+> * Simply call the public `get_defense()` method (which CAN access the private property) and know that the correct
+    value will be returned.
 > * **Encapsulation is about organization, NOT security.**
 
 #### Updating Attributes vs Calculations
 
-* This was an easier problem to solve BUT there was a bit of a hang up due to me forgetting up update the **attribute** vs just assigning a **variable**. See example solve below: 
+* This was an easier problem to solve BUT there was a bit of a hang up due to me forgetting up update the **attribute**
+  vs just assigning a **variable**. See example solve below:
 
 ```python
 class Wizard:
@@ -1989,7 +2063,8 @@ class Wizard:
 ### Encapsulation Practice
 
 * Another puzzle that stumped me a bit...
-* Referencing a `method` within a `method` is straight forward you just have to use the variable within the method (e.g., `target.get_fireballed`)
+* Referencing a `method` within a `method` is straight forward you just have to use the variable within the method (
+  e.g., `target.get_fireballed`)
 
 ```python
 class Wizard:
@@ -2020,12 +2095,14 @@ class Wizard:
         self.mana += potion_mana
 ```
 
-### Encapsulation Practice II 
+### Encapsulation Practice II
 
-* Another example use of encapsulation, this was a bit easier (probably due to the psuedo-code that we were provided). Overall, I feel like it was a nice solve.
+* Another example use of encapsulation, this was a bit easier (probably due to the psuedo-code that we were provided).
+  Overall, I feel like it was a nice solve.
 
 > [!NOTE]
-> Normally, I like the use of nested `if`, `elif`, and `else` statments but in this example the code is "flatter" and cleaner due to the use of errors we have inserted.
+> Normally, I like the use of nested `if`, `elif`, and `else` statments but in this example the code is "flatter" and
+> cleaner due to the use of errors we have inserted.
 >
 > If a branch ends the function (`return`, `raise`, `break`, etc.), you usually don’t need an `else` after it.
 >
@@ -2059,21 +2136,28 @@ class BankAccount:
 
 ## Abstraction vs Encapsulation
 
-> `abstraction` = focuses on exposing essential features while hiding complexity (**THINK** importing libraries in Python like `numpy`, `pandas`, `scipy`, etc.) 
-> 
-> `encapsulation` = focuses on bundling data with methods and restricting direct access to implementation details (**THINK** specific methods and classes that you use when utilizing imported libraries.)
+> `abstraction` = focuses on exposing essential features while hiding complexity (**THINK** importing libraries in
+> Python like `numpy`, `pandas`, `scipy`, etc.)
 >
-> Abstraction is more about reducing complexity, encapsulation is more about maintaining the integrity of system internals.
+> `encapsulation` = focuses on bundling data with methods and restricting direct access to implementation details (*
+*THINK** specific methods and classes that you use when utilizing imported libraries.)
+>
+> Abstraction is more about reducing complexity, encapsulation is more about maintaining the integrity of system
+> internals.
 
-**Encapsulation:** is about hiding internal state. It focuses on **tucking away the implementation details (private)**. It makes is easy to do important items by taking away the complexity under the hood (e.g., driving a car)
+**Encapsulation:** is about hiding internal state. It focuses on **tucking away the implementation details (private)**.
+It makes is easy to do important items by taking away the complexity under the hood (e.g., driving a car)
 
 ```python
 # Encapsulation Example: Making a HTTP GET request
 request.get('https://api.github.com/foo-bar/user/auth')
 ```
-* The underlying process of the TCP handshake with the GitHub server is removed and the content of the packets that are sent are packaged into `request.get` which **"encapsulates"** the complexity.
 
-**Abstraction:**  is about creating a *simple* interface for complex behavior. It focuses on what's exposed (public) with an emphasis on a **clean developer interface** when the call our `function`, `method`, or `class`
+* The underlying process of the TCP handshake with the GitHub server is removed and the content of the packets that are
+  sent are packaged into `request.get` which **"encapsulates"** the complexity.
+
+**Abstraction:**  is about creating a *simple* interface for complex behavior. It focuses on what's exposed (public)
+with an emphasis on a **clean developer interface** when the call our `function`, `method`, or `class`
 
 ```python
 # Abstraction Example: The specific syntax behind the request.get(...) tool
@@ -2129,11 +2213,13 @@ class Human:
         self.__stamina -= 1
 ```
 
-### Deck of Cards 
+### Deck of Cards
 
-* This was a diffcult puzzle to solve, I was able to get ~70% solved but got stuck at the `create_deck()` for-loop logic. 
+* This was a diffcult puzzle to solve, I was able to get ~70% solved but got stuck at the `create_deck()` for-loop
+  logic.
     * **Outer Loop:** Hits the first suit (e.g., Hearts) and initiates the inner loop.
-        * **Inner Loop:** Iterates through the entire list of ranks, once it finishes, exits, and iterates through outer loop.
+        * **Inner Loop:** Iterates through the entire list of ranks, once it finishes, exits, and iterates through outer
+          loop.
 
 ```python
 import random
@@ -2182,12 +2268,16 @@ class DeckOfCards:
 
 ## Inheritance
 
-* As the name implies, it's the idea of **inheriting** the properties and methods that are nested within other classes to create a sort of hiearchy.
-* Inheritance allows a "child" class, to inherit properties and methods from a "parent" class. It's a way to share code between classes.
-* **ESSENTIALLY** it prevents the duplication of the same code which may lead to instability if one variable is updated within a parent class.
+* As the name implies, it's the idea of **inheriting** the properties and methods that are nested within other classes
+  to create a sort of hiearchy.
+* Inheritance allows a "child" class, to inherit properties and methods from a "parent" class. It's a way to share code
+  between classes.
+* **ESSENTIALLY** it prevents the duplication of the same code which may lead to instability if one variable is updated
+  within a parent class.
 
 > [!NOTE]
-> When creating child classes, ensure that they are a superset of the functionality (have a related use) that aligns with the parent class!
+> When creating child classes, ensure that they are a superset of the functionality (have a related use) that aligns
+> with the parent class!
 
 ```python
 class Human: # Parent class
@@ -2208,14 +2298,16 @@ class Archer(Human): # Child class (Archer) inheriting properties from parent (H
 
 > [!NOTE]
 >
-> `super()`: returns a proxy of the parent class, meaning we can use it to call the parent class's constructor and other methods. Used as a **function you call each time you need the parent behavior**.
+> `super()`: returns a proxy of the parent class, meaning we can use it to call the parent class's constructor and other
+> methods. Used as a **function you call each time you need the parent behavior**.
 
 ### When to Use Inheritance
 
 > [!NOTE]
 > **Rule of Thumb:** `A` should only inherit from `B` if `A` is *always* a `B`.
-> 
-> When a child class inherits from a parent, it inherits *everything*. If you only want to share some functionality, inheritance should not be the tool you use. 
+>
+> When a child class inherits from a parent, it inherits *everything*. If you only want to share some functionality,
+> inheritance should not be the tool you use.
 >
 > A good child class is a **strict subset** of its parent class.
 
@@ -2272,7 +2364,8 @@ class Crossbowman(Archer):
 * Representation of a situation where a parent (root) has a set a children each with a shared property.
 
 > [!NOTE]
-> While each of the children is different, they all hold the common trait of `get_name`, `get_health`, and `take_damage`.
+> While each of the children is different, they all hold the common trait of `get_name`, `get_health`, and
+`take_damage`.
 
 ```python
 class Hero:
@@ -2312,17 +2405,20 @@ class Wizard(Hero):
         target.take_damage(25)
 ```
 
-### Wide Not Deep 
+### Wide Not Deep
 
-* It's more common for an inheritance tree to be **wide** than **deep**. 
-* This means that there are properties found in the parent (root) class that all of the siblings (subsets) share with one another. **THINK** most common ancestry between species.
+* It's more common for an inheritance tree to be **wide** than **deep**.
+* This means that there are properties found in the parent (root) class that all of the siblings (subsets) share with
+  one another. **THINK** most common ancestry between species.
 
 <img src="./images/wide_inheritance_not_deep.png">
 
 ### Inheritance Practice
 
-* Another difficult and close solve before I used the assistant for help. 
-* The main hang-up, for me, was the use of the correct Boolena logic in the helper `unit.in_area()` method. My intuition to use the helper method within the `Dragon` class was correct along with identifying the min and max values. I struggled on correctly wiring up the correct method.
+* Another difficult and close solve before I used the assistant for help.
+* The main hang-up, for me, was the use of the correct Boolena logic in the helper `unit.in_area()` method. My intuition
+  to use the helper method within the `Dragon` class was correct along with identifying the min and max values. I
+  struggled on correctly wiring up the correct method.
 
 ```python
 class Unit:
@@ -2382,20 +2478,28 @@ def main():
 
 The initial for loop was pretty straight forward with a method call using `describe()`.
 
-**List comprehension**: it's a concise way to create new lists by transforming or filtering existing iterables (e.g., removing something if it meets a condition). 
+**List comprehension**: it's a concise way to create new lists by transforming or filtering existing iterables (e.g.,
+removing something if it meets a condition).
 
-That new list, if you want to call it or use it again, needs to be assigned to a variable so that the updated list can be used within other methods (e.g., `dragon.breath_fire(...)`).
+That new list, if you want to call it or use it again, needs to be assigned to a variable so that the updated list can
+be used within other methods (e.g., `dragon.breath_fire(...)`).
 
 Breaking down the list comprehension is as follows:
 
-* `targets for targets in dragons`: we're creating the new list of the name targets, we then go into a simple for-loop where the original dragons list is being placed inside of targets.
+* `targets for targets in dragons`: we're creating the new list of the name targets, we then go into a simple for-loop
+  where the original dragons list is being placed inside of targets.
 
-* `if targets is not dragon`: here we're setting a conditional where we are detemining that if the individual values of `targets`, which was assigned the original iterable list of `dragons` **IS NOT** found in `dragon` (which is assigned the iterable list of `dragons`); place those unique sets of dragon names and details into the new targets list which can be called by `dragon.breath_fire(...)`
+* `if targets is not dragon`: here we're setting a conditional where we are detemining that if the individual values of
+  `targets`, which was assigned the original iterable list of `dragons` **IS NOT** found in `dragon` (which is assigned
+  the iterable list of `dragons`); place those unique sets of dragon names and details into the new targets list which
+  can be called by `dragon.breath_fire(...)`
 
-* Additionally, it's important to note that this is all happening inside of the second for-loop that that is iterating over each item inside of the dragons list. So the flow is as follows:
-    * For-loop initiates > "Green Dragon" is first > a new list is created that creates a new `targets` list that excludes "Green Dragon" > for-loop repeats
+* Additionally, it's important to note that this is all happening inside of the second for-loop that that is iterating
+  over each item inside of the dragons list. So the flow is as follows:
+    * For-loop initiates > "Green Dragon" is first > a new list is created that creates a new `targets` list that
+      excludes "Green Dragon" > for-loop repeats
 
-### More Inheritance Practice 
+### More Inheritance Practice
 
 ```python
 
@@ -2454,16 +2558,23 @@ class Catapult(Siege):
 ```python
 base_cost = super().get_trip_cost(distance, food_price)
 ```
-* Here we are calling the parent class’s (`Siege`) `get_trip_cost` method (`Siege.get_trip_cost`) using the same `distance` and `food_price`.
-* The `super()` **DOES NOT** use the `super().__init__(max_speed, efficiency)` in `__init__` it just means the want to call the parent's version of that method.
-* **ESSENTIALLY**: the `super().some_method(...)` is used to make an independent call to the parent’s `something` and is **SEPARATE** from other `super()` calls!
+
+* Here we are calling the parent class’s (`Siege`) `get_trip_cost` method (`Siege.get_trip_cost`) using the same
+  `distance` and `food_price`.
+* The `super()` **DOES NOT** use the `super().__init__(max_speed, efficiency)` in `__init__` it just means the want to
+  call the parent's version of that method.
+* **ESSENTIALLY**: the `super().some_method(...)` is used to make an independent call to the parent’s `something` and is
+  **SEPARATE** from other `super()` calls!
 
 ## Polymorphism
 
-* Polymorphism is typically handled at **run time** (meaning that the output can have many forms based on specific runtime criteria...)
-  * E.g., When a user logs in, what specific features or permissions are they allowed to have.
-* Polymorphism is **ONLY** applicable to Children contained underneath Parent classes. In order for the output to transform AT runtime, the children must all derive from the parent...
-* Polymorphism is where each type is responsible for its own data and code, but still adheres to the same interface, in this case a simple method "signature".
+* Polymorphism is typically handled at **run time** (meaning that the output can have many forms based on specific
+  runtime criteria...)
+    * E.g., When a user logs in, what specific features or permissions are they allowed to have.
+* Polymorphism is **ONLY** applicable to Children contained underneath Parent classes. In order for the output to
+  transform AT runtime, the children must all derive from the parent...
+* Polymorphism is where each type is responsible for its own data and code, but still adheres to the same interface, in
+  this case a simple method "signature".
 
 ### Example 1
 
@@ -2549,12 +2660,14 @@ class Rectangle:
             return self.__y1
         return self.__y2
 ```
-* **Polymorphism** here is the fact that Dragon overrides the `in_area` method from `Unit`. Both classes have an `in_area` method, but they behave differently:
+
+* **Polymorphism** here is the fact that Dragon overrides the `in_area` method from `Unit`. Both classes have an
+  `in_area` method, but they behave differently:
 * `Unit.in_area`: checks if a single center point is within the area.
 * `Dragon.in_area`: checks if the dragon's hit box overlaps with the area.
 
-
 ### Overloading Operators
+
 * Operator overloading is the practice of defining custom behavior for standard Python operators. For example:
 
 ```python
@@ -2573,23 +2686,24 @@ class Sword:
         raise Exception("cannot craft")
 ```
 
-* Here we are using the `__add__` operator to "add" and compare the sword values or "bronze" or "iron" to determine if we need to return a new `Sword` type of either "iron" or "steel".
+* Here we are using the `__add__` operator to "add" and compare the sword values or "bronze" or "iron" to determine if
+  we need to return a new `Sword` type of either "iron" or "steel".
 
-| Operation | Operator | Method |
-| :--- | :--- | :--- |
-| Addition | `+` | `__add__` |
-| Subtraction | `-` | `__sub__` |
-| Multiplication | `*` | `__mul__` |
-| Power | `**` | `__pow__` |
-| Division | `/` | `__truediv__` |
-| Floor Division | `//` | `__floordiv__` |
-| Remainder (modulo) | `%` | `__mod__` |
-| Bitwise Left Shift | `<<` | `__lshift__` |
-| Bitwise Right Shift | `>>` | `__rshift__` |
-| Bitwise AND | `&` | `__and__` |
-| Bitwise OR | `\|` | `__or__` |
-| Bitwise XOR | `^` | `__xor__` |
-| Bitwise NOT | `~` | `__invert__` |
+| Operation           | Operator | Method         |
+|:--------------------|:---------|:---------------|
+| Addition            | `+`      | `__add__`      |
+| Subtraction         | `-`      | `__sub__`      |
+| Multiplication      | `*`      | `__mul__`      |
+| Power               | `**`     | `__pow__`      |
+| Division            | `/`      | `__truediv__`  |
+| Floor Division      | `//`     | `__floordiv__` |
+| Remainder (modulo)  | `%`      | `__mod__`      |
+| Bitwise Left Shift  | `<<`     | `__lshift__`   |
+| Bitwise Right Shift | `>>`     | `__rshift__`   |
+| Bitwise AND         | `&`      | `__and__`      |
+| Bitwise OR          | `\|`     | `__or__`       |
+| Bitwise XOR         | `^`      | `__xor__`      |
+| Bitwise NOT         | `~`      | `__invert__`   |
 
 ### Example 2
 
@@ -2620,64 +2734,77 @@ class Card:
             return self.suit_index > other.suit_index
         return self.rank_index > other.rank_index
 ```
+
 > [!NOTE]
-> Notice the implementation of using the `Card` class. 
+> Notice the implementation of using the `Card` class.
 > We access the `other` parameter using the `other.[parameter_to_compart]`
-> The core idea is that **operator overloading as a form of polymorphism**, the same operator symbol behaves differently depending on the type of object it's operating on.
+> The core idea is that **operator overloading as a form of polymorphism**, the same operator symbol behaves differently
+> depending on the type of object it's operating on.
 
-* The polymorphism here is that Python's built-in comparison operators (`==`, `<`, `>`) now work on Card objects just as they do on integers or strings, but with our custom logic underneath. 
+* The polymorphism here is that Python's built-in comparison operators (`==`, `<`, `>`) now work on Card objects just as
+  they do on integers or strings, but with our custom logic underneath.
 * When you write `card_1` > `card_2`, Python calls your `__gt__` method instead of its default behavior.
-
 
 # JavaScript
 
 ## Basics to Know
 
-* JS is Typically **ONLY** used to run within the browser (at runtime)! **Node.js** is the environment that allows JavaScript to run "server-side" (outside the browser).
-* **Asynchronous (The "Non-Blocking" Nature):** JS is single-threaded, meaning it executes one command at a time. However, it is asynchronous because it uses an **Event Loop**. This allows JS to start a "slow" task (like fetching data) and move on to other code without freezing the browser, "jumping back" once the task is finished.
+* JS is Typically **ONLY** used to run within the browser (at runtime)! **Node.js** is the environment that allows
+  JavaScript to run "server-side" (outside the browser).
+* **Asynchronous (The "Non-Blocking" Nature):** JS is single-threaded, meaning it executes one command at a time.
+  However, it is asynchronous because it uses an **Event Loop**. This allows JS to start a "slow" task (like fetching
+  data) and move on to other code without freezing the browser, "jumping back" once the task is finished.
 
 ## Variables
 
 ### `let` vs `const` vs `var`
 
 **`const` (Constant)**
-* Use this for 90% of your variables. If you are assigning a value and don't plan on completely overwriting it later, use `const`.
-* `const` means the variable cannot be reassigned. However, if your const is an Array or an Object, you can still modify the stuff inside it (like pushing a new item to the array).
+
+* Use this for 90% of your variables. If you are assigning a value and don't plan on completely overwriting it later,
+  use `const`.
+* `const` means the variable cannot be reassigned. However, if your const is an Array or an Object, you can still modify
+  the stuff inside it (like pushing a new item to the array).
 
 **`let` (Mutable)**
-* Use this when you know the variable's value will need to be reassigned or updated as your code runs. Counters in for loops, math totals, or variables that toggle between true and false. 
+
+* Use this when you know the variable's value will need to be reassigned or updated as your code runs. Counters in for
+  loops, math totals, or variables that toggle between true and false.
 
 ```javascript
 if (true) {
-  let j = 42;
-  const k = 43;
+    let j = 42;
+    const k = 43;
 }
 console.log(j); // ReferenceError: j is not defined, scoped to the if-block (Block Scoped)
 console.log(k); // ReferenceError: k is not defined, scoped to the if-block (Block Scoped)´
 ```
 
 **`var` (Legacy)**
-* You should hardly every use this, you'll see it a lot in older tutorials and legacy codebases, but it is no longer recommended for modern JavaScript.
+
+* You should hardly every use this, you'll see it a lot in older tutorials and legacy codebases, but it is no longer
+  recommended for modern JavaScript.
 * Why not `var`?:
-  * `var` is **function-scoped**, not **block-scoped**, which leads to unexpected behavior.
+    * `var` is **function-scoped**, not **block-scoped**, which leads to unexpected behavior.
 
 ```javascript
 if (true) {
-  var i = 42;
+    var i = 42;
 }
 console.log(i); // 42, scoped beyond the if-block or "globally" (NO GOOD!)
 ```
 
 > [!NOTE]
-> The `const` keyword doesn't stop you from changing the properties of an object... it only stops you from reassigning the variable. **Do not trust `const` objects to have constant contents!**
+> The `const` keyword doesn't stop you from changing the properties of an object... it only stops you from reassigning
+> the variable. **Do not trust `const` objects to have constant contents!**
 
 ```javascript
 const tree = {
-  height: 256,
-  color: "green",
-  cut() {
-    this.height /= 2;
-  },
+    height: 256,
+    color: "green",
+    cut() {
+        this.height /= 2;
+    },
 };
 
 tree.cut();
@@ -2692,10 +2819,10 @@ console.log(tree.height);
 ### `null` vs `undefined`
 
 * `undefined` almost everywhere I would use None in Python.
-  * JavaScript is fairly unique in having two options. Use null in cases where the **behavioral difference matters**, or if you're relying on external code that forces you to use `null`.
+    * JavaScript is fairly unique in having two options. Use null in cases where the **behavioral difference matters**,
+      or if you're relying on external code that forces you to use `null`.
 * `undefined`: It doesn't exist at all.
-* `null`: It (kind of) exists, but it's empty. 
-
+* `null`: It (kind of) exists, but it's empty.
 
 ### Ternary Operators
 
@@ -2708,23 +2835,25 @@ const price = isMember ? "$2.00" : "$10.00";
 // Traditional conditional
 let price;
 if (isMember) {
-  price = "$2.00";
+    price = "$2.00";
 } else {
-  price = "$10.00";
+    price = "$10.00";
 }
 ```
+
 * If `isMember` is true, evaluate to `$2.00`, otherwise evaluate to `$10.00`.
 * A condition followed by a question mark (`?`)
 * An expression to execute if the condition is truthy followed by a colon (`:`)
 * The expression to execute if the condition is falsy.
 
-
 ## Functions
 
 ### Nullish Coalescing
 
-* [Nullish coalescing](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing) operator `??` is a way to handle these cases in a more concise way.
-* If the value on the left of `??` is `null` or `undefined`, the value on the right is returned. Otherwise, the value on the left is returned. **It's a way to set sane defaults for variables that might be empty**.
+* [Nullish coalescing](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing)
+  operator `??` is a way to handle these cases in a more concise way.
+* If the value on the left of `??` is `null` or `undefined`, the value on the right is returned. Otherwise, the value on
+  the left is returned. **It's a way to set sane defaults for variables that might be empty**.
 
 ```javascript
 let myName = null;
@@ -2738,42 +2867,51 @@ console.log(myName ?? "Anonymous"); // "Bob"
 
 ```javascript
 function getMonthlyPrice(tier) {
-  switch(tier){
-    case "basic":
-      return 100 * 100 
-        break;
-      
-    case "premium":
-      return 100 * 150
-      break;
-      
-    case "enterprise":
-      return 100 * 500
-      break;
-      
-    default:
-      return 0
-  }
+    switch (tier) {
+        case "basic":
+            return 100 * 100
+            break;
+
+        case "premium":
+            return 100 * 150
+            break;
+
+        case "enterprise":
+            return 100 * 500
+            break;
+
+        default:
+            return 0
+    }
 }
 ```
 
 ### Scope
 
 #### 1. Global Scope:
+
 * Variables declared globally have the highest level of scope and can be accessed from anywhere in your code.
-* In browsers, global variables are properties of the `window` object. For example, `window.myGlobalVar = 'hello world'` defines a global variable.
+* In browsers, global variables are properties of the `window` object. For example, `window.myGlobalVar = 'hello world'`
+  defines a global variable.
 * In Node.js, global variables are properties of the `global` object: `global.myGlobalVar = 'hello world'`.
 
 #### 2. Module Scope:
-* In ES modules (both in Node.js and modern browsers), variables declared at the top level of a module are scoped to that module. They are not added to the global scope.
+
+* In ES modules (both in Node.js and modern browsers), variables declared at the top level of a module are scoped to
+  that module. They are not added to the global scope.
 * In the browser, using `<script type="module">` creates a module scope for that script.
 
 #### 3. Function Scope:
-* Variables declared with `var` (we try to avoid this) are limited to the function scope. They are accessible only within that function and any nested functions.
+
+* Variables declared with `var` (we try to avoid this) are limited to the function scope. They are accessible only
+  within that function and any nested functions.
 
 #### 4. Block Scope:
-* ES6 introduced block scope with the `let` and `const` keywords. A block is typically defined by curly braces `{}`, like in `if` statements, loops, and other blocks of code.
-* Variables declared with `let` and `const` are confined to their block, making them more predictable and reducing the chances of accidental variable hoisting.
+
+* ES6 introduced block scope with the `let` and `const` keywords. A block is typically defined by curly braces `{}`,
+  like in `if` statements, loops, and other blocks of code.
+* Variables declared with `let` and `const` are confined to their block, making them more predictable and reducing the
+  chances of accidental variable hoisting.
 
 ### Anonymous Functions
 
@@ -2782,12 +2920,12 @@ function getMonthlyPrice(tier) {
 ```javascript
 // using an anonymous function
 conversions(
-  function (a) {
-    return a + a;
-  },
-  1,
-  2,
-  3,
+    function (a) {
+        return a + a;
+    },
+    1,
+    2,
+    3,
 );
 // 2 4 6
 ```
@@ -2800,10 +2938,10 @@ conversions(
 
 ```javascript
 const tournament = {
-  prize: {
-    units: "dollars",
-    value: 100,
-  },
+    prize: {
+        units: "dollars",
+        value: 100,
+    },
 };
 
 const h = tournament.referee.height;
@@ -2811,32 +2949,37 @@ const h = tournament.referee.height;
 ```
 
 > [!NOTE]
-> Here the property of "height" within the referee property doesn't exist within all parent for all objects. SO we use the `?` to avoid the error...
+> Here the property of "height" within the referee property doesn't exist within all parent for all objects. SO we use
+> the `?` to avoid the error...
 
 ```javascript
 const tournament = {
-  prize: {
-    units: "dollars",
-    value: 100,
-  },
+    prize: {
+        units: "dollars",
+        value: 100,
+    },
 };
 
 const h = tournament.referee?.height;
 // h is simply undefined, no error is thrown
 ```
 
-* You should only use `?.` chains when you expect an object may not exist. For example, if according to our business logic, a `user` must have an `address` object, but the `address` object may not have a `street` property, we wouldn't use the optional chaining operator because we expect `user.address` to never be undefined.
+* You should only use `?.` chains when you expect an object may not exist. For example, if according to our business
+  logic, a `user` must have an `address` object, but the `address` object may not have a `street` property, we wouldn't
+  use the optional chaining operator because we expect `user.address` to never be undefined.
 
 ### Short-circuiting
 
-* the logical OR operator (`||`) doesn't just return `true` or `false`. It returns the first "truthy" value it encounters. 
-* If the first value is "falsy" (like `undefined`, `null`, `0`, or `false`), it moves to the second value and returns that instead.
+* the logical OR operator (`||`) doesn't just return `true` or `false`. It returns the first "truthy" value it
+  encounters.
+* If the first value is "falsy" (like `undefined`, `null`, `0`, or `false`), it moves to the second value and returns
+  that instead.
 
 ```javascript
 function welcomeUser(name) {
-  // If name is undefined or an empty string, use "Guest"
-  const displayName = name || "Guest";
-  console.log("Welcome, " + displayName);
+    // If name is undefined or an empty string, use "Guest"
+    const displayName = name || "Guest";
+    console.log("Welcome, " + displayName);
 }
 
 welcomeUser("Alice"); // Welcome, Alice
@@ -2848,46 +2991,51 @@ welcomeUser();        // Welcome, Guest
 ```javascript
 // declaring a function without a variable
 function add(x, y) {
-  return x + y;
+    return x + y;
 }
 ```
+
 ```javascript
 // declaring a function with a variable
 const add = function (x, y) {
-  return x + y;
+    return x + y;
 };
 ```
 
 ```javascript
 // using the fat arrow syntax
 const add = (x, y) => {
-  return x + y;
+    return x + y;
 };
 ```
 
 #### Uses
 
-* Fat arrow functions are usually declared as variables, while the function keyword may or may not be declared as a variable. 
+* Fat arrow functions are usually declared as variables, while the function keyword may or may not be declared as a
+  variable.
 * Fat arrow functions handle object scoping in a more intuitive way
 * Fat arrow functions don't work as constructors
-* Other minor [differences](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#description)
+* Other
+  minor [differences](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#description)
 
 ### Shallow Copies
 
-* The spread syntax [shallow-copies](https://developer.mozilla.org/en-US/docs/Glossary/Shallow_copy) the properties of the objects you're spreading. If properties have the same name, the last (right-most) object's property will overwrite the previous ones.
+* The spread syntax [shallow-copies](https://developer.mozilla.org/en-US/docs/Glossary/Shallow_copy) the properties of
+  the objects you're spreading. If properties have the same name, the last (right-most) object's property will overwrite
+  the previous ones.
 
 ```javascript
 const team_1 = {
-  john: "male",
-  jane: "female",
+    john: "male",
+    jane: "female",
 };
 
 const team_2 = {
-  john: "sigma male",
-  sarah: "female",
+    john: "sigma male",
+    sarah: "female",
 };
 
-const all_teams = { ...team_1, ...team_2 };
+const all_teams = {...team_1, ...team_2};
 /*
 {
   john: 'sigma male',
@@ -2899,34 +3047,36 @@ const all_teams = { ...team_1, ...team_2 };
 
 ### Destructuring
 
-* Used to avoid having to get return values from an object by using the `.` operator. 
+* Used to avoid having to get return values from an object by using the `.` operator.
 * The destructuring assignment lets us unpack object properties easily.
 
 ```javascript
 function getApple() {
-  const apple = {
-    radius: 2,
-    color: "red",
-  };
-  return apple;
+    const apple = {
+        radius: 2,
+        color: "red",
+    };
+    return apple;
 }
 
-const { radius, color } = getApple();
+const {radius, color} = getApple();
 console.log(radius); // 2
 console.log(color); // red
 ```
 
 **No Destructuring**
+
 ```javascript
 function eatApple(apple) {
-  console.log(`ate a ${apple.color} apple with a radius of ${apple.radius}`);
+    console.log(`ate a ${apple.color} apple with a radius of ${apple.radius}`);
 }
 ```
 
 **Destructuring**
+
 ```javascript
-function eatApple({ radius, color }) {
-  console.log(`ate a ${color} apple with a radius of ${radius}`);
+function eatApple({radius, color}) {
+    console.log(`ate a ${color} apple with a radius of ${radius}`);
 }
 ```
 
@@ -2934,21 +3084,22 @@ function eatApple({ radius, color }) {
 
 ### Static Methods
 
-* In JavaScript, a class is just an object template, so when we create a static method or property the object instances can't access it. So, `static` members are often used for utility functions for the class itself.
+* In JavaScript, a class is just an object template, so when we create a static method or property the object instances
+  can't access it. So, `static` members are often used for utility functions for the class itself.
 
 ```javascript
 class User {
-  static numUsers = 0;
+    static numUsers = 0;
 
-  constructor(name, age) {
-    this.name = name;
-    this.age = age;
-    User.numUsers++;
-  }
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+        User.numUsers++;
+    }
 
-  static getNumUsers() {
-    return User.numUsers;
-  }
+    static getNumUsers() {
+        return User.numUsers;
+    }
 }
 
 const user1 = new User("User 1", 25);
@@ -2965,15 +3116,15 @@ console.log(user1.getNumUsers());
 
 ```javascript
 class Titan {
-  constructor(name) {
-    this.name = name;
-  }
+    constructor(name) {
+        this.name = name;
+    }
 }
 
 class BeastTitan extends Titan {
-  speak(msg) {
-    console.log(`${this.name} says, "${msg}"`);
-  }
+    speak(msg) {
+        console.log(`${this.name} says, "${msg}"`);
+    }
 }
 
 const beast = new BeastTitan("Zeke");
@@ -2983,20 +3134,20 @@ beast.speak("You know, it's almost like throwing a baseball");
 
 ```javascript
 class Titan {
-  constructor(name) {
-    this.name = name;
-  }
+    constructor(name) {
+        this.name = name;
+    }
 
-  speak() {
-    // this gets overridden in the BeastTitan class
-    console.log("*titan noises*");
-  }
+    speak() {
+        // this gets overridden in the BeastTitan class
+        console.log("*titan noises*");
+    }
 }
 
 class BeastTitan extends Titan {
-  speak() {
-    console.log(`${this.name} says, "I'm the Beast Titan"`);
-  }
+    speak() {
+        console.log(`${this.name} says, "I'm the Beast Titan"`);
+    }
 }
 
 const pureTitan = new Titan("Eren's mom");
@@ -3012,26 +3163,26 @@ beast.speak();
 
 ```javascript
 class Titan {
-  constructor(name) {
-    this.name = name;
-  }
+    constructor(name) {
+        this.name = name;
+    }
 
-  toString() {
-    return `Titan - Name: ${this.name}`;
-  }
+    toString() {
+        return `Titan - Name: ${this.name}`;
+    }
 }
 
 class BeastTitan extends Titan {
-  constructor(name, power) {
-    // call the parent's constructor
-    super(name);
-    this.power = power;
-  }
+    constructor(name, power) {
+        // call the parent's constructor
+        super(name);
+        this.power = power;
+    }
 
-  toString() {
-    // call the parent's `toString` method
-    return `${super.toString()}, Power: ${this.power}`;
-  }
+    toString() {
+        // call the parent's `toString` method
+        return `${super.toString()}, Power: ${this.power}`;
+    }
 }
 
 const beast = new BeastTitan("Zeke", 9000);
@@ -3041,16 +3192,18 @@ console.log(beast.toString());
 
 ### Prototypal Inheritance
 
-* Every object in JavaScript has a prototype. When an object "inherits" from another object, it's really that its parent is marked as its "prototype". It's called **prototypal inheritance**. The built-in `Object.create()` method creates a new object with its prototype set to the given object.
-* It's basically the original mechanism for the creation of `Classes`. 
+* Every object in JavaScript has a prototype. When an object "inherits" from another object, it's really that its parent
+  is marked as its "prototype". It's called **prototypal inheritance**. The built-in `Object.create()` method creates a
+  new object with its prototype set to the given object.
+* It's basically the original mechanism for the creation of `Classes`.
 
 ```javascript
 const pureTitan = {
-  // (define a parent object / prototype)
-  name: "Eren's mom",
-  speak(msg) {
-    console.log("*titan noises*");
-  },
+    // (define a parent object / prototype)
+    name: "Eren's mom",
+    speak(msg) {
+        console.log("*titan noises*");
+    },
 };
 pureTitan.speak();
 // *titan noises*
@@ -3062,7 +3215,7 @@ console.log(beastTitan.name); // (accessing .name from pureTitan)
 
 beastTitan.name = "Zeke";
 beastTitan.speak = function () {
-  console.log(`${this.name} says, "I'm the Beast Titan"`);
+    console.log(`${this.name} says, "I'm the Beast Titan"`);
 };
 
 beastTitan.speak();
@@ -3076,68 +3229,69 @@ beastTitan.speak();
 ```javascript
 function maxMessagesWithinBudget(budget) {
 
-let totalCost = 0;
-let count = 0;
-  
-  for (let i = 0; ; i++) {
-    
-    let cost = 1.0 + i * 0.01;
-    
-    if (totalCost + cost > budget){
-      break;
-    } else {
-      totalCost+=cost;
-      count++
+    let totalCost = 0;
+    let count = 0;
+
+    for (let i = 0; ; i++) {
+
+        let cost = 1.0 + i * 0.01;
+
+        if (totalCost + cost > budget) {
+            break;
+        } else {
+            totalCost += cost;
+            count++
+        }
     }
-  }
-  return count;
+    return count;
 }
 
-export { maxMessagesWithinBudget };
+export {maxMessagesWithinBudget};
 ```
 
 ### Slicing Arrays
 
 ```javascript
 function splitLogs(logs, word) {
-  // Default values: if no match is found, these are what we return.
-  let before = [];
-  let after = [];
+    // Default values: if no match is found, these are what we return.
+    let before = [];
+    let after = [];
 
-  // Track the index of the matching log. 
-  // -1 is common in JS meaning it's "not found yet".
-  // Declared OUTSIDE the loop so it survives after the loop ends.
-  let index = -1;
+    // Track the index of the matching log. 
+    // -1 is common in JS meaning it's "not found yet".
+    // Declared OUTSIDE the loop so it survives after the loop ends.
+    let index = -1;
 
-  // Walk through every log, checking each one for the slug.
-  for (let i = 0; i < logs.length; i++) {
-    // .includes() returns true if the string contains the specific array of "word" anywhere.
-    if (logs[i].includes(word)) {
-      // slice(0, i) -> everything BEFORE index i (i itself is excluded because the end index of slice is non-inclusive).
-      before = logs.slice(0, i);
+    // Walk through every log, checking each one for the slug.
+    for (let i = 0; i < logs.length; i++) {
+        // .includes() returns true if the string contains the specific array of "word" anywhere.
+        if (logs[i].includes(word)) {
+            // slice(0, i) -> everything BEFORE index i (i itself is excluded because the end index of slice is non-inclusive).
+            before = logs.slice(0, i);
 
-      // slice(i + 1) -> everything AFTER index i.
-      // We skip i itself by starting at i + 1.
-      // Omitting the second argument means "go to the end of the array".
-      after = logs.slice(i + 1);
+            // slice(i + 1) -> everything AFTER index i.
+            // We skip i itself by starting at i + 1.
+            // Omitting the second argument means "go to the end of the array".
+            after = logs.slice(i + 1);
 
-      // Record the index where we found the match.
-      index = i;
+            // Record the index where we found the match.
+            index = i;
 
-      // Stop searching — we only care about the FIRST match. Without break, the loop would keep running unnecessarily.
-      break;
+            // Stop searching — we only care about the FIRST match. Without break, the loop would keep running unnecessarily.
+            break;
+        }
     }
-  }
 
-  // Return an object with all three pieces of info.
-  // If no match was found, before/after stay as empty arrays and index stays as -1.
-  return {
-    before: before,
-    i: index,       // note: the property is named "i", value comes from "index"
-    after: after,
-  };
+    // Return an object with all three pieces of info.
+    // If no match was found, before/after stay as empty arrays and index stays as -1.
+    return {
+        before: before,
+        i: index,       // note: the property is named "i", value comes from "index"
+        after: after,
+    };
 }
-export { splitLogs };
+
+export {splitLogs};
 ```
 
 ## Arrays
@@ -3146,22 +3300,22 @@ export { splitLogs };
 
 ```javascript
 function getPrimaryAndBackupMessages(messages) {
-  // Destructuring the array:
-  // 1. 'primary' gets the first element (index 0). 
-  //    If the array is empty, this is 'undefined'.
-  // 2. '...backups' (the rest operator) collects all remaining elements into a new array.
-  //    If there are no more elements, this becomes an empty array [].
-  const [primary, ...backups] = messages;
+    // Destructuring the array:
+    // 1. 'primary' gets the first element (index 0). 
+    //    If the array is empty, this is 'undefined'.
+    // 2. '...backups' (the rest operator) collects all remaining elements into a new array.
+    //    If there are no more elements, this becomes an empty array [].
+    const [primary, ...backups] = messages;
 
-  // We return an object using "Shorthand Property Names".
-  // { primary, backups } is equivalent to { primary: primary, backups: backups }.
-  return { primary, backups };
+    // We return an object using "Shorthand Property Names".
+    // { primary, backups } is equivalent to { primary: primary, backups: backups }.
+    return {primary, backups};
 }
 
-export { getPrimaryAndBackupMessages };
+export {getPrimaryAndBackupMessages};
 ```
 
-### Sets 
+### Sets
 
 #### Deduplication
 
@@ -3170,7 +3324,7 @@ export { getPrimaryAndBackupMessages };
 
 ```javascript
 function deduplicateEmails(emails) {
-  return [...new Set(emails)]
+    return [...new Set(emails)]
 }
 ```
 
@@ -3179,6 +3333,7 @@ function deduplicateEmails(emails) {
 * Basically a list with examples of ways to manipulate, compare, combine, or modify sets of values.
 
 **Intersection**
+
 * `.intersection()` method returns a new set containing the elements that are in both sets.
 
 ```javascript
@@ -3190,7 +3345,9 @@ console.log(samesies);
 ```
 
 **Difference**
+
 * `.difference()` method returns a new set containing the elements that are in the first set but not in the second set.
+
 ```javascript
 const heroes = new Set(["eren", "mikasa", "armin", "reiner"]);
 const villains = new Set(["eren", "reiner", "bertholdt", "annie"]);
@@ -3200,6 +3357,7 @@ console.log(nonVillains);
 ```
 
 **Union**
+
 * `.union()` method returns a new set containing the elements that are in either set.
 
 ```javascript
@@ -3212,57 +3370,66 @@ console.log(everyone);
 
 ### Maps
 
-* Simple example of looping through an array, accessing the `fname` and `lname` element 
+* Simple example of looping through an array, accessing the `fname` and `lname` element
 
 ```javascript
 function createUserMap(users, fname, lname) {
-  const map = new Map();
-  for (let user of users) {
-    let key = `${user.fname} ${user.lname}`
-    map.set(key, user)
+    const map = new Map();
+    for (let user of users) {
+        let key = `${user.fname} ${user.lname}`
+        map.set(key, user)
     }
-  return map;
+    return map;
 }
 
-export { createUserMap };
+export {createUserMap};
 ```
 
 ### Maps vs. Objects
 
-* When iterating over the `brokenMap`, each entry is destructured into a `[key, value]` pair. The Map's iteration protocol always yields entries in this `[key, value]` order, so the names are positional - not magic.
+* When iterating over the `brokenMap`, each entry is destructured into a `[key, value]` pair. The Map's iteration
+  protocol always yields entries in this `[key, value]` order, so the names are positional - not magic.
 
-* In this broken map, the `key` is not a primitive string but an object: `{ fname: "John", lname: "Doe", tags: [...] }`. Once the iteration binds that object to the name key, we can drill into it using dot notation (`key.fname`, `key.lname`) just like any other JavaScript object. 
+* In this broken map, the `key` is not a primitive string but an object: `{ fname: "John", lname: "Doe", tags: [...] }`.
+  Once the iteration binds that object to the name key, we can drill into it using dot notation (`key.fname`,
+  `key.lname`) just like any other JavaScript object.
 
-* The `value` (the user object) is passed through untouched - we only care about replacing the broken object key with a clean string key.
+* The `value` (the user object) is passed through untouched - we only care about replacing the broken object key with a
+  clean string key.
 
 ```javascript
 function fixUserMap(brokenMap) {
-  let map = new Map();
-  for (const [key, value] of brokenMap) {
-    // key = { fname: "John", lname: "Doe", tags: [...] }
-    // value = the same user object we want to preserve
+    let map = new Map();
+    for (const [key, value] of brokenMap) {
+        // key = { fname: "John", lname: "Doe", tags: [...] }
+        // value = the same user object we want to preserve
 
-    // drill into the key object to extract fname and lname then build a new string key using a template literal
-    let newKey = `${key.fname} ${key.lname}`; // "John Doe"
+        // drill into the key object to extract fname and lname then build a new string key using a template literal
+        let newKey = `${key.fname} ${key.lname}`; // "John Doe"
 
-    // store the user object under the new string key
-    map.set(newKey, value);
-  }
-  return map;
+        // store the user object under the new string key
+        map.set(newKey, value);
+    }
+    return map;
 }
 ```
 
 ## Promises
 
-* [Promise Objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise): Represents the eventual fulfillment or rejection of a promise. In the meantime, while we're waiting for the promise to be fulfilled, our code continues executing. Promises are the most popular modern way to write asynchronous code in JavaScript.
+* [Promise Objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise):
+  Represents the eventual fulfillment or rejection of a promise. In the meantime, while we're waiting for the promise to
+  be fulfilled, our code continues executing. Promises are the most popular modern way to write asynchronous code in
+  JavaScript.
 
-* Promises are the cleanest (but not the only) way to handle the common scenario where we need to make requests to a server, which is typically done via an HTTP request.
-* Almost every time you use a promise it will be to handle some form of I/O (refers to when our code needs to interact with systems outside local variables and functions). 
+* Promises are the cleanest (but not the only) way to handle the common scenario where we need to make requests to a
+  server, which is typically done via an HTTP request.
+* Almost every time you use a promise it will be to handle some form of I/O (refers to when our code needs to interact
+  with systems outside local variables and functions).
 * Common examples of I/O include:
-  * HTTP requests 
-  * Reading files from the hard drive 
-  * Interacting with a Bluetooth device 
-  * Sending data to a database 
+    * HTTP requests
+    * Reading files from the hard drive
+    * Interacting with a Bluetooth device
+    * Sending data to a database
 
 > [!NOTE]
 > Promises help us perform I/O without forcing our entire program to freeze up while we wait for a response.
@@ -3271,15 +3438,19 @@ function fixUserMap(brokenMap) {
 
 <img src="./images/synchronous_vs_asynchronous.png">
 
-* **Synchronous**: means it runs in sequence. Each line of code executes in order, one after the next (e.g., TCP handshake via `SYN` `SYN-ACK` `ACK`)
-* **Asynchronous (async)**: runs concurrently. While the main thread continues running subsequent code, `async` tasks are handled outside the main execution flow and run as system resources allow
-  * For example: the `setTimeout()` function accepts a function and a number of milliseconds as inputs. It sets aside the function to be run after the number of milliseconds has passed, at which point it gets queued for execution when the main thread is available. 
+* **Synchronous**: means it runs in sequence. Each line of code executes in order, one after the next (e.g., TCP
+  handshake via `SYN` `SYN-ACK` `ACK`)
+* **Asynchronous (async)**: runs concurrently. While the main thread continues running subsequent code, `async` tasks
+  are handled outside the main execution flow and run as system resources allow
+    * For example: the `setTimeout()` function accepts a function and a number of milliseconds as inputs. It sets aside
+      the function to be run after the number of milliseconds has passed, at which point it gets queued for execution
+      when the main thread is available.
 
 ```javascript
 console.log("I print first");
 setTimeout(
-        () => console.log("I print third because I'm waiting 100 milliseconds"),
-        100,
+    () => console.log("I print third because I'm waiting 100 milliseconds"),
+    100,
 );
 console.log("I print second");
 
@@ -3290,44 +3461,47 @@ console.log("I print second");
 ```
 
 > ![NOTE]
-> In general, you should aim to write synchronous code whenever possible because it's easier to keep track of, and therefore leads to fewer bugs. But sometimes we need our code to be asynchronous. For example, whenever you update your user settings on a website, your browser needs to communicate those new settings to the server.
+> In general, you should aim to write synchronous code whenever possible because it's easier to keep track of, and
+> therefore leads to fewer bugs. But sometimes we need our code to be asynchronous. For example, whenever you update
+> your
+> user settings on a website, your browser needs to communicate those new settings to the server.
 
-### Async Await 
+### Async Await
 
 ```javascript
 try {
-  // The 'try' block contains the code we HOPE will work.
-  // Execution "pauses" at await.
-  const message = await updateMessageStatus("M123", "Sending", true);
+    // The 'try' block contains the code we HOPE will work.
+    // Execution "pauses" at await.
+    const message = await updateMessageStatus("M123", "Sending", true);
 
-  // If the promise resolves, this next line runs:
-  console.log("Success:", message);
+    // If the promise resolves, this next line runs:
+    console.log("Success:", message);
 } catch (error) {
-  // If the promise is REJECTED (e.g., isDelivered was false), 
-  // execution immediately jumps here. 
-  // The 'error' variable contains the string passed into reject().
-  console.error("Caught an error:", error);
+    // If the promise is REJECTED (e.g., isDelivered was false), 
+    // execution immediately jumps here. 
+    // The 'error' variable contains the string passed into reject().
+    console.error("Caught an error:", error);
 } finally {
-  // Optional: The 'finally' block runs regardless of success or failure.
-  // Great for cleaning up UI states like "Loading..." spinners.
-  console.log("Operation attempt finished.");
+    // Optional: The 'finally' block runs regardless of success or failure.
+    // Great for cleaning up UI states like "Loading..." spinners.
+    console.log("Operation attempt finished.");
 }
 
 function updateMessageStatus(messageId, currentStatus, isDelivered) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (currentStatus === "Sending") {
-        if (isDelivered) {
-          resolve(`Textio Message ${messageId} has been delivered successfully.`);
-        } else {
-          // Awaiting this will trigger the 'catch' block above!
-          reject(`Textio Message ${messageId} is still sending and cannot be marked as delivered.`);
-        }
-      } else {
-        resolve(`Textio Message ${messageId} status updated to ${currentStatus}.`);
-      }
-    }, 1000);
-  });
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (currentStatus === "Sending") {
+                if (isDelivered) {
+                    resolve(`Textio Message ${messageId} has been delivered successfully.`);
+                } else {
+                    // Awaiting this will trigger the 'catch' block above!
+                    reject(`Textio Message ${messageId} is still sending and cannot be marked as delivered.`);
+                }
+            } else {
+                resolve(`Textio Message ${messageId} status updated to ${currentStatus}.`);
+            }
+        }, 1000);
+    });
 }
 ```
 
@@ -3335,68 +3509,81 @@ function updateMessageStatus(messageId, currentStatus, isDelivered) {
 
 ### Single Threaded
 
-* JavaScript is single-threaded meaning that each processes executes one instruction at a time (this is normally inefficient, however JS handles this via **asynchronous** programming and because it's **non-blocking**).
+* JavaScript is single-threaded meaning that each processes executes one instruction at a time (this is normally
+  inefficient, however JS handles this via **asynchronous** programming and because it's **non-blocking**).
 
 <img src="./images/multi_vs_single_threading.png" alt="Multi Threaded vs Single Threading">
 
-* JavaScript can only execute one instruction at a time, but it can continue processing other stuff while it's waiting for something external (like a network request) to complete. If the "many things" you're doing are I/O bound, like:
-  * Network requests 
-  * File system operations 
-  * Timers 
-  * Database queries
+* JavaScript can only execute one instruction at a time, but it can continue processing other stuff while it's waiting
+  for something external (like a network request) to complete. If the "many things" you're doing are I/O bound, like:
+    * Network requests
+    * File system operations
+    * Timers
+    * Database queries
 
 > [!NOTE]
-> If your task is CPU bound (like heavy calculations), JavaScript will struggle. A `Node.js` server will often far outperform a multi-threaded Python, Ruby, or PHP server because of its ability to handle many concurrent connections without much overhead. 
-> On the other hand, it will usually be outperformed by a multi-threaded Java, Go, C++, or Rust server when it comes to heavy computation.
+> If your task is CPU bound (like heavy calculations), JavaScript will struggle. A `Node.js` server will often far
+> outperform a multi-threaded Python, Ruby, or PHP server because of its ability to handle many concurrent connections
+> without much overhead.
+> On the other hand, it will usually be outperformed by a multi-threaded Java, Go, C++, or Rust server when it comes to
+> heavy computation.
 
 ### Task Queue ("Macro" task)
 
-* The task queue (also known as the "message queue") is where asynchronous tasks are queued up to be processed. **HOWEVER,** JS is non-blocking, so the tasks in the queue can't be handled immediately.
+* The task queue (also known as the "message queue") is where asynchronous tasks are queued up to be processed. *
+  *HOWEVER,** JS is non-blocking, so the tasks in the queue can't be handled immediately.
 
 #### Purposes of a Task Queue
 
-1. **Not blocking the main thread (responsiveness)** 
-JS is single-threaded. If you run a giant loop synchronously, the whole UI freezes - no clicks, no scrolling, nothing renders. Breaking heavy work into chunks via `setTimeout` lets the browser slip in rendering and input handling between chunks.
+1. **Not blocking the main thread (responsiveness)**
+   JS is single-threaded. If you run a giant loop synchronously, the whole UI freezes - no clicks, no scrolling, nothing
+   renders. Breaking heavy work into chunks via `setTimeout` lets the browser slip in rendering and input handling
+   between chunks.
 
 ```javascript
 function processHugeList(items, i = 0) {
-  const chunk = items.slice(i, i + 1000);
-  doWork(chunk);
-  if (i + 1000 < items.length) {
-    setTimeout(() => processHugeList(items, i + 1000), 0); // yield, then continue
-  }
+    const chunk = items.slice(i, i + 1000);
+    doWork(chunk);
+    if (i + 1000 < items.length) {
+        setTimeout(() => processHugeList(items, i + 1000), 0); // yield, then continue
+    }
 }
 ```
 
 2. **Letting current work finish first (ordering)**
-Exactly what you did in this lesson. Defer something so it runs after all the synchronous state changes settle. Common when you need a value to be "final" before acting on it.
+   Exactly what you did in this lesson. Defer something so it runs after all the synchronous state changes settle.
+   Common when you need a value to be "final" before acting on it.
 
 3. **I/O and waiting without blocking**
-This is the big one in the backend world. Network requests, file reads, timers - these don't sit and block. Their callbacks get queued and run when the data is ready and the stack is clear. It's how a Node server handles thousands of connections on one thread.
+   This is the big one in the backend world. Network requests, file reads, timers - these don't sit and block. Their
+   callbacks get queued and run when the data is ready and the stack is clear. It's how a Node server handles thousands
+   of connections on one thread.
 
 4. **Breaking up "too much recursion" / deep call stacks**
-Deferring a recursive step to the queue resets the call stack, sidestepping stack-overflow limits for very deep async chains.
+   Deferring a recursive step to the queue resets the call stack, sidestepping stack-overflow limits for very deep async
+   chains.
 
 > [!TIP]
-> **Rule of Thumb:** When the call stack is empty, the event loop (managed by the JS runtime) checks the task queue. If there are tasks in the queue, it pushes the first one onto the call stack to be executed.
+> **Rule of Thumb:** When the call stack is empty, the event loop (managed by the JS runtime) checks the task queue. If
+> there are tasks in the queue, it pushes the first one onto the call stack to be executed.
 
 ```javascript
 function startJob() {
-    
-  setTimeout(() => {
-    console.log("Hi I'm async!");
-  }, 0);
-  console.log("Job started");
-  workOnJob();
+
+    setTimeout(() => {
+        console.log("Hi I'm async!");
+    }, 0);
+    console.log("Job started");
+    workOnJob();
 }
 
 function workOnJob() {
-  console.log("Working on job");
-  finishJob();
+    console.log("Working on job");
+    finishJob();
 }
 
 function finishJob() {
-  console.log("Job finished");
+    console.log("Job finished");
 }
 
 startJob();
@@ -3407,39 +3594,41 @@ startJob();
 // Job finished
 // Hi I'm async!
 ```
-* Here we are pushing into the task queue to be executed **after** the call stack is empty, and **it's not empty until the final nested function `finishJob` returns**.
+
+* Here we are pushing into the task queue to be executed **after** the call stack is empty, and **it's not empty until
+  the final nested function `finishJob` returns**.
 
 #### Task Queue With Parameters Passed within Function
 
 ```javascript
 function processMessages(messages) {
-  let success = true;
-  
-  // This callback will run 
-  setTimeout(() => {
-    finalizeJob(success, messages);
-  }, 0);
-  
-  console.log(`Processing messages: ${messages}`);
-  if (messages < 0) {
-    console.log("invalid data: how do we have negative messages??");
-    success = false;
-    return;
-  }
-  if (messages > 100) {
-    console.log("invalid data: way too many messages");
-    success = false;
-    return;
-  }
-  
-  console.log("Doing more stuff...");
+    let success = true;
+
+    // This callback will run 
+    setTimeout(() => {
+        finalizeJob(success, messages);
+    }, 0);
+
+    console.log(`Processing messages: ${messages}`);
+    if (messages < 0) {
+        console.log("invalid data: how do we have negative messages??");
+        success = false;
+        return;
+    }
+    if (messages > 100) {
+        console.log("invalid data: way too many messages");
+        success = false;
+        return;
+    }
+
+    console.log("Doing more stuff...");
 }
 
 function finalizeJob(success, messages) {
-  const msg = success
-    ? `Processed ${messages} successfully!`
-    : `Failed to process messages!`;
-  console.log(msg);
+    const msg = success
+        ? `Processed ${messages} successfully!`
+        : `Failed to process messages!`;
+    console.log(msg);
 }
 
 // ...
@@ -3448,34 +3637,38 @@ function finalizeJob(success, messages) {
 ### Microtask Queue
 
 * The **microtask queue** is a **mechanism for scheduling tasks to be executed later**.
-* It operates under different rules and is used for different purposes. The nature of microtasks is that **they represent smaller, shorter-lived operations** compared to tasks in the task queue.
+* It operates under different rules and is used for different purposes. The nature of microtasks is that **they
+  represent smaller, shorter-lived operations** compared to tasks in the task queue.
 * Lastly and importantly, **promises use the microtask queue** to schedule their `.then()` and `.catch()` callbacks.
 
 There are two important differences between the **task queue ("macro" task")** and the **microtask queue**:
-* **Order of Execution:** All microtasks are executed before the next task in the task queue. 
-* **Addition of Microtasks:** Microtasks can add more microtasks to the queue, and those will still execute before the next "macro" task.
+
+* **Order of Execution:** All microtasks are executed before the next task in the task queue.
+* **Addition of Microtasks:** Microtasks can add more microtasks to the queue, and those will still execute before the
+  next "macro" task.
 
 > [!NOTE]
-> The differentiation between each isn't something to immediately worry about. 
-> You can think about promises and callbacks as just "asynchronous operations that will run later". **You typically won't (and it's often a bad sign if you do) care about the exact order** that their callbacks will run.
+> The differentiation between each isn't something to immediately worry about.
+> You can think about promises and callbacks as just "asynchronous operations that will run later". **You typically
+won't (and it's often a bad sign if you do) care about the exact order** that their callbacks will run.
 
 ```javascript
 function main() {
-  console.log("main start");
+    console.log("main start");
 
-  setTimeout(() => {
-    console.log("macrotask 1 finished");
-  }, 0);
+    setTimeout(() => {
+        console.log("macrotask 1 finished");
+    }, 0);
 
-  Promise.resolve()
-    .then(() => {
-      console.log("microtask 1 finished");
-    })
-    .then(() => {
-      console.log("microtask 2 finished");
-    });
+    Promise.resolve()
+        .then(() => {
+            console.log("microtask 1 finished");
+        })
+        .then(() => {
+            console.log("microtask 2 finished");
+        });
 
-  console.log("main end");
+    console.log("main end");
 }
 
 main();
@@ -3489,87 +3682,107 @@ main();
 ```
 
 > [!NOTE]
-> A useful heuristic is as follows: 
+> A useful heuristic is as follows:
 > All the microtasks run before the next task in the task queue.
 
 ### Concurrency
 
 Concurrency means the following:
 
-* There's only one thread in the runtime 
-* The main thread can't be blocked by asynchronous tasks 
+* There's only one thread in the runtime
+* The main thread can't be blocked by asynchronous tasks
 * The results of asynchronous tasks are pushed into the task queue
 
 **HOWEVER** during an event loop or "macro" task, what happens and what holds off the logic for 1000 ms?
 
 ```javascript
 setTimeout(() => {
-  console.log("Hi I'm async!");
+    console.log("Hi I'm async!");
 }, 1000);
 ```
 
-**External APIs** come into play - things like `setTimeout`, `fetch`, and `addEventListener` are all examples of external APIs that the browser or `Node.js`, `Deno`, or `Bun` provide – they are not part of the core JavaScript language.
+**External APIs** come into play - things like `setTimeout`, `fetch`, and `addEventListener` are all examples of
+external APIs that the browser or `Node.js`, `Deno`, or `Bun` provide – they are not part of the core JavaScript
+language.
 
-The JavaScript runtime (your code and the JS engine) is single-threaded, but these external APIs are not. The host environment can run them in the background (often on separate threads or system-level services), and when they're done, the host environment pushes their results into the task queue for the event loop to handle.
+The JavaScript runtime (your code and the JS engine) is single-threaded, but these external APIs are not. The host
+environment can run them in the background (often on separate threads or system-level services), and when they're done,
+the host environment pushes their results into the task queue for the event loop to handle.
 
 ## Runtimes
 
 ### Polyfill and Transpiler
 
-* A **polyfill** is an extra bit of code you include to add functionality that some browsers might not support. For example, maybe Chrome allows you to use the fancy new `Array.prototype.flat()` method, but Internet Explorer 11 doesn't. You can include a polyfill (just some extra JavaScript code) that adds that method to the `Array` prototype so that your code works in both browsers.
+* A **polyfill** is an extra bit of code you include to add functionality that some browsers might not support. For
+  example, maybe Chrome allows you to use the fancy new `Array.prototype.flat()` method, but Internet Explorer 11
+  doesn't. You can include a polyfill (just some extra JavaScript code) that adds that method to the `Array` prototype
+  so that your code works in both browsers.
 
-* A **transpiler** (in the context of adding new JavaScript features) is basically a polyfill on steroids. Instead of just adding a method here or a property there, **a transpiler will take your entire JavaScript file and convert it into an older version of JavaScript that is known to work in all browsers**. For example, it might take your fancy `async` and `await` keywords and convert them into a bunch of `Promise` objects and `.then()` calls. Babel is the most popular transpiler for JavaScript.
+* A **transpiler** (in the context of adding new JavaScript features) is basically a polyfill on steroids. Instead of
+  just adding a method here or a property there, **a transpiler will take your entire JavaScript file and convert it
+  into an older version of JavaScript that is known to work in all browsers**. For example, it might take your fancy
+  `async` and `await` keywords and convert them into a bunch of `Promise` objects and `.then()` calls. Babel is the most
+  popular transpiler for JavaScript.
 
 ## Bundlers
 
-* Bundlers are tools that allow you to write code in a modular and easy-to-manage way, and then bundle it in a way that's optimized for production. For example, you probably want a giant front-end application to exist in your codebase as many hundreds of files, but you want to serve it to your visitors as a single file or one file per page.
+* Bundlers are tools that allow you to write code in a modular and easy-to-manage way, and then bundle it in a way
+  that's optimized for production. For example, you probably want a giant front-end application to exist in your
+  codebase as many hundreds of files, but you want to serve it to your visitors as a single file or one file per page.
 
 > [!NOTE]
-> Basically the equivalent of running `yarn run build` at the root of your project that allows your application to be rolled up and deployed. 
+> Basically the equivalent of running `yarn run build` at the root of your project that allows your application to be
+> rolled up and deployed.
 
 # TypeScript
 
 * [TypeScript](https://www.typescriptlang.org/) is a typed superset of JavaScript that transpiles to plain JavaScript.
-  * **Basically:** it allows you to have better control over code that runs in the browser (JavaScript) by dyanmically assigning data `types` and checks those assigned types before the code runs making it much more robust.
+    * **Basically:** it allows you to have better control over code that runs in the browser (JavaScript) by dyanmically
+      assigning data `types` and checks those assigned types before the code runs making it much more robust.
 
 > [!NOTE]
-> Like Java forcing the user to assign Primitive (`String`, `Integer`, `Objects`) or non-primitive reference types (`int`, `double`, `float`, `bool`) to variables.
+> Like Java forcing the user to assign Primitive (`String`, `Integer`, `Objects`) or non-primitive reference types (
+`int`, `double`, `float`, `bool`) to variables.
 
 ## Types
 
 ### `any` Type: JavaScript to TypeScript Migration
 
-* The `any` type is useful when you **migrate an existing JavaScript codebase to TypeScript**. 
+* The `any` type is useful when you **migrate an existing JavaScript codebase to TypeScript**.
 * The (very simplified) process is:
-  * Change file extensions from `.js` to `.ts`
-  * Get tsc running without errors (often works out of the box, due to `any`)
-  * Overtime replace `any` with more specific types.
+    * Change file extensions from `.js` to `.ts`
+    * Get tsc running without errors (often works out of the box, due to `any`)
+    * Overtime replace `any` with more specific types.
 
 ### Inferred vs Explicit Return Types
 
 **Inferred (Implicit) Return Type:**
 
-* Here we don't explicitly state what the return type should be due to both the parameter types being numbers. 
+* Here we don't explicitly state what the return type should be due to both the parameter types being numbers.
 * It's implied that the return type will obviously be a number.
 
 ```typescript
 function divide(a: number, b: number) {
-  return a / b;
+    return a / b;
 }
 ```
 
 **Referred (Explicit) Return Type:**
 
-* Here we explicitly state what the return type should be so that there is not confusion on what should be returned. Similar to how Python has return type-hints:
+* Here we explicitly state what the return type should be so that there is not confusion on what should be returned.
+  Similar to how Python has return type-hints:
+
 ```python
 def some_func(a: int, b: int) -> int:
     return a + b
 ```
-* Typically, referred (explicit) return types are **more narrow and explicit** and prevent you from creating to broad of data types as your programming.
+
+* Typically, referred (explicit) return types are **more narrow and explicit** and prevent you from creating to broad of
+  data types as your programming.
 
 ```typescript
 function divide(a: number, b: number): number {
-  return a / b;
+    return a / b;
 }
 ```
 
@@ -3580,7 +3793,9 @@ function divide(a: number, b: number): number {
 
 ### Type Alias
 
-* This is an introduction into interfaces and the utility of **shaped-based matching** in TS. This means that so long as the "shape" of the function/data matches. TS doesn't care about the naming of the function named **dynamic flexibility**
+* This is an introduction into interfaces and the utility of **shaped-based matching** in TS. This means that so long as
+  the "shape" of the function/data matches. TS doesn't care about the naming of the function named **dynamic flexibility
+  **
 
 ```typescript
 
@@ -3589,11 +3804,11 @@ function divide(a: number, b: number): number {
 export type SupportResponse = (name: string) => string;
 
 export function greetCustomer(name: string) {
-  return `Hello ${name}, welcome to Support.ai! How can I assist you today?`;
+    return `Hello ${name}, welcome to Support.ai! How can I assist you today?`;
 }
 
 export function farewellCustomer(name: string) {
-  return `Goodbye ${name}, have a great day!`;
+    return `Goodbye ${name}, have a great day!`;
 }
 
 export function curseAtCustomer(name: string) {
@@ -3603,7 +3818,9 @@ export function curseAtCustomer(name: string) {
 
 ## Unions
 
-* Union types use the pipe symbol (`|`) and allow you to specify that a value can be one of several types. Basically a dynamic way to have the flexibility to chose between a variety of data types (e.g., number, string, bool, etc.) if you anticipate there being a variety of types.
+* Union types use the pipe symbol (`|`) and allow you to specify that a value can be one of several types. Basically a
+  dynamic way to have the flexibility to chose between a variety of data types (e.g., number, string, bool, etc.) if you
+  anticipate there being a variety of types.
 
 ```typescript
 // userId is a string OR a number
@@ -3612,24 +3829,28 @@ userId = "user_42";
 userId = 42;
 ```
 
-* Here we are using TypeScript for **type narrowing** where we state the range of potential types that the data we are recieving may be.
-* What's also interesting here is the destructuring that taking place, rather than discard the rest of our string and traverse by index (we might want other parts of our string later), we destructure and store the other parts of the string inside the `_prefix` variable.
+* Here we are using TypeScript for **type narrowing** where we state the range of potential types that the data we are
+  recieving may be.
+* What's also interesting here is the destructuring that taking place, rather than discard the rest of our string and
+  traverse by index (we might want other parts of our string later), we destructure and store the other parts of the
+  string inside the `_prefix` variable.
 
 > [!NOTE]
-> Destructuring really shines over parsed[0], parsed[1], parsed[2]. Named variables are self-documenting in a way indices aren't. 
+> Destructuring really shines over parsed[0], parsed[1], parsed[2]. Named variables are self-documenting in a way
+> indices aren't.
 > So both approaches are valid - destructuring just tends to scale better as the number of parts grows.
 
 ```typescript
 export function getTicketInfo(id: string | number) {
-    
+
     // Example string: "USER-123"
-  if (typeof id === "string") {
-      
-      // _prefix: USER; idNum: 123
-    const [_prefix, idNum] = id.split("-");
-    return `Processing ticket: ${idNum}`;
-  }
-  return `Processing ticket: ${id}`;
+    if (typeof id === "string") {
+
+        // _prefix: USER; idNum: 123
+        const [_prefix, idNum] = id.split("-");
+        return `Processing ticket: ${idNum}`;
+    }
+    return `Processing ticket: ${id}`;
 }
 ```
 
@@ -3647,10 +3868,10 @@ const [level, code, path] = log.split("-");
 
 ```typescript
 function greet(name: string, title?: string): string {
-  if (title) {
-    return `Hello, ${title} ${name}!`;
-  }
-  return `Hello, ${name}!`;
+    if (title) {
+        return `Hello, ${title} ${name}!`;
+    }
+    return `Hello, ${name}!`;
 }
 
 greet("Gandalf");           // "Hello, Gandalf!"
@@ -3659,23 +3880,25 @@ greet("Gandalf", "Wizard"); // "Hello, Wizard Gandalf!"
 
 ### Default Parameters
 
-* Quick example of default parameters, with a few things to note: 
-  * You don't need to specify the return type when using default parameters because TypeScript will infer the return types based off of what the parameter type is set to.
-  * Just because you've set the default parameters, this doesn't prevent you from overriding the parameters that are currently being passed. 
+* Quick example of default parameters, with a few things to note:
+    * You don't need to specify the return type when using default parameters because TypeScript will infer the return
+      types based off of what the parameter type is set to.
+    * Just because you've set the default parameters, this doesn't prevent you from overriding the parameters that are
+      currently being passed.
 
 ```typescript
 export function estimateResponseTime(promptLength: number = 100, modelType: string = "text") {
-  
-  if (modelType === "text") {
-    return Math.round(2 + (0.01 * promptLength))
-  }
-  if (modelType === "image") {
-    return Math.round(5 + (0.02 * promptLength))
-  }
-  if (modelType === "code") {
-    return Math.round(3 + (0.05 * promptLength))
-  }
-  return 0.0;
+
+    if (modelType === "text") {
+        return Math.round(2 + (0.01 * promptLength))
+    }
+    if (modelType === "image") {
+        return Math.round(5 + (0.02 * promptLength))
+    }
+    if (modelType === "code") {
+        return Math.round(3 + (0.05 * promptLength))
+    }
+    return 0.0;
 }
 ```
 
@@ -3683,18 +3906,21 @@ export function estimateResponseTime(promptLength: number = 100, modelType: stri
 
 ### Rest Parameters
 
-* Allow an **indefinite number of final arguments**, and brings them into the function body as an array. They're denoted by three dots (`...`) before the parameter name.
+* Allow an **indefinite number of final arguments**, and brings them into the function body as an array. They're denoted
+  by three dots (`...`) before the parameter name.
+
 ```typescript
 function multiply(n: number, ...m: number[]) {
-  return m.map((x) => n * x);
+    return m.map((x) => n * x);
 }
+
 // 'a' gets value [10, 20, 30, 40]
 const a = multiply(10, 1, 2, 3, 4);
 ```
 
 ```typescript
 function gatherParty(partyName: string, ...adventurers: string[]): string {
-  return `${partyName} consists of: ${adventurers.join(", ")}`;
+    return `${partyName} consists of: ${adventurers.join(", ")}`;
 }
 
 const msg = gatherParty("The Fellowship", "Frodo", "Sam", "Gandalf");
@@ -3704,17 +3930,19 @@ console.log(msg);
 
 ### Spread Operator
 
-* spread (`...`) syntax allows an iterable, such as an array or string, to be expanded in places where zero or more arguments. 
-* Basically, it's an easy way to iterate through an array or list of objects without needing to do a for loop to access those elements via key-value pairs.
+* spread (`...`) syntax allows an iterable, such as an array or string, to be expanded in places where zero or more
+  arguments.
+* Basically, it's an easy way to iterate through an array or list of objects without needing to do a for loop to access
+  those elements via key-value pairs.
 
 ```javascript
 const array = [1, 2, 3];
-const obj = { ...array }; // { 0: 1, 1: 2, 2: 3 }
+const obj = {...array}; // { 0: 1, 1: 2, 2: 3 }
 ```
 
 ```javascript
 function sum(x, y, z) {
-  return x + y + z;
+    return x + y + z;
 }
 
 const numbers = [1, 2, 3];
@@ -3726,48 +3954,221 @@ console.log(sum.apply(null, numbers));
 // Expected output: 6
 ```
 
+## Objects
+
+### Exporting Object Types
+
+* Useful feature of TypeScript that allows you export Objects with a list of types attached to it so that when you
+  assign a variable with that type you can access and assign a variety of other types to it:
+
+```typescript
+export type Saiyan = {
+    name: string;
+    power: number;
+};
+
+function logSaiyan(saiyan: Saiyan) {
+    console.log(`${saiyan.name} has power level: ${saiyan.power}!`);
+    // ...
+}
+```
+
+### Discriminate Unions
+
+* Discriminant properties: (or "tags") are just a properties that tell you which type you're dealing with, and makes it
+  easy to use conditional logic to handle each type. What is special about it is it can only be one value.
+
+```typescript
+type MultipleChoiceLesson = {
+    kind: "multiple-choice"; // Discriminant property
+    question: string;
+    studentAnswer: string;
+    correctAnswer: string;
+};
+
+type CodingLesson = {
+    kind: "coding"; // Discriminant property
+    studentCode: string;
+    solutionCode: string;
+};
+
+type Lesson = MultipleChoiceLesson | CodingLesson;
+
+function isCorrect(lesson: Lesson): boolean {
+    switch (lesson.kind) {
+        case "multiple-choice":
+            return lesson.studentAnswer === lesson.correctAnswer;
+        case "coding":
+            return lesson.studentCode === lesson.solutionCode;
+    }
+}
+```
+
+### Sets
+
+* `Sets` are collections of unique values. You can ensure that all the values in the set are of the same type by
+  specifying a type parameter: `<T>`.
+
+```typescript
+// A Set that contains only strings
+const justiceLeague = new Set<string>();
+
+justiceLeague.add("foo-bar");
+justiceLeague.add("bar-foo");
+
+// Error: Argument of type '2' is not assignable to parameter of type 'string'
+justiceLeague.add(2);
+```
+
+> [!TIP]
+> You can also convert an array into a set to remove duplicate values.
+
+```typescript
+// A Set automatically removes duplicate values from an array
+const names = ["plasticman", "firestorm", "plasticman"];
+const justiceLeague = new Set<string>(names);
+
+console.log(justiceLeague);
+// Set { 'plasticman', 'firestorm' }
+```
+
+### Maps
+
+* Built-in function (similar to Python's dictionaries) which are a collection of key-value pairs specified via `<K,V>`
+  parameters.
+
+```typescript
+// A Map with string keys and number values
+const podracerSpeeds = new Map<string, number>();
+
+podracerSpeeds.set("Anakin Skywalker", 947);
+podracerSpeeds.set("Sebulba", 941);
+
+podracerSpeeds.set("R2-D2", true);
+// Error: Argument of type 'true' is not assignable to parameter of type 'number'
+
+podracerSpeeds.set(420, 69);
+// Error: Argument of type 'number' is not assignable to parameter of type 'string'
+```
+
+* Simple iteration over a map:
+
+```typescript
+for (const [racer, speed] of podracerSpeeds) {
+    console.log(`${racer} raced at ${speed} speed`);
+}
+// Anakin raced at 947 speed
+// Sebulba raced at 941 speed
+```
+
+* The most important methods of a map: `get`, `delete`, `has`
+
+```typescript
+console.log(podracerSpeeds.get("Sebulba"));
+// 941
+
+console.log(podracerSpeeds.has("Sebulba"));
+// true
+
+podracerSpeeds.delete("Sebulba");
+console.log(podracerSpeeds.get("Sebulba"));
+// undefined
+```
+
+### Dynamic Keys
+
+* These keys are useful when you want to allow the user to input their own custom key-value pairs for their own records.
+* Dynamic keys allow you to model the data that your program should accept from the user before the value is sent to the
+  backend.
+
+```typescript
+type UserInput = {
+    [key: string]: number;
+}
+```
+
+```typescript
+const info: UserInput = {
+    myAge: 50,
+    myHobbies: 2,
+    savingsGoal: 2000,
+};
+
+info["graduationYear"] = 2021; // OK
+info["favoriteSong"] = "Janice STFU"; // Error: Type 'string' is not assignable to type 'number'
+```
+
+* Here we constrain the allowable input of the user to match our dynamic key of `string:number`.
+
+### Dynamic Default Properties
+
+> [!NOTE]
+> Useful property that allows both required and additional user fields.
+> The rule of thumb is that you should only use Dynamic Keys when you **absolutely need** unknown keys.
+
+```typescript
+type FormData = {
+    [field: string]: string | number | boolean;
+    email: string;
+    password: string;
+    age: number;
+};
+```
+
+* This Dynamic Default Property says: "require `email`, `password`, `age` AND accept any other key-value with a key of
+  string and values that can be string, number or boolean"
 
 # SQL Basics
 
 ## NoSQL vs. SQL Databases
 
-* **NoSQL** database is a database that does not use SQL (Structured Query Language). 
-* Each [NoSQL](https://en.wikipedia.org/wiki/NoSQL) typically has its own way of writing and executing queries. For example, MongoDB uses MQL (MongoDB Query Language), and ElasticSearch has a JSON API and uses its own ESQL (Elastic Query Language). 
+* **NoSQL** database is a database that does not use SQL (Structured Query Language).
+* Each [NoSQL](https://en.wikipedia.org/wiki/NoSQL) typically has its own way of writing and executing queries. For
+  example, MongoDB uses MQL (MongoDB Query Language), and ElasticSearch has a JSON API and uses its own ESQL (Elastic
+  Query Language).
 * NoSQL databases are typically used for more niche purposes, popular NoSQL databases included:
-  * [MongoDB](https://en.wikipedia.org/wiki/MongoDB)
-  * [Cassandra](https://en.wikipedia.org/wiki/Apache_Cassandra)
-  * [CouchDB](https://en.wikipedia.org/wiki/Apache_CouchDB)
-  * [DynamoDB](https://en.wikipedia.org/wiki/Amazon_DynamoDB)
-  * [ElasticSearch](https://www.elastic.co/)
+    * [MongoDB](https://en.wikipedia.org/wiki/MongoDB)
+    * [Cassandra](https://en.wikipedia.org/wiki/Apache_Cassandra)
+    * [CouchDB](https://en.wikipedia.org/wiki/Apache_CouchDB)
+    * [DynamoDB](https://en.wikipedia.org/wiki/Amazon_DynamoDB)
+    * [ElasticSearch](https://www.elastic.co/)
 
 **Differences:**
+
 * NoSQL databases are usually non-relational, SQL databases are usually relational
 * SQL databases usually have a defined schema, NoSQL databases usually have a dynamic schema.
-* SQL databases are table-based (more general purpose), NoSQL databases have a variety of different storage methods, such as document, key-value, graph, wide-column, and more.
+* SQL databases are table-based (more general purpose), NoSQL databases have a variety of different storage methods,
+  such as document, key-value, graph, wide-column, and more.
 
 > [!NOTE]
 >
-> The choice of the database you choose for your web-application is very important. For most simple web-applications `PostgreSQL` is sufficient and can scale with the application.
+> The choice of the database you choose for your web-application is very important. For most simple web-applications
+`PostgreSQL` is sufficient and can scale with the application.
 >
-> **HOWEVER**, if your data changes overtime, a more flexible and customizable databases or add-ons (e.g., `Redis` for caching) wil be needed.
+> **HOWEVER**, if your data changes overtime, a more flexible and customizable databases or add-ons (e.g., `Redis` for
+> caching) wil be needed.
 
 ## SQLite vs PostgreSQL
 
-* [DB-Engines](https://db-engines.com/en/ranking): popular DB ranking site that compares popular databases for full comparisons.
-* `SQLite`: a serverless database management system (DBMS) that has the ability to run within applications (e.g., quiz applications, geo-location/bluetooth software, etc.). 
-  * It also uses a "loose type system" where data types that are set are flexible.
-* `PostgreSQL`: uses a Client-Server model and requires a server to be installed and listening on a network, similar to an HTTP server.
+* [DB-Engines](https://db-engines.com/en/ranking): popular DB ranking site that compares popular databases for full
+  comparisons.
+* `SQLite`: a serverless database management system (DBMS) that has the ability to run within applications (e.g., quiz
+  applications, geo-location/bluetooth software, etc.).
+    * It also uses a "loose type system" where data types that are set are flexible.
+* `PostgreSQL`: uses a Client-Server model and requires a server to be installed and listening on a network, similar to
+  an HTTP server.
 
 ### Database Migrations
 
-* A change to the structure of a relational database (e.g., like a commit in Git, but for your database schema). 
+* A change to the structure of a relational database (e.g., like a commit in Git, but for your database schema).
 * Good migrations take into consideration the following:
-  * The **old** currently running version of the code.
-  * The **new** version of the code that will run after the migration is complete.
+    * The **old** currently running version of the code.
+    * The **new** version of the code that will run after the migration is complete.
 
 > [!WARNING]
 >
-> You **SHOULD NOT** update an existing column that is being actively used in production. It will lead to a broken database. Instead, use the following database migration techniques: 
+> You **SHOULD NOT** update an existing column that is being actively used in production. It will lead to a broken
+> database. Instead, use the following database migration techniques:
 
 **Multi-Phase Rollouts**
 
@@ -3779,79 +4180,88 @@ console.log(sum.apply(null, numbers));
 
 > [!NOTE]
 >
-> Generally you **SHOULD NOT** update an existing and actively used column that is active in production, it will break your application!
+> Generally you **SHOULD NOT** update an existing and actively used column that is active in production, it will break
+> your application!
 >
 > Alternatively, you can simply just schedule downtime IF you believe that your users would be okay with this.
 
 1. Run a migration to create a `NEW_COLUMN`.
 2. Copy over the `OLD_COLUMN` data to the `NEW_COLUMN`.
 3. Deploy the code that uses the `NEW_COLUMN`, NOT the `OLD_COLUMN`.
-4. Recopy the data from the `OLD_COLUMN` to the `NEW_COLUMN` to catch anything that was missed during the column creation.
+4. Recopy the data from the `OLD_COLUMN` to the `NEW_COLUMN` to catch anything that was missed during the column
+   creation.
 5. Run a last migration to finally remove the `OLD_COLUMN` from the updated table.
 
 ### Up and Down Migrations
 
-* `up.sql` Migrations:  
-  * Applies changes to move your schema forward.
+* `up.sql` Migrations:
+    * Applies changes to move your schema forward.
 * `down.sql` Migrations:
-  * Rolls those changes back to the previous state and should always be the inverse of the up migration. 
-  * It should only be used during the case of **failure**.
-  * Undo changes introduced by an up migration
-  * Quickly recover from bugs or compatibility issues in production
-  * Keep our schema consistent across environments (local, staging, production)
+    * Rolls those changes back to the previous state and should always be the inverse of the up migration.
+    * It should only be used during the case of **failure**.
+    * Undo changes introduced by an up migration
+    * Quickly recover from bugs or compatibility issues in production
+    * Keep our schema consistent across environments (local, staging, production)
 
 > [!NOTE]
-> Down migrations can re-add specific columns or feature to the database, **BUT** they cannot recover the lost data that was removed!
+> Down migrations can re-add specific columns or feature to the database, **BUT** they cannot recover the lost data that
+> was removed!
 
 #### Example Up and Down Migration
 
-* Example of raw SQL commands showing migrations, typically migrations are managed using tools to track which migrations have been applied, organizing migrations files, and applying roll backs safely.
+* Example of raw SQL commands showing migrations, typically migrations are managed using tools to track which migrations
+  have been applied, organizing migrations files, and applying roll backs safely.
 
-| Tool | Language | Notes |
-| :--- | :--- | :--- |
-| Goose | Go | Native Go tool |
-| Flyway | Java, etc. | Simple file-based |
-| Liquibase | Java | More config-heavy |
-| Alembic | Python | For SQLAlchemy |
-| Prisma Migrate | Node.js | Works with Prisma ORM |
+| Tool           | Language   | Notes                 |
+|:---------------|:-----------|:----------------------|
+| Goose          | Go         | Native Go tool        |
+| Flyway         | Java, etc. | Simple file-based     |
+| Liquibase      | Java       | More config-heavy     |
+| Alembic        | Python     | For SQLAlchemy        |
+| Prisma Migrate | Node.js    | Works with Prisma ORM |
 
 ```sql
 -- Up Migration
-ALTER TABLE projects RENAME TO initiatives;
+ALTER TABLE projects
+    RENAME TO initiatives;
 
 ALTER TABLE initiatives
-ADD COLUMN launched_at TIMESTAMP;
+    ADD COLUMN launched_at TIMESTAMP;
 ```
 
 ```sql
 -- Down Migration
-ALTER TABLE initiatives DROP COLUMN launched_at;
+ALTER TABLE initiatives
+    DROP COLUMN launched_at;
 
-ALTER TABLE initiatives RENAME TO projects;
+ALTER TABLE initiatives
+    RENAME TO projects;
 ```
 
 ### SQLite Data Types
 
-| Data Type | Description |
-| :--- | :--- |
-| NULL | Null value. |
-| INTEGER | A signed integer stored in 0, 1, 2, 3, 4, 6, or 8 bytes. |
-| REAL | Floating point value stored as an 64-bit IEEE floating point number. |
-| TEXT | Text string stored using database encoding such as UTF-8. |
-| BLOB | Short for Binary large object and typically used for images, audio or other multimedia. |
-| BOOLEAN | Boolean values are written in SQLite queries as `true` or `false`, but are recorded as `1` or `0`. |
+| Data Type | Description                                                                                        |
+|:----------|:---------------------------------------------------------------------------------------------------|
+| NULL      | Null value.                                                                                        |
+| INTEGER   | A signed integer stored in 0, 1, 2, 3, 4, 6, or 8 bytes.                                           |
+| REAL      | Floating point value stored as an 64-bit IEEE floating point number.                               |
+| TEXT      | Text string stored using database encoding such as UTF-8.                                          |
+| BLOB      | Short for Binary large object and typically used for images, audio or other multimedia.            |
+| BOOLEAN   | Boolean values are written in SQLite queries as `true` or `false`, but are recorded as `1` or `0`. |
 
 ## Constraints
 
 **See Database [Notes](LEARNING/databases.md) for more inforamtion.**
 
-* A `constraint` is a rule we create on a database that enforces some specific behavior (e.g., `NOT NULL` constraint on a column ensures that the column will not accept `NULL` values.)
+* A `constraint` is a rule we create on a database that enforces some specific behavior (e.g., `NOT NULL` constraint on
+  a column ensures that the column will not accept `NULL` values.)
 
 ```sql
-CREATE TABLE employees(
-    id INTEGER PRIMARY KEY,
+CREATE TABLE employees
+(
+    id    INTEGER PRIMARY KEY,
 -- The PRIMARY KEY constraint uniquely identifies each row in the table
-    name TEXT UNIQUE,
+    name  TEXT UNIQUE,
     -- The UNIQUE constraint ensures that no two rows can have the same value in the 'name' column
     title TEXT NOT NULL
     -- The NOT NULL constraint ensures that the 'title' column cannot have NULL values
@@ -3860,25 +4270,25 @@ CREATE TABLE employees(
 
 ## CRUD (Create, Read, Update, Delete)
 
-* `HTTP POST` - `CREATE` 
-* `HTTP GET` - `READ` 
-* `HTTP PUT` - `UPDATE` 
+* `HTTP POST` - `CREATE`
+* `HTTP GET` - `READ`
+* `HTTP PUT` - `UPDATE`
 * `HTTP DELETE` - `DELETE`
 
 ### HTTP CRUD Database Lifecycle
 
 <img src="./images/http_crud_lifecycle.png">
 
-* First, the front-end webpage loads. 
-* The front-end sends an HTTP `GET` request to a `/users` endpoint on the back-end server. 
-* The server receives the request. 
+* First, the front-end webpage loads.
+* The front-end sends an HTTP `GET` request to a `/users` endpoint on the back-end server.
+* The server receives the request.
 * The server uses a `SELECT` statement to retrieve the user's record from the `users` table in the database.
 * The server converts the row of SQL data into a `JSON` object and sends it back to the front-end.
 
 ### Object Relational Mapping (ORM)
 
-* [Object-Relational Mapping (ORM)](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping): a tool that allows you to perform CRUD operations on a database using a traditional programming language.
-
+* [Object-Relational Mapping (ORM)](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping): a tool that allows
+  you to perform CRUD operations on a database using a traditional programming language.
 
 ## Basic SQL Queries
 
@@ -3886,17 +4296,25 @@ CREATE TABLE employees(
 
 ```sql
 -- One-liner to create a simple table
-CREATE TABLE employees (id INTEGER, name TEXT, age INTEGER, is_manager BOOLEAN, salary INTEGER);
+CREATE TABLE employees
+(
+    id         INTEGER,
+    name       TEXT,
+    age        INTEGER,
+    is_manager BOOLEAN,
+    salary     INTEGER
+);
 ```
 
 ```sql
 -- Human-readable way to create a simple table
-CREATE TABLE employees(
-    id INTEGER,
-    name TEXT,
-    age INTEGER,
+CREATE TABLE employees
+(
+    id         INTEGER,
+    name       TEXT,
+    age        INTEGER,
     is_manager BOOLEAN,
-    salary INTEGER
+    salary     INTEGER
 );
 ```
 
@@ -3904,23 +4322,23 @@ CREATE TABLE employees(
 
 ```sql
 ALTER TABLE employees
-RENAME TO contractors;
+    RENAME TO contractors;
 
 ALTER TABLE contractors
-RENAME COLUMN salary TO invoice;
+    RENAME COLUMN salary TO invoice;
 ```
 
 **Add or DROP a Column**
 
-* Modifying columns within SQL is pretty intuitive, that being said **BE VERY  CAUTIOUS WHEN USING THE `DROP` SYNTAX**.
+* Modifying columns within SQL is pretty intuitive, that being said **BE VERY CAUTIOUS WHEN USING THE `DROP` SYNTAX**.
 * Once the `DROP` command is used, there is no ability to retrieve that dropped column or row.
 
 ```sql
 ALTER TABLE contractors
-ADD COLUMN job_title TEXT;
+    ADD COLUMN job_title TEXT;
 
 ALTER TABLE contractors
-DROP COLUMN is_manager;
+    DROP COLUMN is_manager;
 ```
 
 **Update Value**
@@ -3928,11 +4346,13 @@ DROP COLUMN is_manager;
 ```sql
 -- Update Employee Records
 UPDATE employees
-SET job_title = 'Backend Engineer', salary = 150000
+SET job_title = 'Backend Engineer',
+    salary    = 150000
 WHERE id = 251;
 ```
 
 **As Clause**
+
 ```sql
 -- AS Clause
 SELECT amount, note AS birthday_message
@@ -3945,30 +4365,34 @@ WHERE sender_id = 10;
 ```sql
 -- SQL Functions (in SQLite) 
 SELECT *,
-       IIF (was_successful = TRUE, 'No action required', 'Perform an audit') AS audit
+       IIF(was_successful = TRUE, 'No action required', 'Perform an audit') AS audit
 FROM transactions;
 ```
+
 * `IIF`: SQLite function start stating
-  * IF the function is `TRUE`, input "No action required," ELSE, input "Perform an audit"
-  * Place those values into a new `audit` table. 
-  * Complete all of these actions on the `transactions` table.
+    * IF the function is `TRUE`, input "No action required," ELSE, input "Perform an audit"
+    * Place those values into a new `audit` table.
+    * Complete all of these actions on the `transactions` table.
 
 **Between Clause**
+
 ```sql
 -- Between Clause
-SELECT name, age 
+SELECT name, age
 FROM users
 WHERE age BETWEEN 18 AND 30;
 ```
 
 **Distinct Clause**
+
 ```sql
 -- DISTINCT Clause identifying unique values
 SELECT DISTINCT previous_company
-    FROM employees;
+FROM employees;
 ```
 
 **OR Operator**
+
 ```sql
 -- Getting total count with OR operator
 SELECT COUNT(*) AS junior_count
@@ -3983,26 +4407,29 @@ WHERE (country_code = 'US' OR country_code = 'CA')
 
 ```sql
 SELECT product_name, shipment_status
-    FROM products
-    WHERE shipment_status IN ('shipped', 'preparing', 'out of stock');
+FROM products
+WHERE shipment_status IN ('shipped', 'preparing', 'out of stock');
 ```
 
 **LIKE (`%`)**
 
 * The **LIKE** keyword allows for the use of the `%` and `_` wildcard operators
-  * The `%` operator will match **zero or more** characters. 
+    * The `%` operator will match **zero or more** characters.
 
 ```sql
 -- Starts with "keyword"
-SELECT * FROM products
+SELECT *
+FROM products
 WHERE product_name LIKE 'keyword%';
 
 -- Ends with "keyword"
-SELECT * FROM products
+SELECT *
+FROM products
 WHERE product_name LIKE '%keyword';
 
 -- Contains "keyword"
-SELECT * FROM products
+SELECT *
+FROM products
 WHERE product_name LIKE '%keyword%';
 ```
 
@@ -4012,38 +4439,45 @@ WHERE product_name LIKE '%keyword%';
 
 ```sql
 -- Matches things like "b"oot, "r"oot, "f"oot
-SELECT * FROM products
-    WHERE product_name LIKE '_oot';
+SELECT *
+FROM products
+WHERE product_name LIKE '_oot';
 ```
 
 ```sql
 -- Matches things like "sh"oot, "gr"oot
-SELECT * FROM products
-    WHERE product_name LIKE '__oot';
+SELECT *
+FROM products
+WHERE product_name LIKE '__oot';
 ```
 
 **ORDER BY**
 
 * Used to sort records by the given field by **ascending** `ASC` or **descedning** `DESC` order.
+
 ```sql
 -- ASC Order
-SELECT name, price, quantity FROM products
-    ORDER BY price;
+SELECT name, price, quantity
+FROM products
+ORDER BY price;
 
 -- DESC Order
-SELECT name, price, quantity FROM products
-    ORDER BY quantity DESC;
+SELECT name, price, quantity
+FROM products
+ORDER BY quantity DESC;
 ```
 
 ### Aggregations
 
-* A single value that's derived by combining several other values (e.g., `COUNT`). 
+* A single value that's derived by combining several other values (e.g., `COUNT`).
 
 ```sql
-SELECT COUNT(*) 
+SELECT COUNT(*)
 FROM transactions
-WHERE user_id = 6 AND was_successful = true;
+WHERE user_id = 6
+  AND was_successful = true;
 ```
+
 **SUM**
 
 * Returns the sum of a set of values.
@@ -4051,10 +4485,12 @@ WHERE user_id = 6 AND was_successful = true;
 ```sql
 SELECT SUM(amount)
 FROM transactions
-WHERE user_id = 9 AND was_successful = true;
+WHERE user_id = 9
+  AND was_successful = true;
 ```
 
 **MAX/MIN**
+
 ```sql
 -- MAX
 SELECT MAX(age) AS age
@@ -4092,8 +4528,8 @@ WHERE country_code = 'US';
 
 * A `WHERE` condition is applied to all the data in a query **before** it's grouped by a `GROUP BY` clause.
 * A `HAVING` condition is only applied to the grouped rows that are returned **after** a `GROUP BY` is applied.
-  * If you want to filter based on the result of an aggregation, you need to use `HAVING`. 
-  * If you want to filter on a value that's present in the raw data, you should use a simple `WHERE` clause.
+    * If you want to filter based on the result of an aggregation, you need to use `HAVING`.
+    * If you want to filter on a value that's present in the raw data, you should use a simple `WHERE` clause.
 
 ```sql
 SELECT sender_id, SUM(amount) AS balance
@@ -4109,7 +4545,8 @@ ORDER BY balance ASC;
 * `ROUND()` function allows you to specify both the value you wish to round and the precision you want to round to.
 
 ```sql
-ROUND(value, precision)
+ROUND
+    (value, precision)
 
 -- Round to the nearest whole number + one's place
 SELECT ROUND(AVG(song_length), 0)
@@ -4128,52 +4565,51 @@ GROUP BY country_code;
 ```sql
 SELECT id, song_name, artist_id
 FROM songs
-WHERE artist_id IN (
-    SELECT id
-    FROM artists
-    WHERE artist_name LIKE 'Rick%'
-);
+WHERE artist_id IN (SELECT id
+                    FROM artists
+                    WHERE artist_name LIKE 'Rick%');
 ```
 
 ```sql
 SELECT *
-  
+
 FROM transactions
-  
-WHERE user_id IN (
-  SELECT id
-  FROM users
-  WHERE name = 'David'
-);
+
+WHERE user_id IN (SELECT id
+                  FROM users
+                  WHERE name = 'David');
 ```
+
 > [!NOTE]
-> With **subqueries**, the "inner" query is executed first. It looks into the `users` table, finds the `id` where the name is `David`, and then replaces subquery with the result.
-> 
+> With **subqueries**, the "inner" query is executed first. It looks into the `users` table, finds the `id` where the
+> name is `David`, and then replaces subquery with the result.
+>
 > It's also very important to read the query from the inner loop to the outer loop similar to for-loops.
 
 ```sql
 -- Output if id for David is 1:
-SELECT * FROM transactions WHERE user_id = 1;
+SELECT *
+FROM transactions
+WHERE user_id = 1;
 ```
 
 ```sql
 SELECT *
 FROM users
-WHERE id IN (
-  SELECT sender_id
-  FROM transactions
-  WHERE (note LIKE '%invoice%' OR note LIKE '%tax%') 
-  AND is_admin = false
-);
+WHERE id IN (SELECT sender_id
+             FROM transactions
+             WHERE (note LIKE '%invoice%' OR note LIKE '%tax%')
+               AND is_admin = false);
 ```
 
 > [!NOTE]
-> 
+>
 >`IN`: matches any of these values
-> 
+>
 > `=`: matches exactly a single value that meets the specific criteria
 
-* The information above means...keep a `users` row if its `id` is found in the set/list of `sender_id` values produced by the subquery.
+* The information above means...keep a `users` row if its `id` is found in the set/list of `sender_id` values produced
+  by the subquery.
 
 ```sql
 -- What's taking place inside of the WHERE clause...
@@ -4186,12 +4622,11 @@ WHERE id = sender_id_1
 ### No Tables (Calculations)
 
 * Using a `WHERE` subquery with the `>` operator to compare calculated values against those within a specific column.
+
 ```sql
 SELECT *
 FROM users
-WHERE age_in_days > (
-  SELECT 40 * 365 
-);
+WHERE age_in_days > (SELECT 40 * 365);
 ```
 
 ### Normalization
@@ -4202,57 +4637,63 @@ WHERE age_in_days > (
 > * 90% of the time, that unique identifier will be a single column named id
 > * Avoid duplicate data
 > * Avoid storing data that is completely dependent on other data. Instead, compute it on the fly when you need it.
-> * Keep your schema as simple as you can. **Optimize for a normalized database first. Only denormalize for speed's sake when you start to run into performance problems.**
+> * Keep your schema as simple as you can. **Optimize for a normalized database first. Only denormalize for speed's sake
+    when you start to run into performance problems.**
 
 #### One-to-Many
 
 ```sql
 -- One User...
-CREATE TABLE users (
-  id INTEGER PRIMARY KEY,
-  name TEXT NOT NULL,
-  age INTEGER NOT NULL,
-  username TEXT UNIQUE NOT NULL,
-  password TEXT NOT NULL,
-  is_admin BOOLEAN
+CREATE TABLE users
+(
+    id       INTEGER PRIMARY KEY,
+    name     TEXT        NOT NULL,
+    age      INTEGER     NOT NULL,
+    username TEXT UNIQUE NOT NULL,
+    password TEXT        NOT NULL,
+    is_admin BOOLEAN
 );
 
 -- Many Countries...
-CREATE TABLE countries (
-  id INTEGER PRIMARY KEY,
-  country_code TEXT,
-  name TEXT,
-  user_id INTEGER,
-  FOREIGN KEY (user_id) 
-  REFERENCES users(id)
+CREATE TABLE countries
+(
+    id           INTEGER PRIMARY KEY,
+    country_code TEXT,
+    name         TEXT,
+    user_id      INTEGER,
+    FOREIGN KEY (user_id)
+        REFERENCES users (id)
 );
 ```
 
 #### Many-to-Many
 
 ```sql
-CREATE TABLE users (
-  id INTEGER PRIMARY KEY,
-  name TEXT NOT NULL,
-  age INTEGER NOT NULL,
-  username TEXT UNIQUE NOT NULL,
-  password TEXT NOT NULL,
-  is_admin BOOLEAN
+CREATE TABLE users
+(
+    id       INTEGER PRIMARY KEY,
+    name     TEXT        NOT NULL,
+    age      INTEGER     NOT NULL,
+    username TEXT UNIQUE NOT NULL,
+    password TEXT        NOT NULL,
+    is_admin BOOLEAN
 );
 
-CREATE TABLE countries (
-  id INTEGER PRIMARY KEY,
-  country_code TEXT,
-  name TEXT
+CREATE TABLE countries
+(
+    id           INTEGER PRIMARY KEY,
+    country_code TEXT,
+    name         TEXT
 );
 
 -- Joining MANY users to MANY countries
-CREATE TABLE  users_countries (
-  country_id INTEGER,
-  user_id INTEGER,
-  UNIQUE(country_id, user_id),
-  FOREIGN KEY (country_id) REFERENCES countries (id),
-  FOREIGN KEY (user_id) REFERENCES users (id)
+CREATE TABLE users_countries
+(
+    country_id INTEGER,
+    user_id    INTEGER,
+    UNIQUE (country_id, user_id),
+    FOREIGN KEY (country_id) REFERENCES countries (id),
+    FOREIGN KEY (user_id) REFERENCES users (id)
 );
 ```
 
@@ -4262,75 +4703,85 @@ CREATE TABLE  users_countries (
 * A cell can't have a nested table as its value (depending on the database you're using, this may not even be possible)
 
 ```sql
-CREATE TABLE companies (
-  id INTEGER PRIMARY KEY,
-  name TEXT NOT NULL,
-  num_employees INTEGER NOT NULL
+CREATE TABLE companies
+(
+    id            INTEGER PRIMARY KEY,
+    name          TEXT    NOT NULL,
+    num_employees INTEGER NOT NULL
 );
 ```
 
 #### 2NF
+
 * All the rules of 1NF, and one additional rule which only applies to composite primary keys:
-  * All columns that are not part of the primary key are dependent on the entire primary key, and not just one of the columns in the primary key.
+    * All columns that are not part of the primary key are dependent on the entire primary key, and not just one of the
+      columns in the primary key.
 
 > [!NOTE]
-> Default to keeping tables in 2NF, HOWEVER, there are good reasons to deviate from it for performance reasons. When you have to query a second table to get additional data it can take a bit longer.
+> Default to keeping tables in 2NF, HOWEVER, there are good reasons to deviate from it for performance reasons. When you
+> have to query a second table to get additional data it can take a bit longer.
 
 ```sql
-CREATE TABLE users (
-  id INTEGER PRIMARY KEY,
-  name TEXT NOT NULL,
-  age INTEGER NOT NULL
+CREATE TABLE users
+(
+    id   INTEGER PRIMARY KEY,
+    name TEXT    NOT NULL,
+    age  INTEGER NOT NULL
 );
 
-CREATE TABLE companies (
-  id INTEGER PRIMARY KEY,
-  name TEXT NOT NULL,
-  num_employees INTEGER NOT NULL,
-  revenue INTEGER
+CREATE TABLE companies
+(
+    id            INTEGER PRIMARY KEY,
+    name          TEXT    NOT NULL,
+    num_employees INTEGER NOT NULL,
+    revenue       INTEGER
 );
 
 -- Creation of a unique primary key that combines user_id and comapany_id together!
 
-CREATE TABLE users_companies (
-  user_id INTEGER,
-  company_id INTEGER,
-  UNIQUE(user_id, company_id) 
+CREATE TABLE users_companies
+(
+    user_id    INTEGER,
+    company_id INTEGER,
+    UNIQUE (user_id, company_id)
 );
 ```
 
 #### 3NF
 
 * Follows all the rules of 2nd normal form, and one additional rule:
-  * All columns that aren't part of the primary key are dependent solely on the primary key.
+    * All columns that aren't part of the primary key are dependent solely on the primary key.
 
 ```sql
-CREATE TABLE companies (
-  id INTEGER PRIMARY KEY,
-  name TEXT NOT NULL,
-  num_employees INTEGER NOT NULL
+CREATE TABLE companies
+(
+    id            INTEGER PRIMARY KEY,
+    name          TEXT    NOT NULL,
+    num_employees INTEGER NOT NULL
 );
 
 INSERT INTO companies(name, num_employees)
-  VALUES ('Pfizer', 10000);
+VALUES ('Pfizer', 10000);
 INSERT INTO companies(name, num_employees)
-  VALUES ('WorldBanc', 80);
+VALUES ('WorldBanc', 80);
 INSERT INTO companies(name, num_employees)
-  VALUES ('Fantasy Quest', 30);
+VALUES ('Fantasy Quest', 30);
 INSERT INTO companies(name, num_employees)
-  VALUES ('Walmart', 1000);
+VALUES ('Walmart', 1000);
 
 SELECT *,
-    IIF (num_employees > 100, 'large', 'small') AS size
-  FROM companies;
+       IIF(num_employees > 100, 'large', 'small') AS size
+FROM companies;
 ```
 
-* Here we are using the raw value of `num_employees` to calculate and determine the specific size of each company rather than storing a key word.
+* Here we are using the raw value of `num_employees` to calculate and determine the specific size of each company rather
+  than storing a key word.
 
 #### Boyce-Codd Normal Form (BCNF)
 
 * Follows all the rules of 3rd normal form, plus one additional rule:
-  * A column that's part of a primary key can not be entirely dependent on a column that's not part of that primary key.
+    * A column that's part of a primary key can not be entirely dependent on a column that's not part of that primary
+      key.
 
 ### Joins
 
@@ -4341,12 +4792,15 @@ SELECT *,
 ```sql
 SELECT *
 FROM users
-INNER JOIN countries
-ON users.country_code = countries.country_code;
+         INNER JOIN countries
+                    ON users.country_code = countries.country_code;
 ```
-* `FROM users`: the "**left side**" of the Venn Diagram. 
-* `INNER JOIN countries`: the "**right side**" of the Venn Diagram. Here, we are combining rows from users with rows from countries.
-* `ON users.country_code = countries.country_code`: this is the matching condition and tells the database how to pair the rows together.
+
+* `FROM users`: the "**left side**" of the Venn Diagram.
+* `INNER JOIN countries`: the "**right side**" of the Venn Diagram. Here, we are combining rows from users with rows
+  from countries.
+* `ON users.country_code = countries.country_code`: this is the matching condition and tells the database how to pair
+  the rows together.
 
 #### Left Join
 
@@ -4354,12 +4808,12 @@ ON users.country_code = countries.country_code;
 
 ```sql
 -- Left-join example
-SELECT users.name, 
-  SUM(transactions.amount) AS sum,
-  COUNT(was_successful) AS count
+SELECT users.name,
+       SUM(transactions.amount) AS sum,
+       COUNT(was_successful)    AS count
 FROM users
-LEFT JOIN transactions
-ON users.id = transactions.user_id
+         LEFT JOIN transactions
+                   ON users.id = transactions.user_id
 GROUP BY users.id
 ORDER BY sum DESC;
 ``` 
@@ -4369,43 +4823,47 @@ ORDER BY sum DESC;
 <img src="./images/right_join.png">
 
 > [!NOTE]
-> A `RIGHT JOIN` is just a `LEFT JOIN` with the order of the tables switched, so in most cases `LEFT JOIN` is preferred for readability.
+> A `RIGHT JOIN` is just a `LEFT JOIN` with the order of the tables switched, so in most cases `LEFT JOIN` is preferred
+> for readability.
 
 #### Full Join
 
 <img src="./images/full_join.png">
 
-* A `FULL JOIN` combines the result set of the `LEFT JOIN` and `RIGHT JOIN` commands. It returns all records from both `table_a` and `table_b` regardless of whether or not they have matches.
+* A `FULL JOIN` combines the result set of the `LEFT JOIN` and `RIGHT JOIN` commands. It returns all records from both
+  `table_a` and `table_b` regardless of whether or not they have matches.
 
 #### Multiple Joins
 
-* Used to incorporate data from two or more tables (e.g., using a dedicated key to link multiple tables together as a "hook"/"pointer" between different tables).
+* Used to incorporate data from two or more tables (e.g., using a dedicated key to link multiple tables together as a "
+  hook"/"pointer" between different tables).
 
 ```sql
-SELECT users.id, 
-  users.name, 
-  users.age, 
-  users.username, 
-  countries.name as country_name,
-  SUM(transactions.amount) as balance
+SELECT users.id,
+       users.name,
+       users.age,
+       users.username,
+       countries.name           as country_name,
+       SUM(transactions.amount) as balance
 FROM users
-INNER JOIN countries
-ON users.country_code = countries.country_code
-INNER JOIN transactions
-ON users.id = transactions.user_id
-WHERE transactions.was_successful = True AND users.id = 6
+         INNER JOIN countries
+                    ON users.country_code = countries.country_code
+         INNER JOIN transactions
+                    ON users.id = transactions.user_id
+WHERE transactions.was_successful = True
+  AND users.id = 6
 GROUP BY users.id;
 ```
 
 * Another example of stringing together multiple joins to retrieve data from multiple tables.
 
 ```sql
-SELECT users.name, 
-  users.username, 
-  COUNT(support_tickets.user_id) AS support_ticket_count
+SELECT users.name,
+       users.username,
+       COUNT(support_tickets.user_id) AS support_ticket_count
 FROM users
-INNER JOIN support_tickets
-ON users.id = support_tickets.user_id
+         INNER JOIN support_tickets
+                    ON users.id = support_tickets.user_id
 WHERE support_tickets.issue_type != 'Account Access'
 GROUP BY users.id
 HAVING support_ticket_count > 1
@@ -4416,35 +4874,41 @@ ORDER BY support_ticket_count DESC;
 
 ### SQL Indexes
 
-* An index is an in-memory structure that ensures that queries we run on a database are performant (fast and efficient - [O(log(n))](https://en.wikipedia.org/wiki/Big_O_notation)). Most database indexes are just [binary trees](https://en.wikipedia.org/wiki/Binary_tree) or [B-trees](https://en.wikipedia.org/wiki/B-tree).
+* An index is an in-memory structure that ensures that queries we run on a database are performant (fast and
+  efficient - [O(log(n))](https://en.wikipedia.org/wiki/Big_O_notation)). Most database indexes are
+  just [binary trees](https://en.wikipedia.org/wiki/Binary_tree) or [B-trees](https://en.wikipedia.org/wiki/B-tree).
 
 ```sql
 -- Simple Way to Create an Index
 CREATE INDEX index_name ON table_name (column_name);
 ```
 
->[!NOTE]
-> 
+> [!NOTE]
+>
 > **Rule of Thumb**: Name an index after the column it's created on with a suffix of `_idx` (e.g., `users_id_idx`)
-> 
-> Add an index to columns you know you'll be doing frequent lookups on. Leave everything else un-indexed. You can always add indexes later.
+>
+> Add an index to columns you know you'll be doing frequent lookups on. Leave everything else un-indexed. You can always
+> add indexes later.
 
 ### Multi-Column Indexes
 
-* Used to speed up lookups that depend on multiple columns. 
-* In general, unless you have specific reasons to do something special, **only add multi-column indexes if you're doing frequent lookups on a specific combination of columns**.
+* Used to speed up lookups that depend on multiple columns.
+* In general, unless you have specific reasons to do something special, **only add multi-column indexes if you're doing
+  frequent lookups on a specific combination of columns**.
 
 ```sql
 CREATE INDEX first_name_last_name_age_idx
-ON users (first_name, last_name, age);
+    ON users (first_name, last_name, age);
 ```
 
 # Data Structures and Algorithms (DSA) - Python
 
 > [!NOTE]
-> When looking for efficiency, and optimization **LOOK AT THE LOOPS**... this is where increases in inefficiency can be found.
+> When looking for efficiency, and optimization **LOOK AT THE LOOPS**... this is where increases in inefficiency can be
+> found.
 >
-> When analyzing using Big O the human interpretation of time vs. Big O interpretation of time **IS NOT THE SAME THING**. Big O just cares about proportionality!
+> When analyzing using Big O the human interpretation of time vs. Big O interpretation of time **IS NOT THE SAME THING
+**. Big O just cares about proportionality!
 
 ```python
 
@@ -4460,17 +4924,20 @@ def print_names_twice(names):
     for name in names:
         print(name)
 ```
-* Even though the same function is called twice, Big O just cares about the **proportional time complexity used** (e.g., O(n) in both!)
+
+* Even though the same function is called twice, Big O just cares about the **proportional time complexity used** (e.g.,
+  O(n) in both!)
 
 ## Algorithm Basics
 
 * An algorithm is a finite sequence of well-defined, computer-implementable instructions.
-  * There is a specific sequence of steps that performs a task (**Defined**). 
-  * There is a "correct" and "incorrect" interpretation of the steps (**Unambiguous**). 
-  * It can be executed using software and hardware (**Implementable**).
+    * There is a specific sequence of steps that performs a task (**Defined**).
+    * There is a "correct" and "incorrect" interpretation of the steps (**Unambiguous**).
+    * It can be executed using software and hardware (**Implementable**).
 
 > [!TIP]
-> The key is to **decompose** the problem or algorithm to its simplest and most logical form, then reassemble the problem in the language of your choice.
+> The key is to **decompose** the problem or algorithm to its simplest and most logical form, then reassemble the
+> problem in the language of your choice.
 
 ### Exponents
 
@@ -4502,7 +4969,8 @@ print(f"Logarithm base 2 of 16 is: {math.log(16, 2)}")
 
 ### Factorials
 
-* This was a deceptively simple solution that I spent way too much time on... I ended up looking and example and solved it in less than a minute...
+* This was a deceptively simple solution that I spent way too much time on... I ended up looking and example and solved
+  it in less than a minute...
 
 ```python
 def num_possible_orders(num_posts):
@@ -4545,7 +5013,7 @@ def decayed_followers(initial_followers, fraction_lost_daily, days):
 ### O(n) - Linear Time
 
 * When the number of steps in an algorithm grows at the same rate as its input size, it's classified as `O(n)`
-  * As the list of `nums` grows, the time through the iteration also grows
+    * As the list of `nums` grows, the time through the iteration also grows
 
 > [!TIP]
 > **Typical Pattern:** Presence of a single for-loop passing in a list
@@ -4563,11 +5031,14 @@ def find_max(nums):
 
 ### O(n^2) - Exponential Time
 
-* Grows in complexity much more rapidly, BUT for small and medium input sizes, these algorithms can still be very useful. 
-* A common reason an algorithm falls into `O(n^2)` is by using a nested loop, where **the number of iterations of each loop is equal to the number of items in the input**.
+* Grows in complexity much more rapidly, BUT for small and medium input sizes, these algorithms can still be very
+  useful.
+* A common reason an algorithm falls into `O(n^2)` is by using a nested loop, where **the number of iterations of each
+  loop is equal to the number of items in the input**.
 
 > [!TIP]
-> A common reason an algorithm falls into `O(n^2)` is by using a nested loop, where the number of iterations of each loop is equal to the number of items in the input...
+> A common reason an algorithm falls into `O(n^2)` is by using a nested loop, where the number of iterations of each
+> loop is equal to the number of items in the input...
 
 ```python
 def does_name_exist(first_names, last_names, full_name):
@@ -4580,9 +5051,9 @@ def does_name_exist(first_names, last_names, full_name):
 
 ### O(nm)
 
-* Very similar to `O(n^2)`, but instead of a single input that we care about, there are two. 
-  * If `n` and `m` increase at the same rate, then `O(nm)` is effectively the same as `O(n^2)`. 
-  * However, if `n` or `m` increases faster or slower, then it's useful to track their complexity separately
+* Very similar to `O(n^2)`, but instead of a single input that we care about, there are two.
+    * If `n` and `m` increase at the same rate, then `O(nm)` is effectively the same as `O(n^2)`.
+    * However, if `n` or `m` increases faster or slower, then it's useful to track their complexity separately
 
 ```python 
 def get_avg_brand_followers(all_handles, brand_name):
@@ -4602,7 +5073,8 @@ def get_avg_brand_followers(all_handles, brand_name):
 
 #### LBYL (Look Before You Leap)
 
-* This style involves explicitly checking for preconditions before performing an action. It uses `if` statements to verify that an operation will succeed.
+* This style involves explicitly checking for preconditions before performing an action. It uses `if` statements to
+  verify that an operation will succeed.
 
 ```python
 # LBYL Example
@@ -4614,7 +5086,8 @@ def get_val(my_dict, key):
 
 #### EAFP (Easier to Ask for Forgiveness than Permission)
 
-* This style assumes the operation will usually work and uses `try/except` blocks to handle any errors that arise. This is the "Pythonic" way of writing code.
+* This style assumes the operation will usually work and uses `try/except` blocks to handle any errors that arise. This
+  is the "Pythonic" way of writing code.
 
 ```python
 # EAFP Example
@@ -4626,10 +5099,74 @@ def get_val(my_dict, key):
 ```
 
 > [!NOTE]
-> EAFP is faster if the "happy path" (the key existing) happens most of the time, as it only does one lookup. LBYL does two lookups (one to check, one to retrieve).
+> EAFP is faster if the "happy path" (the key existing) happens most of the time, as it only does one lookup. LBYL does
+> two lookups (one to check, one to retrieve).
 >
 > EAFP is safer in multithreaded environments where a value might be deleted between the "check" and the "access."
 
-
 ## Bubble Sort
 
+* There are several ways to solve demonstrate Bubble sort in Python:
+    * Saving both the original values before overwriting either list position.
+
+```python
+def bubble_sort(nums: list[int]) -> list[int]:
+    swapping = True
+    end = len(nums)
+
+    while swapping:
+        swapping = False
+        
+        for i in range(1, end):
+          current = nums[i]
+          prev = nums[i - 1]
+        
+        # Copies saved inside of prev and current variables
+            if prev > current:
+                prev = nums[i]
+                current = nums[i - 1]
+                swapping = True
+        end-=1
+    return nums
+
+```
+
+* Using a `temporary variable` approach to avoid overwriting the values.
+
+```python
+def bubble_sort(nums: list[int]) -> list[int]:
+    swapping = True
+    end = len(nums)
+
+    while swapping:
+        swapping = False
+        
+        for i in range(1, end):
+            if nums[i - 1] > nums[i]:
+                temp = nums[i - 1]
+                nums[i - 1] = nums[i]
+                nums[i] = temp
+                swapping = True
+        end-=1
+    return nums
+```
+
+* Python tuple assignment (very clean, but unique to Python).
+
+```python
+def bubble_sort(nums: list[int]) -> list[int]:
+    swapping = True
+    end = len(nums)
+
+    while swapping:
+        swapping = False
+        
+        for i in range(1, end):
+            if nums[i - 1] > nums[i]:
+            
+            # Tuple assignment here!
+                nums[i - 1], nums[i] = nums[i], nums[i - 1]
+                swapping = True
+        end-=1
+    return nums
+```
