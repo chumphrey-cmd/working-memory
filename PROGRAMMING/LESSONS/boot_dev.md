@@ -5106,6 +5106,7 @@ def get_val(my_dict, key):
 
 ## Bubble Sort
 
+* Simple algorithm for learning, however there's a massive time complexity of (`O(n^2)`)!
 * There are several ways to solve demonstrate Bubble sort in Python:
     * Saving both the original values before overwriting either list position.
 
@@ -5170,3 +5171,90 @@ def bubble_sort(nums: list[int]) -> list[int]:
         end-=1
     return nums
 ```
+
+## Merge Sort
+
+* Merge sort is a recursive sorting algorithm (`O(n*log(n))`), and it's quite a bit faster than bubble sort. It's a divide and conquer algorithm.:
+  * **Divide**: divide the large problem into smaller problems, and recursively solve the smaller problems 
+  * **Conquer**: Combine the results of the smaller problems to solve the large problem
+  
+Overall Process:
+* Divide the array into two (equal) halves (divide)
+* Recursively sort the two halves 
+* Merge the two halves to form a sorted array (conquer)
+
+```python
+def merge_sort(nums: list[int]) -> list[int]:
+    # 1. Base Case: If the list has 0 or 1 element, it is already sorted.
+    if len(nums) < 2:
+        return nums
+
+    # 2. Find the middle index to divide the list in half.
+    # Using integer division (//) ensures we get a whole number.
+    mid = len(nums) // 2
+    
+    # 3. Slice the list into a left half and a right half.
+    left = nums[:mid]
+    right = nums[mid:]
+
+    # 4. Recursion: Keep splitting the left and right halves until they reach the base case (length < 2).
+    left_merge = merge_sort(left)
+    right_merge = merge_sort(right)
+
+    # 5. Merge the sorted halves back together.
+    return merge(left_merge, right_merge)
+
+
+def merge(first: list[int], second: list[int]) -> list[int]:
+    # 1. Initialize an empty list to hold our sorted result.
+    final = []
+    
+    # 2. Set up pointers for the 'first' and 'second' lists.
+    i = 0
+    j = 0
+
+    # 3. Compare elements while BOTH lists still have items to check.
+    while i < len(first) and j < len(second):
+        # If the element in the first list is smaller, append it to 'final'
+        # and move the 'first' list pointer (i) forward.
+        if first[i] < second[j]:
+            final.append(first[i])
+            i += 1
+        # Otherwise, the element in the second list is smaller (or equal).
+        # Append it and move the 'second' list pointer (j) forward.
+        else:
+            final.append(second[j])
+            j += 1
+            
+    # 4. Handle any remaining elements.
+    # Once the while loop finishes, one list will be empty, but the other might still have leftover sorted items.
+    # 
+    # .extend() allows you to add all of the sorted elements from an iterable directly to the end of the list we are returning. 
+    # (Note: Slicing handles out-of-bounds gracefully, so the empty list just adds nothing).
+    
+    final.extend(first[i:])
+    final.extend(second[j:])
+    
+    # 5. Return the fully merged and sorted list.
+    return final
+```
+
+### Why Merge Sort?
+
+**Pros:**
+
+* **Fast:** Merge sort is much faster than bubble sort. `O(n*log(n))` instead of `O(n^2)`.
+* **Stable:** Merge sort is a stable sort which means that values with duplicate keys in the original list will be in the same order in the sorted list.
+
+**Cons:**
+
+* **Memory usage:** Most sorting algorithms can be performed using a single copy of the original array. Merge sort requires extra subarrays in memory.
+* **Recursive:** Merge sort requires many recursive function calls, and in many languages (like Python), this can incur a performance penalty.
+
+## Insertion Sort
+
+* Insertion sort builds a sorted list one item at a time. It's much less efficient on large lists than merge sort because it's `O(n^2)`, but it's actually faster (not in Big O terms, but due to smaller constants) than merge sort on small lists.
+* `i` (current) and `j` (next) work together. As `i` traverses the list, `j` loops back through the list to compare the values to `i`.
+
+> [!NOTE]
+> Very niche use case: some sorting libraries will use insertion sort when the dataset is small and then switch to a more performant sorting algorithm when the dataset become larger. 
