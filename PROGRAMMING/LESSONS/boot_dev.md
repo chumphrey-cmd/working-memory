@@ -5108,7 +5108,8 @@ def get_val(my_dict, key):
 
 * Simple algorithm for learning, however there's a massive time complexity of (`O(n^2)`)!
 * There are several ways to solve demonstrate Bubble sort in Python:
-    * Saving both the original values before overwriting either list position.
+
+### Saving Both the Values Before Overwriting
 
 ```python
 def bubble_sort(nums: list[int]) -> list[int]:
@@ -5132,7 +5133,7 @@ def bubble_sort(nums: list[int]) -> list[int]:
 
 ```
 
-* Using a `temporary variable` approach to avoid overwriting the values.
+### Language Agnostic using a `temp` Variable
 
 ```python
 def bubble_sort(nums: list[int]) -> list[int]:
@@ -5152,7 +5153,9 @@ def bubble_sort(nums: list[int]) -> list[int]:
     return nums
 ```
 
-* Python tuple assignment (very clean, but unique to Python).
+### Python Tuple Assignment 
+
+* Very clean, but unique to Python
 
 ```python
 def bubble_sort(nums: list[int]) -> list[int]:
@@ -5258,3 +5261,33 @@ def merge(first: list[int], second: list[int]) -> list[int]:
 
 > [!NOTE]
 > Very niche use case: some sorting libraries will use insertion sort when the dataset is small and then switch to a more performant sorting algorithm when the dataset become larger. 
+
+### Pythonic Swapping for Insertion Sort**
+
+```python
+def insertion_sort(nums: list[int]) -> list[int]:
+    for i in range(1, len(nums)):
+        j = i
+        while j > 0 and nums[j - 1] > nums[j]:
+        
+        # Pythonic way to initiate a swap! 
+            nums[j], nums[j - 1] = nums[j - 1], nums[j]
+            j -= 1
+    return nums
+```
+
+### Language Agnostic Swapping for Insertion Sort
+
+```python
+def insertion_sort(nums: list[int]) -> list[int]:
+    for i in range(1, len(nums)):
+        j = i
+        while j > 0 and nums[j - 1] > nums[j]:
+        
+        # Language agnostic swapping using a temp variable to initiate swapping
+            temp = nums[j]
+            nums[j] = nums[j - 1]
+            nums[j - 1] = temp 
+            j -= 1
+    return nums
+```
