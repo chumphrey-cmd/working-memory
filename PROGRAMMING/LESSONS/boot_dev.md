@@ -5259,6 +5259,11 @@ def merge(first: list[int], second: list[int]) -> list[int]:
 * Insertion sort builds a sorted list one item at a time. It's much less efficient on large lists than merge sort because it's `O(n^2)`, but it's actually faster (not in Big O terms, but due to smaller constants) than merge sort on small lists.
 * `i` (current) and `j` (next) work together. As `i` traverses the list, `j` loops back through the list to compare the values to `i`.
 
+* **Best case**: If the data is pre-sorted, insertion sort becomes really fast `O(n)`.
+  * Since the list is pre-sorted all the algo has to do is search through the list and then insert as needed.
+* **Average case**: The average case is `O(n^2)` because the inner loop will execute about half of the time.
+* **Worst case**: If the data is in reverse order, it's still `O(n^2)` and the inner loop will execute every time.
+
 > [!NOTE]
 > Very niche use case: some sorting libraries will use insertion sort when the dataset is small and then switch to a more performant sorting algorithm when the dataset become larger. 
 
@@ -5291,3 +5296,81 @@ def insertion_sort(nums: list[int]) -> list[int]:
             j -= 1
     return nums
 ```
+
+### Why Insertion Sort
+
+* **Fast**: for very small data sets (even faster than merge sort and quick sort)
+* **Adaptive**: Faster for partially sorted data sets 
+* **Stable**: Does not change the relative order of elements with equal keys 
+* **In-Place**: Only requires a constant amount of memory 
+* **Inline**: Can sort a list as it receives it
+
+> [!NOTE]
+> Production sorting implementations use insertion sort for very small inputs under a certain threshold (very small (e.g., 10 or so)), and switch to something like quicksort for larger inputs.
+> Insertion sort is useful due to: 
+> * No recursive overhead
+> * Minimal memory footprint
+> * Stable and does not change the order elements
+
+## Quick Sort
+
+* Quick sort is also known as a divide and conquer algorithm. It has the time complexity of merge sort (`O(n log n)`), HOWEVER, it does not copy elements of the list over again. It sorts the items of the list in place and doesn't use nearly as much memory as merge sort. 
+
+```python
+def quick_sort(nums: list[int], low: int, high: int) -> None:
+    # Only proceed if there are at least 2 elements to sort in this sub-array.
+    if low < high:
+        # Partition the array and get the final sorted index of the pivot element.
+        middle = partition(nums, low, high)
+        
+        # Recursively sort the sub-array of elements smaller than the pivot (left side).
+        quick_sort(nums, low, middle - 1)
+        
+        # Recursively sort the sub-array of elements larger than the pivot (right side).
+        quick_sort(nums, middle + 1, high)
+
+
+def partition(nums: list[int], low: int, high: int) -> int:
+    # 1. Establish the "pivot" by choosing the rightmost element as our comparison target.
+    pivot = nums[high]
+    
+    # 2. Initialize pointer 'i': tracks the upper boundary of elements smaller than the pivot.
+    # We start it at 'low - 1' (just outside the window) because we haven't found any smaller elements yet.
+    i = low - 1
+    
+    # 3. Iterate pointer 'j' from 'low' up to (but not including) the pivot index at 'high'.
+    for j in range(low, high):
+        
+        # If the current element at 'j' is smaller than our pivot:
+        if nums[j] < pivot:
+            # Increment 'i' by 1.
+            i += 1
+            # Swap the newly found smaller element at 'j' into the boundary at 'i'.
+            nums[i], nums[j] = nums[j], nums[i]
+            
+    # 4. The loop is over and everything up to index 'i' is smaller than the pivot.
+    # We swap the pivot (nums[high]) with the element at 'i + 1' to place the pivot exactly between the smaller and larger elements.
+    nums[i + 1], nums[high] = nums[high], nums[i + 1]
+    
+    # Return the permanent index where the pivot is now resting so quick_sort can divide the left and right halves.
+    return i + 1
+```
+
+### Fixing Quick Sort
+
+* At the best case Quick Sort has a time complexity of `O(n * log(n))`, at worst case it's `O(n^2)`.
+* To fix this you can use: 
+  * **Random Approach:** Shuffling input randomly before sorting, which can be done in O(n) time.
+  * **Median Approach:** Actively find the median of a sample of data from the partition, this can be done in `O(1)` time, which is nice because the function will remain deterministic and reliable.
+
+### Why Quick Sort
+
+**Pros:**
+* Very fast: At least it is in the average case 
+* In-Place: Saves on memory, doesn't need to do a lot of copying and allocating
+
+**Cons:**
+* Typically unstable: changes the relative order of elements with equal keys 
+* Recursive: can incur a performance penalty in some implementations 
+* Pivot sensitivity: if the pivot is poorly chosen, it can lead to poor performance
+ 
