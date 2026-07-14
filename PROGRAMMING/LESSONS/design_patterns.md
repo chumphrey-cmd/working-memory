@@ -255,52 +255,78 @@ public class Main {
 
 Today I wanted to go over the Factory #DesignPatternBasics that I learned during our Mod-B project. The public ArtifactBuilder.
 
-Our group was in the process of doing some refactoring on the backend, and we found ourselves having to repeatedly instantiate an Artifact object with several pieces of information which made our tests and code for #JavaBasics very cumbersome. To get around this, we created a Factory called “Artifact Builder” with preset values for an id, title, link, context, artifactType, product, createdAt, updatedAt, and date.
+Our group was in the process of doing some refactoring on the backend, and we found ourselves having to repeatedly instantiate an Artifact object with several pieces of information which made our tests and code very cumbersome. To get around this, we created a Factory called “Artifact Builder” with preset values for an id, title, link, context, artifactType, product, createdAt, updatedAt, and date.
 
-Whenever `artifact().build()` is called, a generic artifact is created at runtime with all of the defaults previous set in that public ArtifactBuilder class. Which nicely optimizes our #TDD process when testing the Service layer.
-
-Here is an example of how the ArtifactBuilder was created along with additional public helper methods that enable customization of the created artifact (e.g., unique link or title) #JavaBasics #CodingBasics:
+Whenever `artifact().build()` is called, a generic artifact is created at runtime with all the defaults previous set in that public ArtifactBuilder class. Which nicely optimizes our #TDD process when testing the Service layer.
 
 ```java
 public class ArtifactBuilder {
-    private UUID id = consistentUUID("test");
-    private String title = "Test Artifact";
-    private String link = "https://www.test.com";
-    private String context = "This is some context about a test artifact.";
-    private ArtifactType artifactType = new ArtifactType((short) 1, "Test");
-    private Product product = new Product((short) 1, "Test Product");
-    private Instant createdAt = null;
-    private Instant updatedAt = null;
-    private Instant date = Instant.parse("2026-01-01T00:00:00Z");
+  private UUID id = consistentUUID("test");
+  private String title = "Test Artifact";
+  private String link = "https://www.test.com";
+  private String context = "This is some context about a test artifact.";
+  private ArtifactType artifactType = new ArtifactType((short) 1, "Test");
+  private Product product = new Product((short) 1, "Test Product");
+  private Instant createdAt = null;
+  private Instant updatedAt = null;
+  private Instant date = Instant.parse("2026-01-01T00:00:00Z");
 
-public static ArtifactBuilder artifact() {
+  public static ArtifactBuilder artifact() {
     return new ArtifactBuilder();
-}
+  }
 
-public ArtifactBuilder withType (ObjectType object) {
-    this.object = object;
+  public ArtifactBuilder withId(UUID id) {
+    this.id = id;
     return this;
-}
+  }
 
-// Other helper methods for id, title, link, context, product, date, etc.
+  public ArtifactBuilder withTitle(String title) {
+    this.title = title;
+    return this;
+  }
 
-    public Artifact build() {
-        Artifact artifact = new Artifact();
-        artifact.setId(this.id);
-        artifact.setTitle(this.title);
-        artifact.setLink(this.link);
-        artifact.setContext(this.context);
-        artifact.setArtifactType(this.artifactType);
-        artifact.setProduct(this.product);
-        artifact.setDate(this.date);
-        artifact.setCreatedAt(this.createdAt);
-        artifact.setUpdatedAt(this.updatedAt);
-        return artifact;
-    }
+  public ArtifactBuilder withLink(String link) {
+    this.link = link;
+    return this;
+  }
+
+  public ArtifactBuilder withContext(String context) {
+    this.context = context;
+    return this;
+  }
+
+  public ArtifactBuilder withArtifactType(ArtifactType artifactType) {
+    this.artifactType = artifactType;
+    return this;
+  }
+
+  public ArtifactBuilder withProduct(Product product) {
+    this.product = product;
+    return this;
+  }
+
+  public ArtifactBuilder withDate(Instant date) {
+    this.date = date;
+    return this;
+  }
+
+  public Artifact build() {
+    Artifact artifact = new Artifact();
+    artifact.setId(this.id);
+    artifact.setTitle(this.title);
+    artifact.setLink(this.link);
+    artifact.setContext(this.context);
+    artifact.setArtifactType(this.artifactType);
+    artifact.setProduct(this.product);
+    artifact.setDate(this.date);
+    artifact.setCreatedAt(this.createdAt);
+    artifact.setUpdatedAt(this.updatedAt);
+    return artifact;
+  }
 }
 ```
 
-We can call this factory pattern for our #UnitTesting which greatly optimizes the length of our test and the speed at which we can build other tests cases can be created. Here’s a small snippet of a simple Service Test where we attempt to get a saved single artifact with a customized title from the repository. Rather than having to specify each part of the artifact, we can just call `artifact().build()` instead.
+Rather than having to specify each part of the artifact, we can just call `artifact().build()` instead.
 
 ```java
 @Test
