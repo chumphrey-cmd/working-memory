@@ -5374,3 +5374,23 @@ def partition(nums: list[int], low: int, high: int) -> int:
 * Recursive: can incur a performance penalty in some implementations 
 * Pivot sensitivity: if the pivot is poorly chosen, it can lead to poor performance
  
+
+## Selection Sort
+
+* Another sorting algorithm we never covered in-depth is called "selection sort". It's similar to bubble sort in that it works by repeatedly swapping items in a list. However, it's slightly **more efficient than bubble sort because it only makes one swap per iteration**.
+
+```python
+def selection_sort(nums: list[int]) -> list[int]:
+    for i in range(len(nums)):
+        smallest_idx = i
+        
+        for j in range(i + 1, len(nums)):
+            if nums[j] < nums[smallest_idx]:
+                smallest_idx = j
+        nums[i], nums[smallest_idx] = nums[smallest_idx], nums[i]
+    return nums
+```
+
+> [!NOTE]
+> `for i in nums` **iterates directly over the values at each index**, not the index itself. 
+> `for i in range(len(nums))` **iterates over the index itself** (e.g., Java and TypeScript)
