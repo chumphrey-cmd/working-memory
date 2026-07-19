@@ -1640,7 +1640,7 @@ print(soldier_two.health)
 
 ### Self
 
-* `self` is a strong convention in Python—everyone expects to see it, and tools/docs assume it.
+* `self` is a strong convention in Python-everyone expects to see it, and tools/docs assume it.
 
 ```python
 my_object.my_method() # General way to use the method tied to the class...
@@ -3277,7 +3277,7 @@ function splitLogs(logs, word) {
             // Record the index where we found the match.
             index = i;
 
-            // Stop searching — we only care about the FIRST match. Without break, the loop would keep running unnecessarily.
+            // Stop searching - we only care about the FIRST match. Without break, the loop would keep running unnecessarily.
             break;
         }
     }
@@ -4999,16 +4999,179 @@ def decayed_followers(initial_followers, fraction_lost_daily, days):
 
 ## Big O Notation
 
+| Big-O             | Name           | Description                                                                                                                                                                                      |
+|-------------------|----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`O(1)`**        | constant       | **Best** The algorithm always takes the same amount of time, regardless of how much data there is. Example: Looking up an item in a list by index                                                |
+| **`O(log(n))`**   | logarithmic    | **Great** Algorithms that remove a percentage of the total steps with each iteration. Very fast, even with large amounts of data. Example: Binary search                                         |
+| **`O(n)`**        | linear         | **Good** 100 items, 100 units of work. 200 items, 200 units of work. This is usually the case for a single, non-nested loop. Example: unsorted array search.                                     |
+| **`O(n*log(n))`** | "linearithmic" | **Okay** This is slightly worse than linear, but not too bad. Example: mergesort and other "fast" sorting algorithms.                                                                            |
+| **`O(n^2)`**      | quadratic      | **Slow** The amount of work is the square of the input size. 10 inputs, 100 units of work. 100 Inputs, 10,000 units of work. Example: A nested for loop to find all the ordered pairs in a list. |
+| **`O(n^3)`**      | cubic          | **Slower** If you have 100 items, this does 100^3 = 1,000,000 units of work. Example: A triple nested for loop to find all the ordered triples in a list.                                        |
+| **`O(2^n)`**      | exponential    | **Horrible** We want to avoid this kind of algorithm at all costs. Adding one to the input *doubles* the amount of steps. Example: Brute-force guessing results of a sequence of `n` coin flips. |
+| **`O(n!)`**       | factorial      | **Even More Horrible** The algorithm becomes so slow so fast, that it is practically unusable. Example: Generating all the permutations of a list                                                |
+
 > [Big-O Complexity Cheatsheet](https://www.bigocheatsheet.com/)
 
 <img src="./images/big_o_time_complexity.png">
 
-* `O(1)` - constant
-* `O(log n)` - logarithmic
-* `O(n)` - linear
-* `O(n^2)` - squared
-* `O(2^n)` - exponential
-* `O(n!)` - factorial
+### Shortcut for Quick Reference
+
+* **0 nested loops (direct access):** `O(1)`
+* **1 loop:** `O(n)`
+* **2 nested loops:** `O(n^2)`
+* **3 nested loops:** `O(n^3)`
+* **Halving the problem space per step:** `O(log(n))`
+
+### `O(1)` - Constant Time
+
+* Takes the exact same amount of time regardless of how large the list grows.
+
+```python
+def get_first_element(items: list) -> any:
+    # Whether the list has 10 items or 10 million items, grabbing an index by its direct address is always O(1).
+    return items[0]
+```
+
+### `O(log(n))` - Logarithmic Time
+
+* **$O(\log n)$:** Shrinking problem size, **constant** work per step (e.g., Binary Search).
+* The algorithm cuts the remaining search space in half with every single step.
+
+```python
+def binary_search(sorted_nums: list[int], target: int) -> bool:
+    low, high = 0, len(sorted_nums) - 1
+    
+    while low <= high:
+        mid = (low + high) // 2
+        # Check if we found the target in the middle
+        if sorted_nums[mid] == target:
+            return True
+        # If target is smaller, discard the right half
+        elif sorted_nums[mid] > target:
+            high = mid - 1
+        # If target is larger, discard the left half
+        else:
+            low = mid + 1
+    return False
+```
+
+### `O(n)` - Linear Time
+
+* The number of operations scales directly 1-to-1 with the number of inputs (e.g., a non-nested loop)
+
+```python
+def find_item(items: list[int], target: int) -> bool:
+    # In the worst-case scenario, we have to check every single item from start to finish. 100 items = up to 100 checks.
+    for item in items:
+        if item == target:
+            return True
+    return False
+```
+
+#### `O(n)` - Geometric
+
+Whenever an algorithm performs **nested iterations where the work per step shrinks geometricall**y (halving, thirding, etc.), the total operations form a decreasing geometric series. Instead of multiplying the loop complexities, you sum the series. **The total work collapses down to a constant multiple of the very first (largest) term**:
+
+$$T(n) = n + \frac{n}{2} + \frac{n}{4} + \frac{n}{8} + \dots \approx 2n = O(n)$$
+
+* **Geometric $O(n)$ (Shrinking Work):** The work drops off so fast at each subsequent level that the very first iteration dominates the total runtime. Everything after the first step is just paying off "diminishing returns" that never exceed $2n$.
+
+> [!TIP] 
+> **Rule of Thumb:** If the number of iterations shrinks geometrically while the work per iteration also shrinks proportionally, sum the series. The sum will always reduce to a constant times the largest term. Drop the constant, and you get **$O(n)$ Linear Time**.
+
+```python
+def halved_sections(n: int) -> list[list[int]]:
+    rows = []
+    i = n
+    
+    # The outer loop executes O(log n) times because 'i' is halved each step.
+    while i > 0:
+        col = []
+        
+        # Notice the inner loop bound is 'i + 1', NOT 'n'.
+        # Because 'i' shrinks geometrically, the work per loop looks like this:
+        # Pass 1: runs ~n times
+        # Pass 2: runs ~n/2 times
+        # Pass 3: runs ~n/4 times
+        # Total Operations = n + n/2 + n/4 + ... ≈ 2n -> O(n) Linear Time
+        for j in range(i + 1):
+            col.append(j)
+            
+        rows.append(col)
+        
+        # Halve the problem size for the next iteration
+        i //= 2
+        
+    return rows
+```
+
+### `O(n*log(n))` - Linearithmic Time
+
+* This is the standard speed limit for efficient sorting algorithms like Merge Sort, Quick Sort, and Python's built-in `Timsort`. It divides the data into halves (`log(n)`) and then merges or processes them across all elements (`n`).
+
+```python
+def python_builtin_sort(nums: list[int]) -> list[int]:
+    # Python's built-in sorted() function uses Timsort under the hood,
+    # which runs in O(n*log(n)) time.
+    return sorted(nums)
+```
+
+### `O(n^2)` - Quadratic Time
+
+* The work is squared because for every item in the list, we iterate through the entire list *again* (identified by a double-nested loop).
+
+```python
+def print_all_pairs(items: list[str]) -> list[tuple[str, str]]:
+    pairs = []
+    # Outer loop runs n times
+    for first in items:
+        # Inner loop runs n times for EVERY outer loop step
+        for second in items:
+            pairs.append((first, second))
+    return pairs
+```
+
+### `O(n^3)` - Cubic Time
+
+* Adding a third nested loop cubes the total workload.
+
+```python
+def print_all_triples(items: list[str]) -> list[tuple[str, str, str]]:
+    triples = []
+    # 3 nested loops = n * n * n = O(n^3)
+    for first in items:
+        for second in items:
+            for third in items:
+                triples.append((first, second, third))
+    return triples
+```
+
+### `O(2^n)` - Exponential Time
+
+* Every time you add just **one** new input element, the total workload *doubles*. A classic example is calculating the $n^{\text{th}}$ Fibonacci number using pure recursion without memorization (caching).
+
+```python
+def fibonacci_naive(n: int) -> int:
+    # Base case
+    if n <= 1:
+        return n
+    
+    # Each function call branches into TWO more recursive calls, doubling the work at each step of the tree.
+    return fibonacci_naive(n - 1) + fibonacci_naive(n - 2)
+```
+
+### `O(n!)` - Factorial Time
+
+* The absolute slowest growth curve. Adding one element multiplies the total operations by the new size of the dataset. For example, generating every possible arrangement (permutation) of a list.
+
+```python
+import itertools
+
+def get_all_permutations(items: list) -> list:
+    # If items has 3 elements -> 3! = 3 * 2 * 1 = 6 permutations.
+    # If items has 10 elements -> 10! = 3,628,800 permutations!
+    return list(itertools.permutations(items))
+```
 
 ### O(n) - Linear Time
 
@@ -5069,7 +5232,7 @@ def get_avg_brand_followers(all_handles, brand_name):
     return handle_found_count / len(all_handles)
 ```
 
-### Efficiency Example in `O(1)` - Constant Time
+### O(1) - Constant Time
 
 #### LBYL (Look Before You Leap)
 
@@ -5104,12 +5267,14 @@ def get_val(my_dict, key):
 >
 > EAFP is safer in multithreaded environments where a value might be deleted between the "check" and the "access."
 
-## Bubble Sort
+## Sorting Algorithms
+
+### Bubble Sort
 
 * Simple algorithm for learning, however there's a massive time complexity of (`O(n^2)`)!
 * There are several ways to solve demonstrate Bubble sort in Python:
 
-### Saving Both the Values Before Overwriting
+#### Saving Both the Values Before Overwriting
 
 ```python
 def bubble_sort(nums: list[int]) -> list[int]:
@@ -5133,7 +5298,7 @@ def bubble_sort(nums: list[int]) -> list[int]:
 
 ```
 
-### Language Agnostic using a `temp` Variable
+#### Language Agnostic using a `temp` Variable
 
 ```python
 def bubble_sort(nums: list[int]) -> list[int]:
@@ -5153,7 +5318,7 @@ def bubble_sort(nums: list[int]) -> list[int]:
     return nums
 ```
 
-### Python Tuple Assignment 
+#### Python Tuple Assignment 
 
 * Very clean, but unique to Python
 
@@ -5175,7 +5340,7 @@ def bubble_sort(nums: list[int]) -> list[int]:
     return nums
 ```
 
-## Merge Sort
+### Merge Sort
 
 * Merge sort is a recursive sorting algorithm (`O(n*log(n))`), and it's quite a bit faster than bubble sort. It's a divide and conquer algorithm.:
   * **Divide**: divide the large problem into smaller problems, and recursively solve the smaller problems 
@@ -5242,7 +5407,7 @@ def merge(first: list[int], second: list[int]) -> list[int]:
     return final
 ```
 
-### Why Merge Sort?
+#### Why Merge Sort?
 
 **Pros:**
 
@@ -5254,7 +5419,7 @@ def merge(first: list[int], second: list[int]) -> list[int]:
 * **Memory usage:** Most sorting algorithms can be performed using a single copy of the original array. Merge sort requires extra subarrays in memory.
 * **Recursive:** Merge sort requires many recursive function calls, and in many languages (like Python), this can incur a performance penalty.
 
-## Insertion Sort
+### Insertion Sort
 
 * Insertion sort builds a sorted list one item at a time. It's much less efficient on large lists than merge sort because it's `O(n^2)`, but it's actually faster (not in Big O terms, but due to smaller constants) than merge sort on small lists.
 * `i` (current) and `j` (next) work together. As `i` traverses the list, `j` loops back through the list to compare the values to `i`.
@@ -5267,7 +5432,7 @@ def merge(first: list[int], second: list[int]) -> list[int]:
 > [!NOTE]
 > Very niche use case: some sorting libraries will use insertion sort when the dataset is small and then switch to a more performant sorting algorithm when the dataset become larger. 
 
-### Pythonic Swapping for Insertion Sort**
+#### Pythonic Swapping for Insertion Sort**
 
 ```python
 def insertion_sort(nums: list[int]) -> list[int]:
@@ -5281,7 +5446,7 @@ def insertion_sort(nums: list[int]) -> list[int]:
     return nums
 ```
 
-### Language Agnostic Swapping for Insertion Sort
+#### Language Agnostic Swapping for Insertion Sort
 
 ```python
 def insertion_sort(nums: list[int]) -> list[int]:
@@ -5297,7 +5462,7 @@ def insertion_sort(nums: list[int]) -> list[int]:
     return nums
 ```
 
-### Why Insertion Sort
+#### Why Insertion Sort
 
 * **Fast**: for very small data sets (even faster than merge sort and quick sort)
 * **Adaptive**: Faster for partially sorted data sets 
@@ -5312,7 +5477,7 @@ def insertion_sort(nums: list[int]) -> list[int]:
 > * Minimal memory footprint
 > * Stable and does not change the order elements
 
-## Quick Sort
+### Quick Sort
 
 * Quick sort is also known as a divide and conquer algorithm. It has the time complexity of merge sort (`O(n log n)`), HOWEVER, it does not copy elements of the list over again. It sorts the items of the list in place and doesn't use nearly as much memory as merge sort. 
 
@@ -5356,14 +5521,14 @@ def partition(nums: list[int], low: int, high: int) -> int:
     return i + 1
 ```
 
-### Fixing Quick Sort
+#### Fixing Quick Sort
 
 * At the best case Quick Sort has a time complexity of `O(n * log(n))`, at worst case it's `O(n^2)`.
 * To fix this you can use: 
   * **Random Approach:** Shuffling input randomly before sorting, which can be done in O(n) time.
   * **Median Approach:** Actively find the median of a sample of data from the partition, this can be done in `O(1)` time, which is nice because the function will remain deterministic and reliable.
 
-### Why Quick Sort
+#### Why Quick Sort
 
 **Pros:**
 * Very fast: At least it is in the average case 
@@ -5375,7 +5540,7 @@ def partition(nums: list[int], low: int, high: int) -> int:
 * Pivot sensitivity: if the pivot is poorly chosen, it can lead to poor performance
  
 
-## Selection Sort
+### Selection Sort
 
 * Another sorting algorithm we never covered in-depth is called "selection sort". It's similar to bubble sort in that it works by repeatedly swapping items in a list. However, it's slightly **more efficient than bubble sort because it only makes one swap per iteration**.
 
@@ -5394,3 +5559,80 @@ def selection_sort(nums: list[int]) -> list[int]:
 > [!NOTE]
 > `for i in nums` **iterates directly over the values at each index**, not the index itself. 
 > `for i in range(len(nums))` **iterates over the index itself** (e.g., Java and TypeScript)
+
+## Exponential Time
+
+### Polynomial vs. Exponential
+
+* **Polynomial Time**: if its runtime does not grow faster than `n^k`, where `k` is any constant (e.g. `n^2`, `n^3`, etc.) and `n` is the size of the input. Polynomial-time algorithms can be useful if they're not too slow.
+* **Exponential Time**: almost always too slow to be practical. (However, sometimes you're trying to force someone to be slow, like in the case of cryptography and security (e.g., preventing brute forcing of logins where the attacker pays an asymmetrically more for processing power to break into a system)).
+
+> [!NOTE]
+> `P` (practical): is used to describe problems that are *practical* solve on computers. 
+> Problems that **don't** fall into `P` are hard slow, and *impractical*.
+
+#### Fibonacci sequence (Reduction to `P`)
+
+* **Fibonacci sequence**: where each number is the sum of the two numbers before it.
+
+```text
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34...
+```
+
+```python
+def fib(n: int) -> int:
+    if n <= 1:
+        return n
+    gp = 0
+    p = 1
+    current = 0
+    
+    # for _ in range(...) is generally preferred in Python when you know exactly how many iterations you need in advance - it signals intent more clearly and avoids the risk of an infinite loop from a mistyped condition.
+
+    for _ in range(0, n - 1):
+        current = p + gp
+        gp = p
+        p = current
+    return current
+```
+
+#### Order K^N - Exponential
+
+* `O(K^N)` – where `K` represents a constant branching factor, e.g. `3^N`.
+* Higher branching factors make algorithms that follow every branch at every node, such as exhaustive brute force searches, **computationally more expensive due to the exponentially increasing number of nodes**, leading to combinatorial explosion.
+
+```python
+# Exponential algorithm example, as the total number of digits increases the total combinations exponentially increase!
+
+def letter_combinations(digits: str) -> list[str]:
+    if digits == "":
+        return []
+
+    result = [""]
+
+    for digit in digits:
+        if digit not in digit_to_letters:
+            raise ValueError(f"invalid digit: {digit}")
+
+        letters = digit_to_letters[digit]
+        new_result = []
+
+        for combo in result:
+            for letter in letters:
+                new_result.append(combo + letter)
+                
+        result = new_result
+        
+    return result
+
+digit_to_letters = {
+    "2": "abc",
+    "3": "def",
+    "4": "ghi",
+    "5": "jkl",
+    "6": "mno",
+    "7": "pqrs",
+    "8": "tuv",
+    "9": "wxyz",
+}
+```
