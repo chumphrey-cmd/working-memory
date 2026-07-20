@@ -233,7 +233,7 @@ Ref: [Bitter Lesson](https://www.cs.utexas.edu/~eunsol/courses/data/bitter_lesso
 # OWASP Risk Rating Methodology - In Progress
 * [OWASP Risk Rating Methodology](https://owasp.org/www-community/OWASP_Risk_Rating_Methodology)
 
-# Kent Beck
+# Kent Beck Realted Ideas
 
 ## Forest vs. Desert
 
@@ -261,19 +261,49 @@ Ref: [Bitter Lesson](https://www.cs.utexas.edu/~eunsol/courses/data/bitter_lesso
 * In the forest, metrics are used as indicators—to reflect reality, help us learn, and guide better decisions. In the desert, metrics are turned into control systems. And the moment a metric becomes a goal, it stops being useful. [1]
 
 ## Bazaar vs. Cathedral
+* https://nakamotoinstitute.org/library/the-cathedral-and-the-bazaar/
 
 * This is a heuristic that describes the methodology and approach to building software. The former is indicative of open-source projects, releasing early and often, involve as many trusted contributors in a project as you can (effectively agile development). The latter is a legacy approach to building software (e.g., waterfall) where everything is carefully crafted, involves isolated artisans/mages that intend to release the final and completed product.
 
 * The author provides these examples for how to conceptualize each heuristic:
-  * **Cathedral**: "...the most important software (operating systems and really large tools like the Emacs programming editor) needed to be built like cathedrals, carefully crafted by individual wizards or small bands of mages working in splendid isolation, with no beta to be released before its time."
-  * **Bazaar**: "...release early and often, delegate everything you can, be open to the point of promiscuity—came as a surprise. No quiet, reverent cathedral-building here—rather, the Linux community seemed to resemble a great babbling bazaar of differing agendas and approaches (aptly symbolized by the Linux archive sites, who’d take submissions from anyone) out of which a coherent and stable system could seemingly emerge only by a succession of miracles."
+  * **Cathedral (Windows OS)**: "...the most important software (operating systems and really large tools like the Emacs programming editor) needed to be built like cathedrals, carefully crafted by individual wizards or small bands of mages working in splendid isolation, with no beta to be released before its time." The idea here
+  * **Bazaar (Linux OS)**: "...release early and often, delegate everything you can, be open to the point of promiscuity—came as a surprise. No quiet, reverent cathedral-building here—rather, the Linux community seemed to resemble a great babbling bazaar of differing agendas and approaches (aptly symbolized by the Linux archive sites, who’d take submissions from anyone) out of which a coherent and stable system could seemingly emerge only by a succession of miracles."
+
+* "In fact, I think Linus’s cleverest and most consequential hack was not the construction of the Linux kernel itself, but rather his invention of the Linux development model. When I expressed this opinion in his presence once, he smiled and quietly repeated something he has often said: “**I’m basically a very lazy person who likes to get credit for things other people actually do.**” Lazy like a fox. Or, as Robert Heinlein famously wrote of one of his characters, too lazy to fail." [3]
+
+* Programming Pearls (Jon Bentley) - "If you plan to throw one away, you will throw away two." He is almost certainly right. The point of Brooks's observation, and Bentley's, isn't merely that you should expect first attempt to be wrong, it's that starting over with the right idea is usually more effective than trying to salvage a mess."
+
+### Linus's Law
+
+* Given a large enough beta-tester and co-developer base, almost every problem will be characterized quickly and the fix obvious to someone (*“Given enough eyeballs, all bugs are shallow.” - Linus's Law (dubbed by Eric S. Raymond)*)
+
+#### Cathedral and Bazaar within Linus's Law
+* **Cathedral:** "...bugs and development problems are tricky, insidious, deep phenomena. It takes months of scrutiny by a dedicated few to develop confidence that you’ve winkled them all out. Thus, the long release intervals, and the inevitable disappointment when long-awaited releases are not perfect."
+
+* **Bazaar:** "...you assume that bugs are generally shallow phenomena - or, at least, that they turn shallow pretty quickly when exposed to a thousand eager co-developers pounding on every single new release. Accordingly, you release often in order to get more corrections, and as a beneficial side effect you have less to lose if an occasional botch gets out the door."
+  * This "wisdom of the crowd" or **[Delphi Effect](https://en.wikipedia.org/wiki/Delphi_method)** (e.g., Poly-Market) allows for greater accuracy.
+  * In the bazaar, self-selection occurs. People that want to contribute or "haggle in the Bazaar" for an open-source projects are typically self-selected. 
+  * Contributions are received not from a random sample, but from people who are interested enough to use the software, learn about how it works, attempt to find solutions to problems they encounter, and actually produce an apparently reasonable fix. Anyone who passes all these filters is highly likely to have something useful to contribute.
+
+> [!NOTE]
+> Something that should be taken into consideration is that the trust and quality of the contributions made to open-source projects due to coding assistants have degraded trust. Maintainers are inundated with a large number of pull requests that they are unable to properly vet.
+> This is the same outcome (inflationary effect) when printing excess currency and how that devalue buying power and dilutes your own currency within a market. There needs to be a reliable governer, both in capital markets and the open-source ecosystem that can vet the quality of pull requests. A potential solution could be an agentic triage agent that validates the quality and criteria of the findings and can deconflict with other pull requests that have already been submitted.
+
+### Principles of the Cathedral and Bazaar
 
 1. Every good work of software starts by scratching a developer’s personal itch.
 2. Good programmers know what to write. Great ones know what to rewrite (and reuse).
-3. If you have the right attitude, interesting problems will find you.
-4. Treating your users as co-developers is your least-hassle route to rapid code improvement and effective debugging.
+3. Plan to throw away one; you will anyhow
+4. If you have the right attitude, interesting problems will find you.
+5. When you lose interest in a program, your last duty to it is to hand it off to a competent successor.
+6. Treating your users as co-developers is your least-hassle route to rapid code improvement and effective debugging.
+7. Release early. Release often. And listen to your customers.
+8. Given a large enough beta-tester and co-developer base, almost every problem will be characterized quickly and the fix obvious to someone (*“Given enough eyeballs, all bugs are shallow.” - Linus's Law (dubbed by Eric S. Raymond)*)
 
-* "In fact, I think Linus’s cleverest and most consequential hack was not the construction of the Linux kernel itself, but rather his invention of the Linux development model. When I expressed this opinion in his presence once, he smiled and quietly repeated something he has often said: “**I’m basically a very lazy person who likes to get credit for things other people actually do.**” Lazy like a fox. Or, as Robert Heinlein famously wrote of one of his characters, too lazy to fail." [3]
+## Tussle in Cyberspace (David Clark)
+
+* https://groups.csail.mit.edu/ana/Publications/PubPDFs/Tussle2002.pdf
+* The idea that if you change one thing well engineering, you want to minimize the impact of that change. Essentially looking to localize and keep the changes tightly coupled...
 
 #  CI/CD - Trivy pull_request_target GitHub Actions Vuln
 
