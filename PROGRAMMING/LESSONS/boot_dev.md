@@ -5636,3 +5636,71 @@ digit_to_letters = {
     "9": "wxyz",
 }
 ```
+
+#### Exponential Growth Example
+* This is a simple example of creating an exponential increase based on factor.
+* I initially got stuck due to me needing to have an initial `n` value set within my final list. The issue is that as I was appending each of the incrementally increasing values, I wasn't able to capture the starting value. Simply including the starting value at the 0th position is all that I needed to do.
+
+```python
+def exponential_growth(n: int, factor: int, days: int) -> list[int]:
+    current = n
+    final = [n]
+    for i in range(days):
+        current *= factor
+        final.append(current)
+    return final
+```
+
+## Data Structures
+* A data structure is a **data organization, management, and storage format** that enables efficient access and modification. More precisely, a data structure is a collection of data values, the relationships among them, and the functions or operations that can be applied to the data.
+
+Basically, it's a way to:
+* Stores data 
+* Organizes data so that it can easily be accessed and modified 
+* Contains algorithmic functions to expose the ability to read and modify the data
+
+```python
+# List
+animals = ['cat', 'dog', 'mouse']
+
+# Dictionary
+car = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+```
+
+### Stacks
+
+* Data structure that stores ordered items (a list, but its design is more restrictive). It only allows items to be added or removed from the top of the stack via `LIFO` (**Last in First Out**).
+* Some common uses of stacks are as follows:
+  * Function call management 
+  * Undo/redo functionality 
+  * Expression evaluation 
+  * Browser history
+
+```python
+class Stack:
+    def __init__(self) -> None:
+        self.items: list[Any] = []
+
+    def push(self, item: Any) -> None:
+        self.items.append(item)
+
+    def size(self) -> int:
+        return len(self.items)
+
+    def peek(self) -> Any:
+        if self.items == []:
+            return None
+        return self.items[-1]
+
+    def pop(self) -> Any:
+        if self.items == []:
+            return None
+        # Here we need to assign the last item of the list to a variable so that in the event that you pop a single element inside of the list, you still have feedback on what was removed.
+        last = self.items[-1]
+        del self.items[-1]
+        return last
+```
