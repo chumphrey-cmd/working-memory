@@ -5704,3 +5704,30 @@ class Stack:
         del self.items[-1]
         return last
 ```
+
+* This is another example of the simple use of stacks. The difficulty for me was due to there needing to be two separate lists `stack`, which tracks the internal state/memory of the list that is growing and `output`, which is what is actually being built and returned.
+* The only operations that are actually affecting the length of the internal memory of the `stack` are `pop` and `push`. 
+* The `output` list is gradually being built as the function moves through the test cases.
+
+```python
+def run_stack_operations(operations):
+    stack = []
+    output = []
+    for operation in operations:
+        if "push" == operation[0]:
+            stack.append(operation[1])
+            
+        if "pop" == operation[0]:
+            if len(stack) == 0:
+                output.append(None)
+            else:
+                output.append(stack.pop())
+            
+        if "peek" == operation[0]:
+            if len(stack) == 0:
+                output.append(None)
+            else:
+                output.append(stack[-1])
+            
+    return output
+```
