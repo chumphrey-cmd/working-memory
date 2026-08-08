@@ -343,3 +343,40 @@ void shouldGetSingleArtifact() {
 ```
 
 ## 4. Decorator (Structural)
+
+# Ports and Adapters (Hexagonal) Architecture
+
+[1] https://8thlight.com/insights/a-color-coded-guide-to-ports-and-adapters
+
+**Useful Terminology**
+
+* **PORTS**: **`Interfaces`**
+* **ADAPTER**: **`Implements`**
+* Inbound: **Driving**, primary, left-side, incoming
+* Outbound: **Driven**, secondary, right-side, outgoing
+* Core: Hexagon, application, inside
+* Domain: Often folded into “core” (entities, use cases, rules) 
+
+* **Core**: Business logic in the middle (hexagon)
+* **Domain**: Business concepts/rules inside the core
+* **Inbound port**: **`Interface`** for “what the app can do”
+* **Inbound adapter**: Outside code that calls the core (e.g. controller)
+* **Outbound port**: **`Interface`** for “what the app needs”
+* **Outbound adapter**: Outside code that **`implements`** that need (e.g. DB)
+
+* It's an architecture pattern that aims to **decouple your application from the details** to include things like:
+  * Your web framework of choice 
+  * Your database of choice 
+  * Your choice of Object Relational Mapping (ORM) - abstracting the connection between programming language entities (objects) and their corresponding database elements (e.g., JPA in Java)
+  * A third-party API you use to support application use case(s)
+  * The application layer protocol a client and server will use to communicate
+
+> [!NOTE]
+> My experience is primarily with Layered Architecture (e.g., MVC) comprising Controller → Service → Repository → Entity. 
+> The benefit to using this architecture is that you can quickly get applications up and running fast.
+> For basic CRUD based applications, this design pattern works fine.
+> BUT each layer becomes **highly dependent** on the layers beneath it. 
+> If you wanted to modify databases, use different web frameworks, etc. you would have to rewrite all tests and implementations associated with each layer.
+> You lose on the nimbleness that port and adapters would provide for you.
+
+<img src="./images/springboot_by_layers.png">
