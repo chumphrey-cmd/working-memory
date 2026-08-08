@@ -285,9 +285,12 @@ Ref: [Bitter Lesson](https://www.cs.utexas.edu/~eunsol/courses/data/bitter_lesso
   * In the bazaar, self-selection occurs. People that want to contribute or "haggle in the Bazaar" for an open-source projects are typically self-selected. 
   * Contributions are received not from a random sample, but from people who are interested enough to use the software, learn about how it works, attempt to find solutions to problems they encounter, and actually produce an apparently reasonable fix. Anyone who passes all these filters is highly likely to have something useful to contribute.
 
+* Adding more beta-testers may not reduce the complexity of the current “deepest” bug from the developer’s point of view, but **it increases the probability that someone’s toolkit will be matched to the problem in such a way that the bug is shallow to that person**.
+
 > [!NOTE]
 > Something that should be taken into consideration is that the trust and quality of the contributions made to open-source projects due to coding assistants have degraded trust. Maintainers are inundated with a large number of pull requests that they are unable to properly vet.
 > This is the same outcome (inflationary effect) when printing excess currency and how that devalue buying power and dilutes your own currency within a market. There needs to be a reliable governer, both in capital markets and the open-source ecosystem that can vet the quality of pull requests. A potential solution could be an agentic triage agent that validates the quality and criteria of the findings and can deconflict with other pull requests that have already been submitted.
+> "Linus’s innovation wasn’t so much in doing quick-turnaround releases incorporating lots of user feedback (something like this had been Unix-world tradition for a long time), but in **scaling it up to a level of intensity that matched the complexity of what he was developing**... he cultivated his base of co-developers and leveraged the Internet for collaboration harder than anyone else, this worked."
 
 ### Principles of the Cathedral and Bazaar
 
