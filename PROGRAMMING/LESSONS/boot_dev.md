@@ -5680,6 +5680,8 @@ car = {
   * Expression evaluation 
   * Browser history
 
+#### Stack Creation
+
 ```python
 class Stack:
     def __init__(self) -> None:
@@ -5705,7 +5707,9 @@ class Stack:
         return last
 ```
 
-* This is another example of the simple use of stacks. The difficulty for me was due to there needing to be two separate lists `stack`, which tracks the internal state/memory of the list that is growing and `output`, which is what is actually being built and returned.
+#### Stack Used (Two Separate Lists)
+
+* This is another example of the simple use of stacks. The difficulty for me was due to there needing to be **two separate lists `stack`, which tracks the internal state/memory of the list that is growing and `output`, which is what is actually being built and returned**.
 * The only operations that are actually affecting the length of the internal memory of the `stack` are `pop` and `push`. 
 * The `output` list is gradually being built as the function moves through the test cases.
 
@@ -5731,3 +5735,33 @@ def run_stack_operations(operations):
             
     return output
 ```
+
+#### Validation Checker Using a Stack
+
+* First, we're instantiating a stack variable of type Stack() to access the imported methods from Stack class via stack.py. 
+* Next, we're looping through the list of characters to access individual characters in the string that is passed as a parameter inside of the is_balanced function. 
+* If the single character is equal to the paren of "(" push that character onto the empty stack that is instantiated inside of the Stack class. 
+* `else if` that is equal to the paren of "`)`" (which could serve as a closing paren for a valid operation or could be an invalid expression if it's the ONLY paren on that list) we then check if there are any other items in that list via pop(), if it's None (meaning that the list is empty) return False immediately as it's not a valid expression. 
+* Finally, `peek()` returns None when the stack is empty, or the top item otherwise. `stack.peek()` is None evaluates to a boolean directly: True if empty, False if not.
+
+```python
+from stack import Stack
+
+def is_balanced(input_str: str) -> bool:
+    stack = Stack()
+    for str in input_str:
+        if str == "(":
+            stack.push(str)
+        elif str == ")":
+            if stack.pop() is None:
+                return False
+
+    return stack.peek() is None
+```
+
+## Queues
+
+<img src="./images/queue_example.png">
+
+A queue is similar to a stack, but its design is more restrictive. A queue only allows **items to be added to the `tail`** of the queue and **removed from the `head`** of the queue.
+
