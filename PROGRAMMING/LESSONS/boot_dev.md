@@ -5694,12 +5694,12 @@ class Stack:
         return len(self.items)
 
     def peek(self) -> Any:
-        if self.items == []:
+        if len(self.items) == 0:
             return None
         return self.items[-1]
 
     def pop(self) -> Any:
-        if self.items == []:
+        if len(self.items) == 0:
             return None
         # Here we need to assign the last item of the list to a variable so that in the event that you pop a single element inside of the list, you still have feedback on what was removed.
         last = self.items[-1]
@@ -5759,9 +5759,107 @@ def is_balanced(input_str: str) -> bool:
     return stack.peek() is None
 ```
 
-## Queues
+### Queues
 
 <img src="./images/queue_example.png">
 
-A queue is similar to a stack, but its design is more restrictive. A queue only allows **items to be added to the `tail`** of the queue and **removed from the `head`** of the queue.
+A queue is similar to a stack, but its design is more restrictive, also it's **`FIFO`**. A queue only allows **items to be added to the `tail`** of the queue and **removed from the `head`** of the queue. 
 
+> [!NOTE]
+> All operations are `O(1)`. No matter how many items are in the queue, these operations will always take the same amount of time. 
+> The reason to choose a queue over a stack is all about ordering. **Queues should be used when you need to process items in the order they were added**.
+
+* `push (enqueue)`: adds an item to the tail of the queue.
+* `pop (dequeue)`: removes and returns anb item from the head of the queue.
+
+#### Queue Creation
+
+```python
+class Queue:
+    def __init__(self) -> None:
+        self.items: list[Any] = []
+
+    def push(self, item: Any) -> None:
+        self.items.insert(0, item)
+
+    def pop(self) -> Any:
+        if len(self.items) == 0:
+            return None
+        temp = self.items[-1]
+        del self.items[-1]
+        return temp
+
+    def peek(self) -> Any:
+        if len(self.items) == 0:
+            return None
+        return self.items[-1]
+
+    def size(self) -> int:
+        return len(self.items)
+```
+
+#### Matching with Queues
+
+```python
+def matchmake(queue: Queue, user: tuple[str, str]) -> str:
+    name = user[0]
+    action = user[1]
+    if "leave" in action:
+        queue.search_and_remove(name)
+        
+    if "join" in action:
+        queue.push(name)
+        
+    if queue.size() >= 4:
+        user1 = queue.pop()
+        user2 = queue.pop()
+        return f"{user1} matched {user2}!"
+        
+    return "No match found"
+```
+
+### Linked Lists
+
+Where elements are not stored next to each other in memory, instead, **each item references the next in a chain**.
+
+<img src="./images/linked_list.png">
+
+#### Linked List vs List
+
+<img src="./images/linked_list_vs_list_2.png">
+
+* **List**: stored next to each other in memory, and to get an item from a normal List we have to use a numbered index (e.g., `item = item[0]`).
+* **Linked List**: **there are no indexes** - each node contains two things: 1) **`data`** itself and 2) a reference (**`ref`**) to the next node in the list. Iterating over a linked list requires starting at the head node and following the next references until you reach the end.
+
+> [!NOTE]
+> Using a linked list is most ideal **when inserting or deleting items from the middle**, otherwise using a standard list is more appropriate.
+>
+> In a **normal list**, if you insert an item in the middle, **you have to shift all the items after it down one spot**, which takes `O(n)` time.
+> 
+> In a **linked list**, once you've traversed to a given node, insertion is `(O(1))` because you can simply update two references:
+
+**List: Insert a node in the middle**
+
+<img src="./images/dsa_list_insertion.png">
+
+**Linked List: Insert a node in the middle**
+
+<img src="./images/dsa_linked_list_insertion.png">
+
+#### Linked List Creation
+
+* Initial creation of a Linked List in Python with a `Node` class 
+```python
+class Node:
+    val: Any
+
+    def __init__(self, val: Any) -> None:
+        self.val = val
+        self.next = None
+
+    def set_next(self, node: "Node") -> None:
+        self.next = node
+
+    def __repr__(self) -> str:
+        return self.val
+```
