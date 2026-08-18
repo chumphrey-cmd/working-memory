@@ -3954,6 +3954,157 @@ console.log(sum.apply(null, numbers));
 // Expected output: 6
 ```
 
+### `.map()`
+
+* Transforms an existing array into a **new array**.
+* Returns a new array containing the transformed elements.
+
+> [!NOTE]
+> Use when you need to change the data inside an array and **want to keep the original array intact (non-destructive)**.
+
+```typescript
+export type Purchase = {
+  item: string;
+  category: string;
+  price: number;
+  quantity: number;
+};
+
+export type CategoryTotal = {
+  category: string;
+  total: number;
+};
+
+export function formatPurchaseSummaries(purchases: Purchase[]): string[] {
+  const mappedPurchase = purchases.map((mp) => {
+    return `${mp.quantity} x ${mp.item} (${mp.category}): $${mp.price * mp.quantity}`;
+  });
+  return mappedPurchase;
+}
+
+export function calculateCategoryTotals(
+  purchases: Purchase[],
+): CategoryTotal[] {
+  const totalsArr: CategoryTotal[] = [];
+  
+  const final = purchases.forEach((pur) => {
+    const total = pur.price * pur.quantity;
+    
+    const exisitingCategory = totalsArr.find((entry) => entry.category === pur.category);
+    if (exisitingCategory) {
+      exisitingCategory.total += total;
+    } else {
+      const newCategory = {
+        category: pur.category,
+        total: total
+      }
+      totalsArr.push(newCategory)
+    }
+  })
+  return totalsArr
+}
+```
+
+#### `.map` Practice
+
+* I've recently been wanting some additional practice with the use of the `Array.prototype.map()`.
+* I've started to get the initial hang of it and feel like I have some fluency with the use of `.map()`.
+* The `map()` method of Array instances **creates a new array populated with the results of calling a provided function** on every element in the calling array.
+
+```typescript
+export type OrderItem = {
+  sku: string;
+  description?: string;
+  quantity: number;
+  unitPrice: number;
+};
+
+export type Order = {
+  customer: string;
+  discountPercent?: number;
+  items: OrderItem[];
+};
+
+export type InvoiceLine = {
+  sku: string;
+  description: string;
+  quantity: number;
+  unitPrice: number;
+  lineTotal: number;
+};
+
+export type Invoice = {
+  customer: string;
+  lines: InvoiceLine[];
+  subtotal: number;
+  discountAmount: number;
+  total: number;
+  summary: string;
+};
+
+export function normalizeLineItems(items: OrderItem[]): InvoiceLine[] {
+  const itemsMap = items.map((item) => {
+    const invoiceLineDescription = item.description
+      ? item.description
+      : item.sku;
+    const quantity = item.quantity <= 0 ? 0 : item.quantity;
+    const lineTotal = quantity * item.unitPrice;
+
+    return {
+      sku: item.sku,
+      description: invoiceLineDescription,
+      quantity: quantity,
+      unitPrice: item.unitPrice,
+      lineTotal: lineTotal,
+    };
+  });
+  return itemsMap;
+}
+
+function sumLineTotals(lines: InvoiceLine[], index = 0): number {
+  if (index === lines.length) {
+    return 0;
+  }
+  return lines[index].lineTotal + sumLineTotals(lines, index + 1);
+}
+
+export function createInvoices(orders: Order[]): Invoice[] {
+  const finalInvoices = orders.map((order) => {
+    const customerName = order.customer;
+    const lines = normalizeLineItems(order.items);
+    const subtotal = sumLineTotals(lines);
+    const discountPercent = order.discountPercent === undefined ? 0 : order.discountPercent / 100;
+    const discountAmount = subtotal * discountPercent;
+    const total = subtotal - discountAmount;
+    const summary = `${customerName}: ${lines.length} lines | Subtotal $${subtotal.toFixed(2)} | Discount $${discountAmount.toFixed(2)} | Total $${total.toFixed(2)}`;
+
+    return {
+      customer: customerName,
+      lines: lines,
+      subtotal: subtotal,
+      discountAmount: discountAmount,
+      total: total,
+      summary: summary,
+    };
+  });
+  return finalInvoices;
+}
+```
+
+### `.forEach()`
+
+* Executes a provided function once for each array element.
+* Returns `undefined`.
+
+> [!NOTE]
+> Use it when you need to **perform an action or "side effect"** (like logging to the console, saving to a database, or updating an external variable) and do **NOT** need a new array back.
+
+#### `.forEach()` Practice
+
+```typescript
+console.log("Beginning practice here...")
+```
+
 ## Objects
 
 ### Exporting Object Types
@@ -4036,6 +4187,11 @@ console.log(justiceLeague);
 
 * Built-in function (similar to Python's dictionaries) which are a collection of key-value pairs specified via `<K,V>`
   parameters.
+* Is a collection of keyed data items, similar to a standard JavaScript/TypeScript Object or Python's dictionaries, but much more capable.
+* Returns an iterable object holding key-value pairs.
+
+> [!NOTE]
+> Use when you need a dictionary where the keys are not just strings (a `Map` allows numbers, objects, or functions as keys), when you need to maintain the exact insertion order, or when you are frequently adding and removing key-value pairs.
 
 ```typescript
 // A Map with string keys and number values
@@ -4061,7 +4217,7 @@ for (const [racer, speed] of podracerSpeeds) {
 // Sebulba raced at 941 speed
 ```
 
-* The most important methods of a map: `get`, `delete`, `has`
+* The most important methods of a map: `get`, `delete`, `has`, and `set`
 
 ```typescript
 console.log(podracerSpeeds.get("Sebulba"));
@@ -5862,4 +6018,50 @@ class Node:
 
     def __repr__(self) -> str:
         return self.val
+```
+
+#### Linked List Traversal (Generator Functions)
+
+* A generator is an object that produces a sequence of values one at a time, as they're needed.
+* The `yield` keyword in Python returns a value, kind of like `return`. However, it's used to turn the function into a generator function. For example: 
+
+**Basic Implementation of a Generator Function**
+
+```python
+def create_counter():
+    count = 0
+    while True:
+        yield count
+        count += 1
+
+for count in create_counter():
+    print(count)
+    if count == 2:
+        break
+# Output:
+    # 0
+    # 1
+    # 2
+```
+
+```python
+class LinkedList:
+    head: Node | None
+
+    def __init__(self) -> None:
+        self.head = None
+
+    def __iter__(self):
+        node = self.head
+        while node != None:
+            yield node
+            node = node.next
+
+    def __repr__(self) -> str:
+        nodes = []
+        current = self.head
+        while current and hasattr(current, "val"):
+            nodes.append(current.val)
+            current = current.next
+        return " -> ".join(nodes)
 ```
