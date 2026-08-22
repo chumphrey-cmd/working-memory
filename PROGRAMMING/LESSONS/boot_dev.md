@@ -4102,7 +4102,64 @@ export function createInvoices(orders: Order[]): Invoice[] {
 #### `.forEach()` Practice
 
 ```typescript
-console.log("Beginning practice here...")
+export type InventoryEvent = {
+  item: string;
+  category: string;
+  adjustment: number;
+};
+
+export type RestockItem = {
+  item: string;
+  quantityNeeded: number;
+};
+
+export type InventoryResult = {
+  totals: Map<string, number>;
+  categories: Set<string>;
+  restock: RestockItem[];
+};
+
+export function processInventory(events: InventoryEvent[]): InventoryResult {
+  const totals = new Map();
+  const categories: Set<string> = new Set();
+  const restock: RestockItem[] = [];
+
+  // Building totals map from Inventory Event
+  events.forEach((event) => { 
+    if (Number.isInteger(event.adjustment) && event.adjustment !== 0) {
+
+      // Accumlating adjustment values
+      const currentAdjustment = totals.get(event.item) ?? 0;
+      totals.set(event.item, currentAdjustment + event.adjustment);
+
+      if (event.category.length !== 0) categories.add(event.category)
+    }
+  })
+
+  // Building restock from totals Map
+  totals.forEach((total, itemName) => {
+    if (total < 0) {
+      const quantityNeeded = total * -1;
+      const item = itemName;
+      restock.push({item, quantityNeeded});
+    }
+  })
+
+  restock.sort((a, b) => {
+    if (a.quantityNeeded !== b.quantityNeeded) {
+      // Sorting greatest to least
+      return b.quantityNeeded - a.quantityNeeded
+    }
+    // Sorting A - Z
+    return a.item.localeCompare(b.item)
+  })
+
+  return {
+    totals,
+    categories,
+    restock
+  }
+}
 ```
 
 ## Objects
