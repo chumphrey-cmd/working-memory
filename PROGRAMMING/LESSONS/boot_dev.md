@@ -4331,6 +4331,72 @@ type FormData = {
 * This Dynamic Default Property says: "require `email`, `password`, `age` AND accept any other key-value with a key of
   string and values that can be string, number or boolean"
 
+## Intersections
+
+* An **[intersection type](https://www.typescriptlang.org/docs/handbook/2/objects.html#intersection-types)** combines multiple types into one with the `&` operator.
+* Basically, you're now able to nicely combine different shapes together and `extend` attributes of base shapes as needed (lik inheritance)!
+
+```typescript
+export type SupportBot = {
+  id: string;
+  name: string;
+  status: string;
+  language: string;
+};
+
+export type TextBot = SupportBot & {
+  messageLog: string[];
+  sendMessage: (message: string) => string;
+}
+
+export type VoiceBot = SupportBot & {
+  callLog: string[];
+  phoneNumber: string;
+  dialNumber: (phoneNumber: string) => string;
+}
+```
+
+## Interfaces
+
+> [!NOTE]
+> In general, you should prefer `type` over `interface`, **HOWEVER**, an `interface` is better when you want to extend types. 
+>
+> **ALSO**, with interfaces the developer **ergonomics are a bit better and compilation is a bit faster**.
+
+### Extending Interfaces (&)
+
+* With types, you use the `&` (intersection) operator to extend:
+
+```typescript
+type Character = {
+  name: string;
+  level: number;
+};
+
+type Wizard = Character & {
+  spellbook: string[];
+  mana: number;
+};
+```
+
+### Extending Interfaces (extends) keyword
+* With interfaces, you use the `extends` keyword:
+
+> [!TIP]
+> `interfaces` are also useful when you're wanting to modify a  **global** type and add some additional attributes that are localized to a specific object.
+
+```typescript
+interface Character {
+  name: string;
+  level: number;
+}
+
+interface Wizard extends Character {
+  spellbook: string[];
+  mana: number;
+}
+```
+
 # SQL Basics
 
 ## NoSQL vs. SQL Databases
@@ -6122,3 +6188,90 @@ class LinkedList:
             current = current.next
         return " -> ".join(nodes)
 ```
+
+#### Add to Tail
+
+* Similar to Python's `.append`, but here we are doing it from scratch.
+
+<img src="./images/linked_list_add_to_tail.png">
+
+##### Iteration Using a Traditional `while` Loop
+
+```python
+class Node:
+  def __init__(self, val: Any) -> None:
+    self.val = val
+    self.next: "Node | None" = None
+
+  def set_next(self, node: "Node | None") -> None:
+    self.next = node
+
+  def __repr__(self) -> str:
+    return self.val
+
+from node import Node
+
+class LinkedList:
+    def add_to_tail(self, node: Node) -> None:
+        if self.head is None:
+            self.head = node
+            return
+
+        last = self.head
+
+        while last.next != None:
+            last = last.next
+
+        last.set_next(node)
+```
+
+##### Using `__iter__` Method
+
+* `__iter__` is a special (dunder) method that makes an object iterable. When you write for node in self:, Python looks for `self.__iter__()` and calls it to get something it can loop over.
+
+```python
+class Node:
+  def __init__(self, val: Any) -> None:
+    self.val = val
+    self.next: "Node | None" = None
+
+  def set_next(self, node: "Node | None") -> None:
+    self.next = node
+
+  def __repr__(self) -> str:
+    return self.val
+
+from node import Node
+
+class LinkedList:
+  def add_to_tail(self, node: Node) -> None:
+    if self.head is None:
+      self.head = node
+      return
+
+    last = self.head
+
+    # self is what initates accessing the __iter__ (dunder) method that makes the method exportable
+    for current in self:
+      last = current
+    last.set_next(node)
+
+  # __iter__ setup
+  def __init__(self) -> None:
+    self.head: Node | None = None
+
+      '''
+      The yield keyword is what makes this a generator function. 
+      
+      Instead of returning once and exiting, each call to yield pauses the function and hands a value back to the caller. 
+      
+      When the for loop asks for the next item, execution resumes right where it left off (right after the yield), continues the while loop, and yields the next node.
+      '''
+  def __iter__(self):
+    node = self.head
+    while node is not None:
+      yield node
+      node = node.next
+```
+
+#### Linked List Queue
