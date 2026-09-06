@@ -6111,7 +6111,7 @@ Where elements are not stored next to each other in memory, instead, **each item
 * **Linked List**: **there are no indexes** - each node contains two things: 1) **`data`** itself and 2) a reference (**`ref`**) to the next node in the list. Iterating over a linked list requires starting at the head node and following the next references until you reach the end.
 
 > [!NOTE]
-> Using a linked list is most ideal **when inserting or deleting items from the middle**, otherwise using a standard list is more appropriate.
+> Using a linked list is most ideal **when inserting or deleting items from the middle**, otherwise using a standard list (array) is more appropriate.
 >
 > In a **normal list**, if you insert an item in the middle, **you have to shift all the items after it down one spot**, which takes `O(n)` time.
 > 
@@ -6314,3 +6314,30 @@ class LinkedList:
 ```
 
 ##### Remove from Head
+
+**Core pattern to keep note of with removing from head:**
+
+1. Handle the empty case first (guard clause).
+2. Save a reference to the node you're removing before you change any pointers.
+3. Update the head/pointer to skip past the removed node.
+4. Check if the list is now empty as a side effect of step 3, and fix up the tail if so.
+5. Detach the removed node completely (set its next to None) so it doesn't accidentally drag the rest of the list along with it if someone holds onto that reference.
+6. Return the saved node.
+
+```python
+class LLQueue:
+    def remove_from_head(self) -> Node | None:
+        if self.head is None:
+            return None
+            
+        else: 
+            temp = self.head
+            self.head = self.head.next
+
+        if self.head is None:
+            self.tail = None
+            
+        else:
+            temp.next = None
+        return temp
+```
