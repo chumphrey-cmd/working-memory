@@ -4397,6 +4397,13 @@ interface Wizard extends Character {
 }
 ```
 
+## Type Narrowing
+
+### Type Hierarchy Explained
+
+<img src="./images/type_hierarchy.png">
+
+
 # SQL Basics
 
 ## NoSQL vs. SQL Databases
@@ -6341,3 +6348,22 @@ class LLQueue:
             temp.next = None
         return temp
 ```
+
+### Trees
+
+Trees are kind of like linked lists - the root node holds a reference to its child nodes, which in turn hold references to their children... BUT a **tree's nodes can have multiple children instead of just one**. 
+
+A generic tree structure has the following rules:
+* Each node has a value and may have a list of "children".
+* Children can only have a single "parent"
+
+#### Binary Trees (Binary Search Tree)
+
+A Binary Search Tree (BST) node has at most 2 children. A BST adds a few more constraints:
+
+1. The **left child's value must be less than its parent's value**
+2. The **right child's value must be greater than its parent's value**
+3. **No two nodes in the BST can have the same value**
+
+> [!NOTE]
+> BSTs are `O((log(n)))` and are highly efficient for search (e.g., Google or massive databases)
