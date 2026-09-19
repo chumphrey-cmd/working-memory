@@ -619,10 +619,35 @@ RTL is a specialized extension designed for React. It has no idea how to run a t
 
 ### Use Vitest (`vi.mock` or `vi.spyOn`) for JS/TS-level logic
 
-If you want to fake a JS/TS module, an external package, a timer, or watch if a specific local function was called, use Vitest.
+If you want to fake a JS/TS module, an external package, a timer, or watch if a specific local function was called, use Vitest. For example:
 
-> **Example:** 
-> You want to test a component that uses a third-party library like `uuid` to generate IDs. You don't want real random IDs in your test, so you use `vi.mock('uuid', () => ({ v4: () => 'static-id-123' }))`.
+```typescript
+// spyOn client (typical method)
+const save = vi.spyOn(reviewClient, "saveReview").mockResolvedValue(review)
+```
+
+```typescript
+const mockNavigate = vi.fn();  
+  
+  // Mocking typical dependency
+vi.mock("react-router-dom", () => ({  
+  useNavigate: () => mockNavigate,  
+}));  
+  
+const mockDisplayStatusBar = vi.fn()  
+  
+  // 1. Mocking a useContext with mock
+vi.mock("../../shared/StatusBarContext", () => ({  
+  ...vi.importActual("../../shared/StatusBarContext"),  
+  useStatusBarContext: () => ({  
+    displayStatusBar: mockDisplayStatusBar,  
+  }),  
+}));
+
+// 2. spyOn with useContext
+
+// 3. Wrap tested Component with the actual useContext Provider
+```
 
 ### Use MSW for Network-level requests
 

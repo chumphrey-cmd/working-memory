@@ -1,4 +1,0 @@
-- **Essence of Network Security**:
-  - **Enumeration**: Identifying network resources and vulnerabilities.
-  - **Detection**: Monitoring network activities to identify potential threats.
-  - **Protection**: Implementing measures to safeguard against identified threats.

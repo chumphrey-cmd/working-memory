@@ -3,3 +3,12 @@
 - **[The Tao of Network Security Monitoring](https://www.oreilly.com/library/view/the-tao-of/0321246772/):** An insightful resource on network security monitoring techniques.
   
 - **[Best Practices for Mapping to MITRE ATT&CK](https://www.cisa.gov/news-events/news/best-practices-mitre-attckr-mapping):** Highlights the fundamentals of using MITRE ATT&CK to create narrative-based accounts of adversary actions.
+
+## Dynamic Incident Response 
+- https://dynamicir.s3.amazonaws.com/dynamicir.pdf
+
+### Chapter 3: A Short History of Incident Response
+
+### Chapter 6: A Dynamic Approach to Incident Response
+
+### Chapter 7: Prepare Activity
