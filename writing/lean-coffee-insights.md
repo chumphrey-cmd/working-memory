@@ -1,16 +1,12 @@
 # 2026-SEP-25
 
-A few months back I was invited to my first #LeanCoffee at work and was blown away by the information density in less than an hour discussion!
-
-Since then, I've decided to run with it and have made it a point to facilitate one session per week. I'd figure I'd use this platform to regularly synthesize some the interesting idea's I've shared and been exposed to.
-
-#LeanCoffeeNotes
 ## London vs Detroit TDD
 
-- Detroit - also called classicist, Inside-out, black-box, or social testing
-- London - mockist, outside-in, white box, or solitary testing
+After this topic came up, I found the following [Medium article](https://medium.com/@adrianbooth/test-driven-development-wars-detroit-vs-london-classicist-vs-mockist-9956c78ae95f), which nicely covering the topic.
 
-After reading the article @Rob placed in the chat my rough summary is as follows:
+- Detroit - also called Classicist, Inside-out, black-box, or social testing
+- London - Mockist, outside-in, white box, or solitary testing
+
 
 Detroit/Classicist (avoiding the use of mocks) treat the entire method call like a black box meaning that when the method is called, you should expect an explicit result to come back: (`sum (1,1) excepts a value of 2`)
 
@@ -25,6 +21,7 @@ A nice summary between the two was covered in the comment section the article:
 [a bug may be introduced in an unrelated component that directly impacts your unit test
 
 Basically, both methods have their place and use cases. I think it's a blend of both where each covers the weaknesses by the other.
+
 ## Over rotating on DORA
 
 DORA metrics function as to identify:
@@ -50,17 +47,15 @@ From what I gathered, there was some concern about letting metrics become the go
 
 Charles Munger also has a useful quote adjacent to this idea: "Show me the incentive and I’ll show you the outcome."
 
-But the counter point was that the organization hasn’t done well at tracking these metrics across teams to begin with, so how can we over rotate on them if we aren’t even tracking them effectively. I think the consensus was that we should aim to effectively capture this information first.
+But the counterpoint was that the organization hasn’t done well at tracking these metrics across teams to begin with, so how can we over rotate on them if we aren’t even tracking them effectively. I think the consensus was that we should aim to effectively capture this information first.
 
 ## Speed is relative
 
-@Jake brought this idea that "Speed is relative..." basically, the deployment frequency, the number of features delivered, etc are limited by the slowest element in your development process (e.g., path-to-prod)
+"Speed is relative..." basically, the deployment frequency, the number of features delivered, etc are limited by the slowest element in your development process (e.g., path-to-prod)
 
 For example, deploying in an external environment, may be several times slower than PX and should be a consideration/risk that should be understood by product team and the wider organization. However, that shouldn’t stop the team from iterating locally on features.
 
 ## Team Coach Role
-
-@Pip brought this idea where an external team coach that could be used to identify certain anti-team patterns.
 
 Basically, we determine that the team well-being shouldn’t only be relegated to the PM, everyone should have a vested interest in the team’s health
 
