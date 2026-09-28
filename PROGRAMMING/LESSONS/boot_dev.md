@@ -6196,6 +6196,31 @@ class LinkedList:
         return " -> ".join(nodes)
 ```
 
+#### Reversed Linked List (Recursive)
+
+```python
+class Node:
+    def __init__(self, value, next_node=None):
+        self.value = value
+        self.next = next_node
+
+
+def reverse_linked_list(head):
+    if head is None or head.next is None:
+        return head
+
+    # Reverse the rest of linked list and put the first element at the end
+    rev_ll = reverse_linked_list(head.next)
+
+    # Make the current head the last node of remaining linked list
+    head.next.next = head
+
+    # Update next of current head to NULL
+    head.next = None
+
+    return rev_ll
+```
+
 #### Add to Head/Tail
 
 * Similar to Python's `.append`, but here we are doing it from scratch.
@@ -6367,3 +6392,36 @@ A Binary Search Tree (BST) node has at most 2 children. A BST adds a few more co
 
 > [!NOTE]
 > BSTs are `O((log(n)))` and are highly efficient for search (e.g., Google or massive databases)
+
+```python
+class BSTNode:
+    def __init__(self, val: Any = None) -> None:
+
+        self.left: "BSTNode | None" = None
+        self.right: "BSTNode | None" = None
+        self.val = val
+
+    def insert(self, val: Any) -> None:
+        if self.val is None:
+            self.val = val
+            return
+
+        if self.val == val:
+            return
+
+        if val < self.val and self.left is None:
+            self.left = BSTNode(val)
+            return 
+
+        if val < self.val and self.left is not None:
+            self.left.insert(val)
+            return
+
+        if val > self.val and self.right is None:
+            self.right = BSTNode(val)
+            return
+
+        if val > self.val and self.right is not None:
+            self.right.insert(val)
+            return
+```
