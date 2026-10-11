@@ -4443,7 +4443,160 @@ And on the other hand:
 * Type aliases and interfaces are more flexible, especially when working with plain objects because they're not tied to the class implementation (signature only)
 * Interfaces can be extended and merged in ways that types and classes can't
 
+## Utility Types
 
+* `Partial<T>`, `Required<T>`, and `Readonly<T>` are useful for changing the kinds of properties in a type.
+* The `Record<K, T>` change the **shape** of a type.
+
+### Partial
+
+`Partial<T>` **makes all properties of a type optional**.
+
+>[!NOTE]
+> `Partial<T>` only makes the top-level properties optional!
+
+```typescript
+type User = {
+  id: string;
+  name: string;
+  email: string;
+};
+
+// Without Partial
+function updateUser(
+  userId: string,
+  userInfo: {
+    id?: string;
+    name?: string;
+    email?: string;
+  },
+) {
+  // ...
+}
+
+// With Partial
+function updateUser(userId: string, userInfo: Partial<User>) {
+  // ...
+}
+```
+
+### Required
+
+`Required<T>` utility type does the opposite of `Partial<T>` - **it forces all properties of a type to be required, even those that were originally optional**.
+
+```typescript
+interface BlogPost {
+  title: string;
+  content: string;
+  tags?: string[];
+  publishDate?: Date;
+  author?: {
+    id: string;
+    name?: string;
+  };
+}
+
+// All properties are now required
+type MyRequiredBlogPost = Required<BlogPost>;
+
+// MyRequiredBlogPost is equivalent to:
+// {
+//   title: string;
+//   content: string;
+//   tags: string[];
+//   publishDate: Date;
+//   author: {
+//     id: string;
+//     name?: string;
+//   };
+// }
+```
+
+### Readonly
+
+`Readonly<T>` utility creates a new type where **all the top-level properties are readonly, preventing them from being reassigned after initialization**.
+
+```typescript
+interface UserProfile {
+  id: string;
+  name: string;
+  preferences: {
+    readonly theme: "light" | "dark";
+    notifications: boolean;
+  };
+}
+
+type ConstantUserProfile = Readonly<UserProfile>;
+
+// this is the same as
+// type ConstantUserProfile = {
+//   readonly id: string;
+//   readonly name: string;
+//   readonly preferences: {
+//     readonly theme: "light" | "dark";
+//     notifications: boolean;
+//   };
+// }
+```
+
+### Record
+
+The `Record<K, T>` utility type creates a type with a set of properties `K` of type `T`.
+This is basically another way to create key-value pairs inside of TypeScript, BUT it's also **high useful for exhaustive lookup tables and configuration objects**:
+
+```typescript
+type HttpStatusCode = 200 | 201 | 400 | 401 | 403 | 404 | 500;
+
+const statusMessages: Record<HttpStatusCode, string> = {
+  200: "OK",
+  201: "Created",
+  400: "Bad Request",
+  401: "Unauthorized",
+  403: "Forbidden",
+  404: "Not Found",
+  500: "Internal Server Error",
+};
+
+function getStatusMessage(code: HttpStatusCode): string {
+  return statusMessages[code];
+}
+
+console.log(getStatusMessage(404));
+// "Not Found"
+```
+
+### Utility
+
+Creates a new type by selecting a subset of properties from an existing type. For example:
+
+```typescript
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+  category: string;
+  inStock: boolean;
+  images: string[];
+  reviews: { user: string; rating: number; text: string }[];
+}
+
+type ProductSummary = Pick<Product, "id" | "name" | "price">;
+
+const productList: ProductSummary[] = [
+  { id: "p1", name: "Keyboard", price: 79.99 },
+  { id: "p2", name: "Mouse", price: 59.99 },
+];
+
+const invalidProduct: ProductSummary = {
+  id: "p3",
+  name: "Headphones",
+  price: 99.99,
+  // TSC error:
+  // Object literal may only specify known properties, and 'description' does not exist in type 'ProductSummary'.
+  description: "Noise cancelling headphones",
+};
+```
 
 # SQL Basics
 
